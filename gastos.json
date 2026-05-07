@@ -3,7 +3,7 @@
   "version": "1.0",
   "pagos": {
     "2026-04": {
-      "_nota": "Datos histÃ³ricos parciales extraÃ­dos de Gmail",
+      "_nota": "Datos histÃÂ³ricos parciales extraÃÂ­dos de Gmail",
       "ago_berli": {
         "vencimiento": null,
         "monto": null,
@@ -20,7 +20,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Factura de honorarios Luciana GrenÃ³n (PDF adjunto)"
+        "notas": "Factura de honorarios Luciana GrenÃÂ³n (PDF adjunto)"
       },
       "cabal_credicoop": {
         "vencimiento": "2026-04-08",
@@ -29,7 +29,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃ­nimo: $228.167"
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃÂ­nimo: $228.167"
       },
       "ubajay": {
         "vencimiento": null,
@@ -56,7 +56,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Visa XXXX-2384. Pago mÃ­nimo: $202.980. Saldo total no disponible en email."
+        "notas": "Tarjeta Visa XXXX-2384. Pago mÃÂ­nimo: $202.980. Saldo total no disponible en email."
       },
       "master_patagonia_joa": {
         "vencimiento": null,
@@ -110,7 +110,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "PerÃ­odo 02/2026 - verificar con contador"
+        "notas": "PerÃÂ­odo 02/2026 - verificar con contador"
       },
       "ecommapp": {
         "vencimiento": null,
@@ -193,7 +193,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃ­nimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃÂ­nimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
       },
       "ubajay": {
         "vencimiento": "2026-05-09",
@@ -202,7 +202,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:consorcioabierto.com",
-        "notas": "NAUTICO UBAJAY CC. 1Âº venc 09/05: $268.623 | 2Âº venc 19/05: $280.281"
+        "notas": "NAUTICO UBAJAY CC. 1ÃÂº venc 09/05: $268.623 | 2ÃÂº venc 19/05: $280.281"
       },
       "visa_nbsf": {
         "vencimiento": "2026-05-08",
@@ -220,16 +220,16 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Estimado: Cierre 30/04 â vence aprox. 10-may. Resumen disponible en Banca Internet (03/05)."
+        "notas": "Estimado: Cierre 30/04 Ã¢ÂÂ vence aprox. 10-may. Resumen disponible en Banca Internet (03/05)."
       },
       "master_patagonia_joa": {
         "vencimiento": "2026-05-04",
-        "monto": 0,
+        "monto": 1,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "carga_manual_iphone",
-        "notas": "El saldo era positivo por eso el pago fue cero"
+        "notas": "la cuenta tenia saldo a favor"
       },
       "master_nbsf_joa": {
         "vencimiento": "2026-05-08",
@@ -238,7 +238,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "imagen_resumen",
-        "notas": "Mastercard Black NBSF Â· Cta 56419274-2 Â· Pago mÃ­n: $77.454 Â· Cierre: 30/04/26"
+        "notas": "Mastercard Black NBSF ÃÂ· Cta 56419274-2 ÃÂ· Pago mÃÂ­n: $77.454 ÃÂ· Cierre: 30/04/26"
       },
       "master_mp": {
         "vencimiento": null,
@@ -319,7 +319,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "Factura mayo aÃºn no llegÃ³. LlegÃ³ en mar-2026 de oficinavirtual@epe.santafe.gov.ar"
+        "notas": "Factura mayo aÃÂºn no llegÃÂ³. LlegÃÂ³ en mar-2026 de oficinavirtual@epe.santafe.gov.ar"
       },
       "autonomos": {
         "vencimiento": null,
@@ -328,7 +328,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Nuevos importes desde abr-2026. Monto exacto segÃºn categorÃ­a ARCA. Vence en mayo."
+        "notas": "Nuevos importes desde abr-2026. Monto exacto segÃÂºn categorÃÂ­a ARCA. Vence en mayo."
       }
     },
     "2026-06": {
@@ -339,7 +339,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "DDJJ IVA perÃ­odo 03/2026. Confirmado por Danilo Ormachea."
+        "notas": "DDJJ IVA perÃÂ­odo 03/2026. Confirmado por Danilo Ormachea."
       }
     }
   }
