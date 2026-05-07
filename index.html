@@ -856,11 +856,43 @@ async function guardarEnGitHub() {
   }
 }
 
-// ===== INIT =====
-renderMes('2026-05', 'mayo-tbody');
-renderMes('2026-06', 'junio-tbody');
-renderHistorial();
-initCargaSelect();
+// ===== INIT — carga datos desde GitHub en tiempo real =====
+async function init() {
+  initCargaSelect();
+
+  // Intentar cargar gastos.json desde GitHub (sin token, es público)
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/master/${GH_FILE}?t=${Date.now()}`);
+    if (res.ok) {
+      const data = await res.json();
+      // Mergear los datos de GitHub sobre los hardcodeados
+      Object.keys(data.pagos).forEach(mes => {
+        if (!PAGOS[mes]) PAGOS[mes] = {};
+        Object.keys(data.pagos[mes]).forEach(id => {
+          const remote = data.pagos[mes][id];
+          // Solo pisa si tiene datos reales
+          if (remote.monto || remote.vencimiento || remote.pagado === true) {
+            PAGOS[mes][id] = {
+              vencimiento: remote.vencimiento || (PAGOS[mes][id] && PAGOS[mes][id].vencimiento) || null,
+              monto:       remote.monto       || (PAGOS[mes][id] && PAGOS[mes][id].monto)       || null,
+              pagado:      remote.pagado !== undefined ? remote.pagado : (PAGOS[mes][id] && PAGOS[mes][id].pagado),
+              notas:       remote.notas       || (PAGOS[mes][id] && PAGOS[mes][id].notas)       || ''
+            };
+          }
+        });
+      });
+      console.log('✅ Datos actualizados desde GitHub');
+    }
+  } catch(e) {
+    console.log('⚠️ Usando datos locales:', e.message);
+  }
+
+  renderMes('2026-05', 'mayo-tbody');
+  renderMes('2026-06', 'junio-tbody');
+  renderHistorial();
+}
+
+init();
 </script>
 </body>
 </html>
