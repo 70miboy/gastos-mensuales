@@ -179,12 +179,12 @@
       },
       "ormachea": {
         "vencimiento": null,
-        "monto": null,
+        "monto": 220000,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Factura llega aprox fin de mes. PDF adjunto con monto."
+        "fuente": "gmail:diegoormachea@hotmail.com",
+        "notas": "Honorarios 220000/mes desde Abr/2026. Confirmado mail 05/05 Diego Ormachea."
       },
       "cabal_credicoop": {
         "vencimiento": "2026-05-07",
