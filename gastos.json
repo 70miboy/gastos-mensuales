@@ -1,50 +1,346 @@
 {
-  "ultima_actualizacion": "2026-05-05",
+  "ultima_actualizacion": "2026-05-07",
   "version": "1.0",
   "pagos": {
     "2026-04": {
-      "_nota": "Datos históricos parciales extraídos de Gmail",
-      "ago_berli":           { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado" },
-      "ormachea":            { "vencimiento": "2026-04-30", "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:estudio.ormachea@gmail.com", "notas": "Factura de honorarios Luciana Grenón (PDF adjunto)" },
-      "cabal_credicoop":     { "vencimiento": "2026-04-08", "monto": 602537.81, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop", "notas": "Tarjeta Cabal XXXX-3923. Pago mínimo: $228.167" },
-      "ubajay":              { "vencimiento": null, "monto": 249378, "pagado": true, "pagado_fecha": null, "pagado_monto": 249378, "fuente": "gmail:consorcioabierto.com", "notas": "Pago registrado en ConsorcioAbierto (abr 2026)" },
-      "visa_nbsf":           { "vencimiento": "2026-04-09", "monto": 179012, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:eresumen.com", "notas": "Resumen Visa NBSF (eresumen.com)" },
-      "visa_credicoop":      { "vencimiento": "2026-04-08", "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop", "notas": "Tarjeta Visa XXXX-2384. Pago mínimo: $202.980. Saldo total no disponible en email." },
-      "master_patagonia_joa":{ "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email en esta cuenta. Puede estar en joanaminetti@gmail.com" },
-      "master_nbsf_joa":     { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email en esta cuenta. Puede estar en joanaminetti@gmail.com" },
-      "master_mp":           { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Verificar en app Mercado Pago." },
-      "iibb_joana":          { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado" },
-      "iibb_tomas":          { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Verificar en sistema ARCA" },
-      "iva_tomas":           { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Período 02/2026 - verificar con contador" },
-      "ecommapp":            { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado" },
-      "coop_setubal":        { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado" },
-      "aguas_sf":            { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Verificar con ASSA." },
-      "jerarquicos":         { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado" },
-      "epe":                 { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Factura digital EPE. Verificar vencimiento en factura." },
-      "autonomos":           { "vencimiento": null, "monto": null, "pagado": null, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Nuevos importes desde abr-2026. Verificar en ARCA con Clave Fiscal." }
+      "_nota": "Datos histÃ³ricos parciales extraÃ­dos de Gmail",
+      "ago_berli": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado"
+      },
+      "ormachea": {
+        "vencimiento": "2026-04-30",
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "Factura de honorarios Luciana GrenÃ³n (PDF adjunto)"
+      },
+      "cabal_credicoop": {
+        "vencimiento": "2026-04-08",
+        "monto": 602537.81,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃ­nimo: $228.167"
+      },
+      "ubajay": {
+        "vencimiento": null,
+        "monto": 249378,
+        "pagado": true,
+        "pagado_fecha": null,
+        "pagado_monto": 249378,
+        "fuente": "gmail:consorcioabierto.com",
+        "notas": "Pago registrado en ConsorcioAbierto (abr 2026)"
+      },
+      "visa_nbsf": {
+        "vencimiento": "2026-04-09",
+        "monto": 179012,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:eresumen.com",
+        "notas": "Resumen Visa NBSF (eresumen.com)"
+      },
+      "visa_credicoop": {
+        "vencimiento": "2026-04-08",
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
+        "notas": "Tarjeta Visa XXXX-2384. Pago mÃ­nimo: $202.980. Saldo total no disponible en email."
+      },
+      "master_patagonia_joa": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email en esta cuenta. Puede estar en joanaminetti@gmail.com"
+      },
+      "master_nbsf_joa": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email en esta cuenta. Puede estar en joanaminetti@gmail.com"
+      },
+      "master_mp": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar en app Mercado Pago."
+      },
+      "iibb_joana": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado"
+      },
+      "iibb_tomas": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Verificar en sistema ARCA"
+      },
+      "iva_tomas": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "PerÃ­odo 02/2026 - verificar con contador"
+      },
+      "ecommapp": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado"
+      },
+      "coop_setubal": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado"
+      },
+      "aguas_sf": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar con ASSA."
+      },
+      "jerarquicos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado"
+      },
+      "epe": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Factura digital EPE. Verificar vencimiento en factura."
+      },
+      "autonomos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": null,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Nuevos importes desde abr-2026. Verificar en ARCA con Clave Fiscal."
+      }
     },
     "2026-05": {
-      "ago_berli":           { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Ingresar manualmente." },
-      "ormachea":            { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:estudio.ormachea@gmail.com", "notas": "Factura llega aprox fin de mes. PDF adjunto con monto." },
-      "cabal_credicoop":     { "vencimiento": "2026-05-07", "monto": 857115.77, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop", "notas": "Tarjeta Cabal XXXX-3923. Pago mínimo: $268.237 | Saldo total: $857.115,77 (email 05/05)" },
-      "ubajay":              { "vencimiento": "2026-05-09", "monto": 268623, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:consorcioabierto.com", "notas": "NAUTICO UBAJAY CC. 1º venc 09/05: $268.623 | 2º venc 19/05: $280.281" },
-      "visa_nbsf":           { "vencimiento": "2026-05-08", "monto": 228037, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:eresumen.com", "notas": "Resumen Visa NBSF - NORMAN TOMAS JUAN JOSE" },
-      "visa_credicoop":      { "vencimiento": "2026-05-10", "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop", "notas": "Estimado: Cierre 30/04 → vence aprox. 10-may. Resumen disponible en Banca Internet (03/05)." },
-      "master_patagonia_joa":{ "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email en esta cuenta. Puede estar en joanaminetti@gmail.com" },
-      "master_nbsf_joa":     { "vencimiento": "2026-05-08", "monto": 244709.63, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "imagen_resumen", "notas": "Mastercard Black NBSF · Cta 56419274-2 · Pago mín: $77.454 · Cierre: 30/04/26" },
-      "master_mp":           { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Verificar en app Mercado Pago." },
-      "iibb_joana":          { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado" },
-      "iibb_tomas":          { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Verificar en sistema ARCA." },
-      "iva_tomas":           { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "IVA 03/2026 vence 18/06/2026 (registrado en jun-2026). IVA 04/2026 pendiente de contador." },
-      "ecommapp":            { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Ingresar manualmente." },
-      "coop_setubal":        { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Ingresar manualmente." },
-      "aguas_sf":            { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Verificar con ASSA." },
-      "jerarquicos":         { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Sin email detectado. Ingresar manualmente." },
-      "epe":                 { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": null, "notas": "Factura mayo aún no llegó. Llegó en mar-2026 de oficinavirtual@epe.santafe.gov.ar" },
-      "autonomos":           { "vencimiento": null, "monto": null, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:estudio.ormachea@gmail.com", "notas": "Nuevos importes desde abr-2026. Monto exacto según categoría ARCA. Vence en mayo." }
+      "ago_berli": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Ingresar manualmente."
+      },
+      "ormachea": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "Factura llega aprox fin de mes. PDF adjunto con monto."
+      },
+      "cabal_credicoop": {
+        "vencimiento": "2026-05-07",
+        "monto": 857115.77,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃ­nimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
+      },
+      "ubajay": {
+        "vencimiento": "2026-05-09",
+        "monto": 268623,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:consorcioabierto.com",
+        "notas": "NAUTICO UBAJAY CC. 1Âº venc 09/05: $268.623 | 2Âº venc 19/05: $280.281"
+      },
+      "visa_nbsf": {
+        "vencimiento": "2026-05-08",
+        "monto": 228037,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:eresumen.com",
+        "notas": "Resumen Visa NBSF - NORMAN TOMAS JUAN JOSE"
+      },
+      "visa_credicoop": {
+        "vencimiento": "2026-05-10",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
+        "notas": "Estimado: Cierre 30/04 â vence aprox. 10-may. Resumen disponible en Banca Internet (03/05)."
+      },
+      "master_patagonia_joa": {
+        "vencimiento": "2026-05-04",
+        "monto": 0,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "carga_manual_iphone",
+        "notas": "El saldo era positivo por eso el pago fue cero"
+      },
+      "master_nbsf_joa": {
+        "vencimiento": "2026-05-08",
+        "monto": 244709.63,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "imagen_resumen",
+        "notas": "Mastercard Black NBSF Â· Cta 56419274-2 Â· Pago mÃ­n: $77.454 Â· Cierre: 30/04/26"
+      },
+      "master_mp": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar en app Mercado Pago."
+      },
+      "iibb_joana": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado"
+      },
+      "iibb_tomas": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar en sistema ARCA."
+      },
+      "iva_tomas": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "IVA 03/2026 vence 18/06/2026 (registrado en jun-2026). IVA 04/2026 pendiente de contador."
+      },
+      "ecommapp": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Ingresar manualmente."
+      },
+      "coop_setubal": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Ingresar manualmente."
+      },
+      "aguas_sf": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar con ASSA."
+      },
+      "jerarquicos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Ingresar manualmente."
+      },
+      "epe": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Factura mayo aÃºn no llegÃ³. LlegÃ³ en mar-2026 de oficinavirtual@epe.santafe.gov.ar"
+      },
+      "autonomos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "Nuevos importes desde abr-2026. Monto exacto segÃºn categorÃ­a ARCA. Vence en mayo."
+      }
     },
     "2026-06": {
-      "iva_tomas":           { "vencimiento": "2026-06-18", "monto": 740576.05, "pagado": false, "pagado_fecha": null, "pagado_monto": null, "fuente": "gmail:estudio.ormachea@gmail.com", "notas": "DDJJ IVA período 03/2026. Confirmado por Danilo Ormachea." }
+      "iva_tomas": {
+        "vencimiento": "2026-06-18",
+        "monto": 740576.05,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "DDJJ IVA perÃ­odo 03/2026. Confirmado por Danilo Ormachea."
+      }
     }
   }
 }
