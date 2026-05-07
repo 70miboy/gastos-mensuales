@@ -146,6 +146,32 @@
   .btn-copy { background: #2b4a7a; border: 1px solid #3182ce; color: #bee3f8; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; cursor: pointer; }
   .btn-copy:hover { background: #2c5282; }
   .section-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #718096; margin: 18px 0 8px; }
+
+  /* CARGA RÁPIDA */
+  .carga-container { max-width: 520px; margin: 0 auto; padding: 8px 0 40px; display: flex; flex-direction: column; gap: 12px; }
+  .carga-header { display: flex; align-items: center; gap: 14px; background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 16px; }
+  .carga-card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 16px; }
+  .carga-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #718096; margin-bottom: 10px; font-weight: 600; }
+  .carga-select { width: 100%; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 12px 14px; font-size: 1rem; outline: none; -webkit-appearance: none; }
+  .carga-input { width: 100%; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 12px 14px; font-size: 1rem; outline: none; box-sizing: border-box; }
+  .carga-input:focus, .carga-select:focus { border-color: #63b3ed; }
+  .carga-btn-generar { width: 100%; background: linear-gradient(135deg, #2b6cb0, #3182ce); border: none; color: #fff; padding: 16px; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; letter-spacing: 0.02em; }
+  .carga-btn-generar:active { opacity: 0.85; }
+  .carga-resultado { background: #1a1f2e; border: 1px solid #276749; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+  .carga-resultado.hidden { display: none; }
+  .carga-textarea { width: 100%; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 12px; font-size: 0.82rem; font-family: monospace; resize: none; min-height: 120px; outline: none; box-sizing: border-box; }
+  .carga-btn-copiar { width: 100%; background: #276749; border: 1px solid #38a169; color: #f0fff4; padding: 14px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+  .carga-btn-copiar:active { opacity: 0.85; }
+
+  @media (max-width: 600px) {
+    .main { padding: 12px 12px; }
+    .tabs { padding: 0 8px; overflow-x: auto; }
+    .tab { padding: 11px 12px; font-size: 0.8rem; white-space: nowrap; }
+    .expense-table th, .expense-table td { font-size: 0.75rem; padding: 7px 6px; }
+    .header { padding: 12px 14px; }
+    .header h1 { font-size: 1.1rem; }
+    .summary-cards { grid-template-columns: repeat(2, 1fr); }
+  }
 </style>
 </head>
 <body>
@@ -167,6 +193,7 @@
   <div class="tab active" onclick="showTab('mayo', this)">🔴 Mayo 2026</div>
   <div class="tab" onclick="showTab('historial', this)">Historial</div>
   <div class="tab" onclick="showTab('junio', this)">Junio 2026</div>
+  <div class="tab" onclick="showTab('cargar', this)">➕ Cargar dato</div>
 </div>
 
 <div class="main">
@@ -230,6 +257,66 @@
   <!-- HISTORIAL -->
   <div id="tab-historial" class="tab-content">
     <div id="historial-container"></div>
+  </div>
+
+  <!-- CARGAR DATO -->
+  <div id="tab-cargar" class="tab-content">
+    <div class="carga-container">
+      <div class="carga-header">
+        <div style="font-size:2rem;">➕</div>
+        <div>
+          <div style="font-size:1rem;font-weight:700;color:#f7fafc;">Cargar dato rápido</div>
+          <div style="font-size:0.78rem;color:#718096;margin-top:2px;">Desde el iPhone · Sin abrir la PC</div>
+        </div>
+      </div>
+
+      <div class="carga-card">
+        <div class="carga-label">1. ¿Qué gasto?</div>
+        <select id="carga-gasto" class="carga-select">
+          <option value="">— Elegí un gasto —</option>
+        </select>
+      </div>
+
+      <div class="carga-card">
+        <div class="carga-label">2. ¿Qué mes?</div>
+        <select id="carga-mes" class="carga-select">
+          <option value="2026-05">Mayo 2026</option>
+          <option value="2026-06">Junio 2026</option>
+          <option value="2026-07">Julio 2026</option>
+        </select>
+      </div>
+
+      <div class="carga-card">
+        <div class="carga-label">3. Monto total ($)</div>
+        <input type="number" id="carga-monto" class="carga-input" placeholder="Ej: 244709" inputmode="numeric" />
+      </div>
+
+      <div class="carga-card">
+        <div class="carga-label">4. Fecha de vencimiento</div>
+        <input type="date" id="carga-vencimiento" class="carga-input" />
+      </div>
+
+      <div class="carga-card">
+        <div class="carga-label">5. Pago mínimo (opcional)</div>
+        <input type="number" id="carga-minimo" class="carga-input" placeholder="Ej: 77454" inputmode="numeric" />
+      </div>
+
+      <div class="carga-card">
+        <div class="carga-label">6. Notas (opcional)</div>
+        <input type="text" id="carga-notas" class="carga-input" placeholder="Ej: Joana · Mastercard Black" />
+      </div>
+
+      <button class="carga-btn-generar" onclick="generarMensaje()">
+        📋 Generar mensaje para Claude
+      </button>
+
+      <div id="carga-resultado" class="carga-resultado hidden">
+        <div class="carga-label" style="margin-bottom:8px;">✅ Copiá este mensaje y pegalo en OpenCode:</div>
+        <textarea id="carga-mensaje" class="carga-textarea" readonly></textarea>
+        <button class="carga-btn-copiar" onclick="copiarMensaje()">📋 Copiar al portapapeles</button>
+        <div id="carga-copiado" style="display:none;text-align:center;color:#68d391;font-size:0.85rem;margin-top:8px;">✓ ¡Copiado!</div>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -667,10 +754,67 @@ document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { closeModal(); closeExportModal(); }
 });
 
+// ===== CARGA RÁPIDA =====
+function initCargaSelect() {
+  const sel = document.getElementById('carga-gasto');
+  CONFIG.gastos.forEach(g => {
+    const opt = document.createElement('option');
+    opt.value = g.id;
+    opt.textContent = g.nombre + ' (' + g.persona + ')';
+    sel.appendChild(opt);
+  });
+}
+
+function generarMensaje() {
+  const gasto = document.getElementById('carga-gasto').value;
+  const mes = document.getElementById('carga-mes').value;
+  const monto = document.getElementById('carga-monto').value;
+  const venc = document.getElementById('carga-vencimiento').value;
+  const minimo = document.getElementById('carga-minimo').value;
+  const notas = document.getElementById('carga-notas').value;
+
+  if (!gasto) { alert('Elegí un gasto primero'); return; }
+  if (!monto && !venc) { alert('Ingresá al menos el monto o la fecha'); return; }
+
+  const cfg = CONFIG.gastos.find(g => g.id === gasto);
+  const mesLabel = mes === '2026-05' ? 'Mayo 2026' : mes === '2026-06' ? 'Junio 2026' : mes === '2026-07' ? 'Julio 2026' : mes;
+
+  let msg = `Actualizar dato en gastos.json e index.html:\n`;
+  msg += `- Gasto: ${cfg.nombre} (id: ${gasto})\n`;
+  msg += `- Mes: ${mesLabel} (${mes})\n`;
+  if (monto) msg += `- Monto: $${parseFloat(monto).toLocaleString('es-AR')}\n`;
+  if (venc) { const [y,m,d] = venc.split('-'); msg += `- Vencimiento: ${d}/${m}/${y}\n`; }
+  if (minimo) msg += `- Pago mínimo: $${parseFloat(minimo).toLocaleString('es-AR')}\n`;
+  if (notas) msg += `- Notas: ${notas}\n`;
+  msg += `\nPor favor actualizá el archivo y hacé push a GitHub.`;
+
+  document.getElementById('carga-mensaje').value = msg;
+  document.getElementById('carga-resultado').classList.remove('hidden');
+  document.getElementById('carga-resultado').scrollIntoView({ behavior: 'smooth' });
+}
+
+function copiarMensaje() {
+  const ta = document.getElementById('carga-mensaje');
+  ta.select();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(ta.value).then(() => mostrarCopiado());
+  } else {
+    document.execCommand('copy');
+    mostrarCopiado();
+  }
+}
+
+function mostrarCopiado() {
+  const el = document.getElementById('carga-copiado');
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 2500);
+}
+
 // ===== INIT =====
 renderMes('2026-05', 'mayo-tbody');
 renderMes('2026-06', 'junio-tbody');
 renderHistorial();
+initCargaSelect();
 </script>
 </body>
 </html>
