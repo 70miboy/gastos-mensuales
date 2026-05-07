@@ -2,176 +2,231 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gastos Mensuales - Tomás Norman</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Gastos">
+<title>Gastos · Tomás Norman</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e2e8f0; min-height: 100vh; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+:root {
+  --bg: #0f1117; --bg2: #1a1f2e; --bg3: #212736;
+  --border: #2d3748; --border2: #3d4a5c;
+  --text: #e2e8f0; --text2: #a0aec0; --text3: #718096; --text4: #4a5568;
+  --blue: #63b3ed; --green: #68d391; --red: #fc8181; --yellow: #f6e05e; --orange: #f6ad55;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+html, body { height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif; }
 
-  /* HEADER */
-  .header { background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%); border-bottom: 1px solid #2d3748; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-  .header h1 { font-size: 1.35rem; font-weight: 700; color: #f7fafc; }
-  .header h1 span { color: #63b3ed; }
-  .last-update { font-size: 0.74rem; color: #718096; margin-top: 3px; }
-  .header-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+/* ── HEADER ── */
+.header {
+  background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 16px;
+  padding-top: max(14px, env(safe-area-inset-top));
+  display: flex; justify-content: space-between; align-items: center;
+  position: sticky; top: 0; z-index: 100;
+}
+.header-title { font-size: 1.05rem; font-weight: 700; color: #f7fafc; }
+.header-title span { color: var(--blue); }
+.header-sub { font-size: 0.7rem; color: var(--text3); margin-top: 1px; }
+.header-emoji { font-size: 1.5rem; }
 
-  .btn-export { background: #2d3748; border: 1px solid #4a5568; color: #a0aec0; padding: 7px 14px; border-radius: 8px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; white-space: nowrap; }
-  .btn-export:hover { background: #3d4a5c; color: #e2e8f0; }
+/* ── BOTTOM NAV (iPhone style) ── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(26,31,46,0.97);
+  border-top: 1px solid var(--border);
+  display: flex;
+  padding-bottom: max(8px, var(--safe-bottom));
+  z-index: 200;
+  backdrop-filter: blur(10px);
+}
+.nav-item {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  padding: 10px 4px 6px; cursor: pointer; color: var(--text3);
+  font-size: 0.62rem; font-weight: 500; letter-spacing: 0.01em;
+  transition: color 0.15s; gap: 3px; border: none; background: none;
+}
+.nav-item.active { color: var(--blue); }
+.nav-icon { font-size: 1.35rem; line-height: 1; }
 
-  /* TABS */
-  .tabs { display: flex; border-bottom: 1px solid #2d3748; background: #1a1f2e; padding: 0 24px; }
-  .tab { padding: 11px 18px; cursor: pointer; font-size: 0.84rem; color: #718096; border-bottom: 2px solid transparent; transition: all 0.2s; }
-  .tab.active { color: #63b3ed; border-bottom-color: #63b3ed; }
-  .tab:hover { color: #a0aec0; }
+/* ── MAIN CONTENT ── */
+.main {
+  padding: 14px 14px;
+  padding-bottom: calc(70px + max(8px, var(--safe-bottom)));
+  max-width: 700px; margin: 0 auto;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
 
-  /* MAIN */
-  .main { padding: 20px 24px; max-width: 1260px; margin: 0 auto; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
+/* ── ALERT BANNER ── */
+.alert {
+  background: #2d1a1a; border: 1px solid #742a2a; border-radius: 10px;
+  padding: 12px 14px; margin-bottom: 12px; font-size: 0.82rem; color: var(--red);
+  display: flex; gap: 10px; align-items: flex-start; line-height: 1.4;
+}
+.alert-info { background: #1a2535; border-color: #2b4a7a; color: var(--blue); }
 
-  /* CARDS */
-  .summary-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 12px; margin-bottom: 20px; }
-  .card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 10px; padding: 14px 16px; }
-  .card-label { font-size: 0.71rem; text-transform: uppercase; letter-spacing: 0.05em; color: #718096; margin-bottom: 7px; }
-  .card-value { font-size: 1.45rem; font-weight: 700; }
-  .card-value.red { color: #fc8181; }
-  .card-value.green { color: #68d391; }
-  .card-value.yellow { color: #f6e05e; }
-  .card-value.blue { color: #63b3ed; }
-  .card-sub { font-size: 0.74rem; color: #718096; margin-top: 4px; }
+/* ── SUMMARY CARDS ── */
+.summary-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px;
+}
+.sum-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 12px 14px;
+}
+.sum-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); margin-bottom: 5px; }
+.sum-value { font-size: 1.25rem; font-weight: 700; line-height: 1; }
+.sum-value.red { color: var(--red); }
+.sum-value.green { color: var(--green); }
+.sum-value.yellow { color: var(--yellow); }
+.sum-value.blue { color: var(--blue); }
+.sum-sub { font-size: 0.67rem; color: var(--text3); margin-top: 4px; }
 
-  /* PROGRESS */
-  .progress-section { margin-bottom: 20px; }
-  .progress-bar-outer { background: #2d3748; border-radius: 8px; height: 9px; overflow: hidden; margin-top: 7px; }
-  .progress-bar-inner { height: 100%; border-radius: 8px; background: linear-gradient(90deg, #48bb78, #68d391); transition: width 0.5s; }
+/* ── PROGRESS ── */
+.progress-wrap { margin-bottom: 14px; }
+.progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.progress-label { font-size: 0.72rem; color: var(--text3); font-weight: 500; }
+.progress-bar-outer { background: var(--border); border-radius: 6px; height: 7px; overflow: hidden; }
+.progress-bar-inner { height: 100%; border-radius: 6px; background: linear-gradient(90deg, #38a169, #68d391); transition: width 0.5s; }
 
-  /* FILTERS */
-  .filter-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
-  .filter-btn { padding: 5px 13px; border-radius: 20px; border: 1px solid #2d3748; background: transparent; color: #718096; font-size: 0.77rem; cursor: pointer; transition: all 0.15s; }
-  .filter-btn.active { background: #1a2c4e; border-color: #63b3ed; color: #63b3ed; }
-  .filter-btn:hover { border-color: #63b3ed; color: #63b3ed; }
+/* ── FILTER PILLS ── */
+.filter-row { display: flex; gap: 7px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 2px; }
+.filter-row::-webkit-scrollbar { display: none; }
+.filter-btn {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  background: transparent; color: var(--text3); font-size: 0.77rem; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0; transition: all 0.15s;
+}
+.filter-btn.active { background: #1a2c4e; border-color: var(--blue); color: var(--blue); }
 
-  /* TABLE */
-  .expense-table { width: 100%; border-collapse: separate; border-spacing: 0 3px; }
-  .expense-table th { text-align: left; font-size: 0.69rem; text-transform: uppercase; color: #4a5568; padding: 5px 10px; letter-spacing: 0.05em; }
-  .expense-row { background: #1a1f2e; transition: background 0.15s; }
-  .expense-row:hover { background: #1e2535; }
-  .expense-row td { padding: 9px 10px; font-size: 0.86rem; border-top: 1px solid #2d3748; border-bottom: 1px solid #2d3748; vertical-align: middle; }
-  .expense-row td:first-child { border-left: 1px solid #2d3748; border-radius: 8px 0 0 8px; padding-left: 13px; }
-  .expense-row td:last-child { border-right: 1px solid #2d3748; border-radius: 0 8px 8px 0; }
-  .expense-row.paid-row { opacity: 0.75; }
-  .expense-row.paid-row:hover { opacity: 1; }
+/* ── EXPENSE CARDS (mobile-first, reemplaza la tabla) ── */
+.expense-list { display: flex; flex-direction: column; gap: 8px; }
+.expense-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 13px 14px; cursor: pointer; transition: background 0.15s; active: background var(--bg3);
+}
+.expense-card:active { background: var(--bg3); }
+.expense-card.urgent { border-color: #742a2a; background: #1e1515; }
+.expense-card.paid { opacity: 0.7; }
+.expense-card-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; }
+.expense-name { font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+.expense-persona { font-size: 0.7rem; color: var(--text3); margin-top: 2px; }
+.expense-card-mid { display: flex; justify-content: space-between; align-items: center; }
+.expense-monto { font-size: 1.05rem; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); }
+.expense-monto.unknown { font-size: 0.8rem; font-style: italic; color: var(--text4); font-weight: 400; }
+.expense-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.expense-vence { font-size: 0.75rem; color: var(--text2); }
+.expense-vence.urgent { color: var(--red); font-weight: 700; }
+.expense-notas { font-size: 0.71rem; color: var(--text4); margin-top: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-  /* BADGES */
-  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 9px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; white-space: nowrap; }
-  .badge-paid { background: #1c4532; color: #68d391; }
-  .badge-overdue { background: #451a20; color: #fc8181; animation: pulse 2s infinite; }
-  .badge-urgent { background: #44271a; color: #f6ad55; }
-  .badge-soon { background: #3d3d1a; color: #f6e05e; }
-  .badge-pending { background: #1a2535; color: #718096; }
-  .badge-nodata { background: #1a1a2e; color: #7c6fcd; }
+/* ── BADGES ── */
+.badge { display: inline-flex; align-items: center; gap: 3px; padding: 3px 8px; border-radius: 20px; font-size: 0.68rem; font-weight: 600; white-space: nowrap; }
+.badge-paid { background: #1c4532; color: var(--green); }
+.badge-overdue { background: #451a20; color: var(--red); animation: pulse 2s infinite; }
+.badge-urgent { background: #44271a; color: var(--orange); }
+.badge-soon { background: #3d3d1a; color: var(--yellow); }
+.badge-pending { background: #1a2535; color: var(--text3); }
+.badge-nodata { background: #1a1a2e; color: #7c6fcd; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
 
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+.days-chip { font-size: 0.68rem; padding: 2px 7px; border-radius: 10px; font-weight: 700; }
+.days-red { background:#451a20; color:var(--red); }
+.days-orange { background:#44271a; color:var(--orange); }
+.days-yellow { background:#3d3d1a; color:var(--yellow); }
+.days-green { background:#1c4532; color:var(--green); }
 
-  .days-chip { font-size: 0.71rem; padding: 2px 7px; border-radius: 11px; }
-  .days-red { background:#451a20;color:#fc8181;font-weight:700; }
-  .days-orange { background:#44271a;color:#f6ad55;font-weight:700; }
-  .days-yellow { background:#3d3d1a;color:#f6e05e; }
-  .days-green { background:#1c4532;color:#68d391; }
+.cat-tag { font-size: 0.63rem; padding: 2px 6px; border-radius: 5px; font-weight: 500; }
+.cat-tarjeta { background:#1a2c4e; color:var(--blue); }
+.cat-impuesto { background:#2d1a4e; color:#b794f4; }
+.cat-servicio { background:#1a3d2d; color:var(--green); }
+.cat-honorarios { background:#3d2d1a; color:var(--orange); }
+.cat-expensas { background:#3d1a2d; color:#f687b3; }
+.cat-salud { background:#1a3d3d; color:#76e4f7; }
+.cat-suscripcion { background:#2d3d1a; color:#9ae6b4; }
+.cat-cooperativa { background:#3d3d1a; color:var(--yellow); }
 
-  .cat-tag { font-size: 0.67rem; padding: 2px 6px; border-radius: 5px; }
-  .cat-tarjeta { background:#1a2c4e;color:#63b3ed; }
-  .cat-impuesto { background:#2d1a4e;color:#b794f4; }
-  .cat-servicio { background:#1a3d2d;color:#68d391; }
-  .cat-honorarios { background:#3d2d1a;color:#f6ad55; }
-  .cat-expensas { background:#3d1a2d;color:#f687b3; }
-  .cat-salud { background:#1a3d3d;color:#76e4f7; }
-  .cat-suscripcion { background:#2d3d1a;color:#9ae6b4; }
-  .cat-cooperativa { background:#3d3d1a;color:#f6e05e; }
+/* ── HISTORIAL ── */
+.hist-mes { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 10px; overflow: hidden; }
+.hist-mes-header { padding: 14px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.hist-mes-header:active { background: var(--bg3); }
+.hist-mes-title { font-weight: 700; font-size: 0.95rem; }
+.hist-mes-total { font-weight: 700; color: var(--blue); font-size: 0.9rem; }
+.hist-mes-body { display: none; border-top: 1px solid var(--border); }
+.hist-mes-body.open { display: block; }
+.hist-item { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--border); gap: 8px; }
+.hist-item:last-child { border-bottom: none; }
+.hist-item-name { font-size: 0.84rem; font-weight: 500; }
+.hist-item-monto { font-size: 0.84rem; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text2); }
 
-  .amount { font-weight: 600; font-variant-numeric: tabular-nums; }
-  .amount-unknown { color: #4a5568; font-style: italic; font-size: 0.79rem; }
-  .paid-amount { color: #68d391; font-weight: 600; }
+/* ── MES ANTERIOR BANNER ── */
+.prev-mes-banner {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 14px 16px; margin-bottom: 14px;
+  display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer;
+}
+.prev-mes-banner:active { background: var(--bg3); }
+.prev-mes-label { font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+.prev-mes-valor { font-size: 1.1rem; font-weight: 700; color: var(--text2); }
 
-  .notes-text { font-size: 0.73rem; color: #4a5568; max-width: 210px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+/* ── CARGA RÁPIDA ── */
+.carga-container { display: flex; flex-direction: column; gap: 10px; padding-top: 4px; }
+.carga-section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); font-weight: 600; padding: 0 2px; margin-top: 6px; }
+.carga-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 14px; }
+.carga-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text3); margin-bottom: 8px; font-weight: 600; }
+.carga-select, .carga-input {
+  width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text); padding: 12px 14px; font-size: 1rem; outline: none;
+  -webkit-appearance: none; font-family: inherit;
+}
+.carga-select:focus, .carga-input:focus { border-color: var(--blue); }
+.carga-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.carga-btn {
+  width: 100%; background: linear-gradient(135deg, #2b6cb0, #3182ce);
+  border: none; color: #fff; padding: 16px; border-radius: 12px;
+  font-size: 1rem; font-weight: 700; cursor: pointer; font-family: inherit;
+}
+.carga-btn:active { opacity: 0.85; transform: scale(0.98); }
+.carga-status { background: var(--bg2); border-radius: 12px; padding: 16px; text-align: center; font-size: 0.95rem; font-weight: 600; display: none; }
 
-  .highlight-row td { background: #2d1a1a !important; }
+/* ── MODAL ── */
+.modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 500;
+  display: flex; align-items: flex-end; justify-content: center;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.hidden { display: none; }
+.modal-box {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 20px 20px 0 0; width: 100%; max-width: 560px;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.5);
+  padding-bottom: max(20px, var(--safe-bottom));
+  max-height: 90vh; overflow-y: auto;
+}
+.modal-handle { width: 36px; height: 4px; background: var(--border2); border-radius: 2px; margin: 12px auto 16px; }
+.modal-header { padding: 0 20px 14px; border-bottom: 1px solid var(--border); }
+.modal-header h3 { font-size: 1rem; font-weight: 700; }
+.modal-header p { font-size: 0.78rem; color: var(--text3); margin-top: 3px; }
+.modal-body { padding: 16px 20px; display: flex; flex-direction: column; gap: 12px; }
+.modal-ref { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 13px; font-size: 0.82rem; color: var(--text3); }
+.modal-ref span { color: var(--blue); font-weight: 600; }
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group label { font-size: 0.77rem; color: var(--text2); font-weight: 500; }
+.form-group input, .form-group textarea {
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text); padding: 12px; font-size: 1rem; outline: none; font-family: inherit;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--blue); }
+.form-group textarea { resize: none; min-height: 60px; }
+.modal-footer { padding: 12px 20px; display: flex; gap: 10px; border-top: 1px solid var(--border); }
+.btn-cancel { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--text3); padding: 13px; border-radius: 10px; font-size: 0.9rem; cursor: pointer; font-family: inherit; }
+.btn-confirm { flex: 2; background: #276749; border: 1px solid #38a169; color: #f0fff4; padding: 13px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: inherit; }
+.btn-anular { background: transparent; border: 1px solid #742a2a; color: var(--red); padding: 13px 14px; border-radius: 10px; font-size: 0.85rem; cursor: pointer; font-family: inherit; }
 
-  /* ACTION BUTTONS */
-  .btn-pagar { background: transparent; border: 1px solid #4a5568; color: #718096; padding: 4px 11px; border-radius: 6px; font-size: 0.74rem; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
-  .btn-pagar:hover { border-color: #63b3ed; color: #63b3ed; background: #1a2c4e22; }
-  .btn-pagado-edit { background: #1c4532; border: 1px solid #276749; color: #68d391; padding: 4px 11px; border-radius: 6px; font-size: 0.74rem; cursor: pointer; transition: all 0.18s; white-space: nowrap; }
-  .btn-pagado-edit:hover { background: #22543d; }
-
-  /* ALERT */
-  .alert { background: #2d1a1a; border: 1px solid #742a2a; border-radius: 8px; padding: 11px 14px; margin-bottom: 10px; font-size: 0.82rem; color: #fc8181; display: flex; gap: 10px; align-items: flex-start; }
-  .alert-warn { background: #2d241a; border-color: #744210; color: #f6ad55; }
-  .alert-info { background: #1a2535; border-color: #2b4a7a; color: #63b3ed; }
-
-  /* HISTORY */
-  .history-month { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
-  .history-month-header { padding: 13px 16px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .history-month-header:hover { background: #1e2535; }
-  .history-month-body { display: none; padding: 0 16px 16px; }
-  .history-month-body.open { display: block; }
-  .history-total { font-weight: 700; color: #63b3ed; }
-
-  /* ====== MODAL ====== */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.72); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(3px); }
-  .modal-overlay.hidden { display: none; }
-  .modal-box { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 14px; width: 420px; max-width: 95vw; box-shadow: 0 20px 60px rgba(0,0,0,0.7); overflow: hidden; }
-  .modal-header { padding: 18px 20px 14px; border-bottom: 1px solid #2d3748; }
-  .modal-header h3 { font-size: 1rem; font-weight: 700; color: #f7fafc; }
-  .modal-header p { font-size: 0.78rem; color: #718096; margin-top: 4px; }
-  .modal-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 14px; }
-  .modal-ref { background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; padding: 10px 13px; font-size: 0.82rem; color: #4a5568; }
-  .modal-ref span { color: #63b3ed; font-weight: 600; }
-  .form-group { display: flex; flex-direction: column; gap: 5px; }
-  .form-group label { font-size: 0.77rem; color: #a0aec0; font-weight: 500; }
-  .form-group input, .form-group textarea { background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 9px 12px; font-size: 0.88rem; outline: none; transition: border-color 0.2s; font-family: inherit; }
-  .form-group input:focus, .form-group textarea:focus { border-color: #63b3ed; }
-  .form-group textarea { resize: vertical; min-height: 60px; }
-  .form-group input[type="number"] { font-variant-numeric: tabular-nums; }
-  .modal-footer { padding: 14px 20px 18px; display: flex; gap: 10px; justify-content: space-between; border-top: 1px solid #2d3748; }
-  .modal-footer-right { display: flex; gap: 10px; }
-  .btn-cancel { background: transparent; border: 1px solid #2d3748; color: #718096; padding: 8px 16px; border-radius: 8px; font-size: 0.83rem; cursor: pointer; }
-  .btn-cancel:hover { border-color: #4a5568; color: #a0aec0; }
-  .btn-confirm { background: #276749; border: 1px solid #38a169; color: #f0fff4; padding: 8px 18px; border-radius: 8px; font-size: 0.83rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-  .btn-confirm:hover { background: #2f855a; }
-  .btn-anular { background: transparent; border: 1px solid #742a2a; color: #fc8181; padding: 8px 14px; border-radius: 8px; font-size: 0.82rem; cursor: pointer; }
-  .btn-anular:hover { background: #451a20; }
-
-  /* EXPORT MODAL */
-  .export-textarea { width: 100%; background: #0f1117; border: 1px solid #2d3748; color: #e2e8f0; padding: 12px; border-radius: 8px; font-size: 0.78rem; font-family: monospace; resize: vertical; min-height: 180px; outline: none; }
-  .btn-copy { background: #2b4a7a; border: 1px solid #3182ce; color: #bee3f8; padding: 8px 16px; border-radius: 8px; font-size: 0.82rem; cursor: pointer; }
-  .btn-copy:hover { background: #2c5282; }
-  .section-title { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: #718096; margin: 18px 0 8px; }
-
-  /* CARGA RÁPIDA */
-  .carga-container { max-width: 520px; margin: 0 auto; padding: 8px 0 40px; display: flex; flex-direction: column; gap: 12px; }
-  .carga-header { display: flex; align-items: center; gap: 14px; background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 16px; }
-  .carga-card { background: #1a1f2e; border: 1px solid #2d3748; border-radius: 12px; padding: 16px; }
-  .carga-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: #718096; margin-bottom: 10px; font-weight: 600; }
-  .carga-select { width: 100%; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 12px 14px; font-size: 1rem; outline: none; -webkit-appearance: none; }
-  .carga-input { width: 100%; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 12px 14px; font-size: 1rem; outline: none; box-sizing: border-box; }
-  .carga-input:focus, .carga-select:focus { border-color: #63b3ed; }
-  .carga-btn-generar { width: 100%; background: linear-gradient(135deg, #2b6cb0, #3182ce); border: none; color: #fff; padding: 16px; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; letter-spacing: 0.02em; }
-  .carga-btn-generar:active { opacity: 0.85; }
-  .carga-resultado { background: #1a1f2e; border: 1px solid #276749; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
-  .carga-resultado.hidden { display: none; }
-  .carga-textarea { width: 100%; background: #0f1117; border: 1px solid #2d3748; border-radius: 8px; color: #e2e8f0; padding: 12px; font-size: 0.82rem; font-family: monospace; resize: none; min-height: 120px; outline: none; box-sizing: border-box; }
-  .carga-btn-copiar { width: 100%; background: #276749; border: 1px solid #38a169; color: #f0fff4; padding: 14px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
-  .carga-btn-copiar:active { opacity: 0.85; }
-
-  @media (max-width: 600px) {
-    .main { padding: 12px 12px; }
-    .tabs { padding: 0 8px; overflow-x: auto; }
-    .tab { padding: 11px 12px; font-size: 0.8rem; white-space: nowrap; }
-    .expense-table th, .expense-table td { font-size: 0.75rem; padding: 7px 6px; }
-    .header { padding: 12px 14px; }
-    .header h1 { font-size: 1.1rem; }
-    .summary-cards { grid-template-columns: repeat(2, 1fr); }
-  }
+/* ── SECTION TITLE ── */
+.section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); font-weight: 600; margin-bottom: 8px; padding: 0 2px; }
 </style>
 </head>
 <body>
@@ -179,106 +234,73 @@
 <!-- HEADER -->
 <div class="header">
   <div>
-    <h1>Gastos Mensuales <span>· Tomás Norman</span></h1>
-    <div class="last-update">Actualizado: 05/05/2026 · Los cambios que hacés acá se guardan en este navegador</div>
+    <div class="header-title">Gastos <span>· Tomás Norman</span></div>
+    <div class="header-sub" id="header-sub">Cargando datos...</div>
   </div>
-  <div class="header-actions">
-    <button class="btn-export" onclick="openExportModal()">📋 Exportar cambios para Claude</button>
-    <div style="font-size:1.7rem;">💰</div>
-  </div>
+  <div class="header-emoji">💰</div>
 </div>
 
-<!-- TABS -->
-<div class="tabs">
-  <div class="tab active" onclick="showTab('mayo', this)">🔴 Mayo 2026</div>
-  <div class="tab" onclick="showTab('historial', this)">Historial</div>
-  <div class="tab" onclick="showTab('junio', this)">Junio 2026</div>
-  <div class="tab" onclick="showTab('cargar', this)">➕ Cargar dato</div>
-</div>
-
+<!-- MAIN -->
 <div class="main">
 
-  <!-- MAYO -->
+  <!-- TAB: MAYO -->
   <div id="tab-mayo" class="tab-content active">
-    <div class="alert" id="alert-urgente">
-      🚨 <div><strong>URGENTE:</strong> Cabal Credicoop $857.116 vence <strong>mañana 07/05</strong> · Visa NBSF $228.037 vence <strong>08/05</strong> · Ubajay $268.623 vence <strong>09/05</strong></div>
-    </div>
-    <div class="alert alert-info" id="alert-info">
-      ℹ️ <div>Podés marcar pagos directamente haciendo click en <strong>"Marcar pagado"</strong>. Los cambios se guardan en este navegador y persisten entre sesiones.</div>
+    <div id="urgente-banner"></div>
+
+    <!-- Resumen del mes anterior -->
+    <div class="prev-mes-banner" onclick="document.getElementById('nav-historial').click()">
+      <div>
+        <div class="prev-mes-label">Mes anterior · Abril 2026</div>
+        <div class="prev-mes-valor" id="abril-total">—</div>
+      </div>
+      <div style="color:var(--text3);font-size:1.1rem;">→</div>
     </div>
 
-    <div class="summary-cards" id="mayo-cards"></div>
+    <div class="summary-grid" id="mayo-cards"></div>
 
-    <div class="progress-section">
-      <div style="display:flex;justify-content:space-between;align-items:center;">
-        <span class="section-title" style="margin:0;">Progreso del mes</span>
-        <span id="mayo-progress-label" style="font-size:0.74rem;color:#718096;"></span>
+    <div class="progress-wrap">
+      <div class="progress-top">
+        <span class="progress-label">Pagados este mes</span>
+        <span class="progress-label" id="mayo-progress-label"></span>
       </div>
       <div class="progress-bar-outer"><div class="progress-bar-inner" id="mayo-progress-bar" style="width:0%"></div></div>
     </div>
 
     <div class="filter-row">
-      <button class="filter-btn active" onclick="filterTable('all',event)">Todos</button>
-      <button class="filter-btn" onclick="filterTable('pendiente',event)">Pendientes</button>
-      <button class="filter-btn" onclick="filterTable('pagado',event)">Pagados</button>
-      <button class="filter-btn" onclick="filterTable('sin_datos',event)">Sin datos</button>
+      <button class="filter-btn active" onclick="filterCards('all',this)">Todos</button>
+      <button class="filter-btn" onclick="filterCards('pendiente',this)">Pendientes</button>
+      <button class="filter-btn" onclick="filterCards('pagado',this)">Pagados</button>
+      <button class="filter-btn" onclick="filterCards('sin_datos',this)">Sin datos</button>
     </div>
 
-    <table class="expense-table">
-      <thead><tr>
-        <th style="width:175px;">Concepto</th>
-        <th>Cat.</th>
-        <th>Titular</th>
-        <th>Vence</th>
-        <th>Días</th>
-        <th>Monto fact.</th>
-        <th>Estado</th>
-        <th>Pagado el</th>
-        <th>Pagado $</th>
-        <th>Acción</th>
-      </tr></thead>
-      <tbody id="mayo-tbody"></tbody>
-    </table>
+    <div class="expense-list" id="mayo-list"></div>
   </div>
 
-  <!-- JUNIO -->
+  <!-- TAB: JUNIO -->
   <div id="tab-junio" class="tab-content">
-    <div class="alert alert-warn">
-      ℹ️ <div>Solo se muestran gastos con datos confirmados para Junio 2026.</div>
+    <div class="alert alert-info" style="margin-bottom:12px;">
+      ℹ️ <div>Solo se muestran gastos confirmados para Junio 2026.</div>
     </div>
-    <table class="expense-table">
-      <thead><tr>
-        <th>Concepto</th><th>Cat.</th><th>Titular</th><th>Vence</th><th>Días</th><th>Monto fact.</th><th>Estado</th><th>Pagado el</th><th>Pagado $</th><th>Acción</th>
-      </tr></thead>
-      <tbody id="junio-tbody"></tbody>
-    </table>
+    <div class="expense-list" id="junio-list"></div>
   </div>
 
-  <!-- HISTORIAL -->
+  <!-- TAB: HISTORIAL -->
   <div id="tab-historial" class="tab-content">
     <div id="historial-container"></div>
   </div>
 
-  <!-- CARGAR DATO -->
+  <!-- TAB: CARGAR -->
   <div id="tab-cargar" class="tab-content">
     <div class="carga-container">
-      <div class="carga-header">
-        <div style="font-size:2rem;">➕</div>
-        <div>
-          <div style="font-size:1rem;font-weight:700;color:#f7fafc;">Cargar dato rápido</div>
-          <div style="font-size:0.78rem;color:#718096;margin-top:2px;">Desde el iPhone · Sin abrir la PC</div>
-        </div>
-      </div>
-
       <div class="carga-card">
-        <div class="carga-label">1. ¿Qué gasto?</div>
+        <div class="carga-label">¿Qué gasto?</div>
         <select id="carga-gasto" class="carga-select">
           <option value="">— Elegí un gasto —</option>
         </select>
       </div>
 
       <div class="carga-card">
-        <div class="carga-label">2. ¿Qué mes?</div>
+        <div class="carga-label">¿Qué mes?</div>
         <select id="carga-mes" class="carga-select">
           <option value="2026-05">Mayo 2026</option>
           <option value="2026-06">Junio 2026</option>
@@ -287,40 +309,56 @@
       </div>
 
       <div class="carga-card">
-        <div class="carga-label">3. Monto total ($)</div>
-        <input type="number" id="carga-monto" class="carga-input" placeholder="Ej: 244709" inputmode="numeric" />
+        <div class="carga-grid">
+          <div>
+            <div class="carga-label">Monto total ($)</div>
+            <input type="number" id="carga-monto" class="carga-input" placeholder="Ej: 244709" inputmode="numeric" />
+          </div>
+          <div>
+            <div class="carga-label">Pago mínimo ($)</div>
+            <input type="number" id="carga-minimo" class="carga-input" placeholder="Opcional" inputmode="numeric" />
+          </div>
+        </div>
       </div>
 
       <div class="carga-card">
-        <div class="carga-label">4. Fecha de vencimiento</div>
+        <div class="carga-label">Fecha de vencimiento</div>
         <input type="date" id="carga-vencimiento" class="carga-input" />
       </div>
 
       <div class="carga-card">
-        <div class="carga-label">5. Pago mínimo (opcional)</div>
-        <input type="number" id="carga-minimo" class="carga-input" placeholder="Ej: 77454" inputmode="numeric" />
-      </div>
-
-      <div class="carga-card">
-        <div class="carga-label">6. Notas (opcional)</div>
+        <div class="carga-label">Notas (opcional)</div>
         <input type="text" id="carga-notas" class="carga-input" placeholder="Ej: Joana · Mastercard Black" />
       </div>
 
-      <button class="carga-btn-generar" onclick="guardarEnGitHub()">
-        💾 Guardar dato
-      </button>
+      <button class="carga-btn" onclick="guardarEnGitHub()">💾 Guardar dato</button>
 
-      <div id="carga-resultado" class="carga-resultado hidden">
-        <div id="carga-msg" style="text-align:center;font-size:0.95rem;font-weight:600;"></div>
-      </div>
+      <div id="carga-status" class="carga-status"></div>
     </div>
   </div>
 
 </div>
 
-<!-- ====== MODAL PAGO ====== -->
-<div class="modal-overlay hidden" id="modal-pago" onclick="handleOverlayClick(event)">
+<!-- BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="nav-item active" id="nav-mayo" onclick="showTab('mayo',this)">
+    <span class="nav-icon">🔴</span>Mayo
+  </button>
+  <button class="nav-item" id="nav-junio" onclick="showTab('junio',this)">
+    <span class="nav-icon">📅</span>Junio
+  </button>
+  <button class="nav-item" id="nav-historial" onclick="showTab('historial',this)">
+    <span class="nav-icon">📊</span>Historial
+  </button>
+  <button class="nav-item" id="nav-cargar" onclick="showTab('cargar',this)">
+    <span class="nav-icon">➕</span>Cargar
+  </button>
+</nav>
+
+<!-- MODAL PAGO -->
+<div class="modal-overlay hidden" id="modal-pago" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
+    <div class="modal-handle"></div>
     <div class="modal-header">
       <h3 id="modal-titulo">Registrar pago</h3>
       <p id="modal-subtitulo"></p>
@@ -332,55 +370,28 @@
         <input type="date" id="modal-fecha" />
       </div>
       <div class="form-group">
-        <label>Monto efectivamente pagado (ARS)</label>
-        <input type="number" id="modal-monto-pagado" placeholder="0" min="0" step="1" />
+        <label>Monto pagado ($)</label>
+        <input type="number" id="modal-monto-pagado" placeholder="0" min="0" step="1" inputmode="numeric" />
       </div>
       <div class="form-group">
         <label>Notas (opcional)</label>
-        <textarea id="modal-notas" placeholder="Ej: pago parcial, número de transferencia..."></textarea>
+        <textarea id="modal-notas" placeholder="Ej: pago parcial, nro. de transferencia..."></textarea>
       </div>
     </div>
     <div class="modal-footer">
-      <button class="btn-anular" id="btn-anular" onclick="anularPago()" style="display:none;">✕ Anular pago</button>
-      <div class="modal-footer-right">
-        <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
-        <button class="btn-confirm" onclick="confirmPago()">✓ Confirmar pago</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ====== MODAL EXPORT ====== -->
-<div class="modal-overlay hidden" id="modal-export" onclick="if(event.target===this)closeExportModal()">
-  <div class="modal-box">
-    <div class="modal-header">
-      <h3>📋 Exportar cambios para Claude</h3>
-      <p>Copiá este texto y pegáselo a Claude para sincronizar gastos.json</p>
-    </div>
-    <div class="modal-body">
-      <textarea class="export-textarea" id="export-content" readonly></textarea>
-    </div>
-    <div class="modal-footer">
-      <div></div>
-      <div class="modal-footer-right">
-        <button class="btn-copy" onclick="copyExport()">📋 Copiar</button>
-        <button class="btn-cancel" onclick="closeExportModal()">Cerrar</button>
-      </div>
+      <button class="btn-anular" id="btn-anular" onclick="anularPago()" style="display:none;">✕ Anular</button>
+      <button class="btn-cancel" onclick="closeModal()">Cancelar</button>
+      <button class="btn-confirm" onclick="confirmPago()">✓ Confirmar</button>
     </div>
   </div>
 </div>
 
 <script>
-// ===== FECHA HOY =====
-const TODAY = new Date();
-TODAY.setHours(0,0,0,0);
+// ── FECHA ──
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
+function todayStr() { return new Date().toISOString().split('T')[0]; }
 
-function todayStr() {
-  const d = new Date(); // usa la fecha real del sistema para el datepicker
-  return d.toISOString().split('T')[0];
-}
-
-// ===== CONFIG =====
+// ── CONFIG ──
 const CONFIG = {
   gastos: [
     { id:'ago_berli',           nombre:'AGO Berli',               cat:'honorarios',  persona:'Tomás' },
@@ -404,491 +415,351 @@ const CONFIG = {
   ]
 };
 
-// ===== PAGOS BASE (desde gastos.json - actualizado por Claude) =====
+// ── PAGOS BASE ──
 const PAGOS = {
   "2026-04": {
     "cabal_credicoop":  { vencimiento:"2026-04-08", monto:602537.81, pagado:null, notas:"Saldo total. Pago mínimo $228.167" },
-    "ubajay":           { vencimiento:null,         monto:249378,    pagado:true,  notas:"Pago de abril registrado (ConsorcioAbierto)" },
-    "visa_nbsf":        { vencimiento:"2026-04-09", monto:179012,    pagado:null,  notas:"Resumen Visa NBSF (eresumen.com)" },
-    "visa_credicoop":   { vencimiento:"2026-04-08", monto:null,      pagado:null,  notas:"Pago mínimo $202.980. Saldo total sin datos." },
-    "ormachea":         { vencimiento:"2026-04-30", monto:null,      pagado:null,  notas:"Factura honorarios Luciana Grenón (PDF)" },
+    "ubajay":           { vencimiento:null,         monto:249378,    pagado:true,  notas:"Pago de abril registrado" },
+    "visa_nbsf":        { vencimiento:"2026-04-09", monto:179012,    pagado:null,  notas:"Resumen Visa NBSF" },
+    "visa_credicoop":   { vencimiento:"2026-04-08", monto:null,      pagado:null,  notas:"Pago mínimo $202.980" },
+    "ormachea":         { vencimiento:"2026-04-30", monto:null,      pagado:null,  notas:"Factura honorarios" },
   },
   "2026-05": {
-    "ago_berli":           { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Ingresar manualmente." },
-    "ormachea":            { vencimiento:null,         monto:null,       pagado:false, notas:"Factura llega aprox. fin de mes (PDF adjunto)" },
-    "cabal_credicoop":     { vencimiento:"2026-05-07", monto:857115.77,  pagado:false, notas:"XXXX-3923 · Pago mín: $268.237 · Total: $857.115,77" },
-    "ubajay":              { vencimiento:"2026-05-09", monto:268623,     pagado:false, notas:"1º venc 09/05: $268.623 · 2º venc 19/05: $280.281" },
-    "visa_nbsf":           { vencimiento:"2026-05-08", monto:228037,     pagado:false, notas:"Resumen Visa NBSF · eresumen.com (02/05)" },
-    "visa_credicoop":      { vencimiento:"2026-05-10", monto:null,       pagado:false, notas:"Cierre 30/04 → est. 10/05. Ver Banca Internet Credicoop." },
-    "master_patagonia_joa":{ vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Puede estar en joanaminetti@gmail.com" },
-    "master_nbsf_joa":     { vencimiento:"2026-05-08", monto:244709.63,  pagado:false, notas:"Mastercard Black NBSF · Cta 56419274-2 · Pago mín: $77.454" },
-    "master_mp":           { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Verificar en app Mercado Pago." },
-    "iibb_joana":          { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email en esta cuenta." },
-    "iibb_tomas":          { vencimiento:null,         monto:null,       pagado:false, notas:"Verificar en sistema ARCA." },
-    "iva_tomas":           { vencimiento:null,         monto:null,       pagado:false, notas:"IVA 03/2026 → vence 18/06 (ver tab Junio). IVA 04/2026 pendiente." },
-    "ecommapp":            { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Ingresar manualmente." },
-    "coop_setubal":        { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Ingresar manualmente." },
-    "aguas_sf":            { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Verificar en ASSA." },
-    "jerarquicos":         { vencimiento:null,         monto:null,       pagado:false, notas:"Sin email. Ingresar manualmente." },
-    "epe":                 { vencimiento:null,         monto:null,       pagado:false, notas:"Factura mayo aún no llegó (llega de epe.santafe.gov.ar)" },
-    "autonomos":           { vencimiento:null,         monto:null,       pagado:false, notas:"Nuevos importes abr-2026. Monto exacto en ARCA con Clave Fiscal." },
+    "ago_berli":           { vencimiento:null,         monto:null,      pagado:false, notas:"Sin email. Ingresar manualmente." },
+    "ormachea":            { vencimiento:null,         monto:null,      pagado:false, notas:"Factura llega aprox. fin de mes" },
+    "cabal_credicoop":     { vencimiento:"2026-05-07", monto:857115.77, pagado:false, notas:"XXXX-3923 · Pago mín: $268.237" },
+    "ubajay":              { vencimiento:"2026-05-09", monto:268623,    pagado:false, notas:"1º venc 09/05: $268.623 · 2º venc 19/05: $280.281" },
+    "visa_nbsf":           { vencimiento:"2026-05-08", monto:228037,    pagado:false, notas:"Resumen Visa NBSF" },
+    "visa_credicoop":      { vencimiento:"2026-05-10", monto:null,      pagado:false, notas:"Cierre 30/04 → est. 10/05" },
+    "master_patagonia_joa":{ vencimiento:null,         monto:null,      pagado:false, notas:"Ver cuenta de Joana" },
+    "master_nbsf_joa":     { vencimiento:"2026-05-08", monto:244709.63, pagado:false, notas:"Mastercard Black · Pago mín: $77.454" },
+    "master_mp":           { vencimiento:null,         monto:null,      pagado:false, notas:"Verificar en app Mercado Pago" },
+    "iibb_joana":          { vencimiento:null,         monto:null,      pagado:false, notas:"Sin email detectado" },
+    "iibb_tomas":          { vencimiento:null,         monto:null,      pagado:false, notas:"Verificar en ARCA" },
+    "iva_tomas":           { vencimiento:null,         monto:null,      pagado:false, notas:"IVA 03/2026 → vence 18/06" },
+    "ecommapp":            { vencimiento:null,         monto:null,      pagado:false, notas:"Sin email. Ingresar manualmente." },
+    "coop_setubal":        { vencimiento:null,         monto:null,      pagado:false, notas:"Sin email. Ingresar manualmente." },
+    "aguas_sf":            { vencimiento:null,         monto:null,      pagado:false, notas:"Verificar en ASSA" },
+    "jerarquicos":         { vencimiento:null,         monto:null,      pagado:false, notas:"Sin email. Ingresar manualmente." },
+    "epe":                 { vencimiento:null,         monto:null,      pagado:false, notas:"Factura mayo pendiente" },
+    "autonomos":           { vencimiento:null,         monto:null,      pagado:false, notas:"Monto exacto en ARCA" },
   },
   "2026-06": {
-    "iva_tomas": { vencimiento:"2026-06-18", monto:740576.05, pagado:false, notas:"DDJJ IVA período 03/2026. Confirmado por Danilo Ormachea." }
+    "iva_tomas": { vencimiento:"2026-06-18", monto:740576.05, pagado:false, notas:"DDJJ IVA 03/2026. Confirmado Ormachea." }
   }
 };
 
-// ===== LOCALSTORAGE =====
+// ── LOCALSTORAGE ──
 const LS_KEY = 'gastos_pagos_v1';
-
-function loadOverrides() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY) || '{}'); }
-  catch(e) { return {}; }
-}
-
-function saveOverride(mesKey, gastoId, data) {
-  const overrides = loadOverrides();
-  if (!overrides[mesKey]) overrides[mesKey] = {};
-  overrides[mesKey][gastoId] = data;
-  localStorage.setItem(LS_KEY, JSON.stringify(overrides));
-}
-
-function removeOverride(mesKey, gastoId) {
-  const overrides = loadOverrides();
-  if (overrides[mesKey]) {
-    delete overrides[mesKey][gastoId];
-    if (Object.keys(overrides[mesKey]).length === 0) delete overrides[mesKey];
-  }
-  localStorage.setItem(LS_KEY, JSON.stringify(overrides));
-}
-
-function getMergedPago(mesKey, gastoId) {
-  const base = (PAGOS[mesKey] && PAGOS[mesKey][gastoId]) ? {...PAGOS[mesKey][gastoId]} : { vencimiento:null, monto:null, pagado:false, notas:'' };
-  const overrides = loadOverrides();
-  const ov = overrides[mesKey] && overrides[mesKey][gastoId];
-  if (ov) Object.assign(base, ov);
+function loadOverrides() { try { return JSON.parse(localStorage.getItem(LS_KEY)||'{}'); } catch(e){return{};} }
+function saveOverride(mes,id,data) { const o=loadOverrides(); if(!o[mes])o[mes]={}; o[mes][id]=data; localStorage.setItem(LS_KEY,JSON.stringify(o)); }
+function removeOverride(mes,id) { const o=loadOverrides(); if(o[mes]){delete o[mes][id]; if(!Object.keys(o[mes]).length)delete o[mes];} localStorage.setItem(LS_KEY,JSON.stringify(o)); }
+function getMergedPago(mes,id) {
+  const base=(PAGOS[mes]&&PAGOS[mes][id])?{...PAGOS[mes][id]}:{vencimiento:null,monto:null,pagado:false,notas:''};
+  const ov=loadOverrides(); const o=ov[mes]&&ov[mes][id];
+  if(o) Object.assign(base,o);
   return base;
 }
 
-// ===== FORMATO =====
-function fmt(n) {
-  if (n === null || n === undefined || n === 0) return null;
-  return '$ ' + Math.round(n).toLocaleString('es-AR');
-}
-function fmtDate(s) {
-  if (!s) return null;
-  const [y,m,d] = s.split('-');
-  return `${d}/${m}`;
-}
-function daysUntil(dateStr) {
-  if (!dateStr) return null;
-  const d = new Date(dateStr + 'T00:00:00');
-  return Math.round((d - TODAY) / 86400000);
-}
-function getDaysBadge(days, paid) {
-  if (paid) return `<span class="days-chip days-green">✓</span>`;
-  if (days === null) return '';
-  if (days < 0) return `<span class="days-chip days-red">${days}d</span>`;
-  if (days === 0) return `<span class="days-chip days-red">HOY</span>`;
-  if (days === 1) return `<span class="days-chip days-red">MAÑANA</span>`;
-  if (days <= 3) return `<span class="days-chip days-orange">${days}d</span>`;
-  if (days <= 10) return `<span class="days-chip days-yellow">${days}d</span>`;
+// ── HELPERS ──
+function fmt(n) { if(!n)return null; return '$\u00a0'+Math.round(n).toLocaleString('es-AR'); }
+function fmtDate(s) { if(!s)return null; const[y,m,d]=s.split('-'); return `${d}/${m}`; }
+function daysUntil(s) { if(!s)return null; return Math.round((new Date(s+'T00:00:00')-TODAY)/86400000); }
+
+function getDaysBadge(days,paid) {
+  if(paid) return `<span class="days-chip days-green">✓</span>`;
+  if(days===null) return '';
+  if(days<0) return `<span class="days-chip days-red">${days}d</span>`;
+  if(days===0) return `<span class="days-chip days-red">HOY</span>`;
+  if(days===1) return `<span class="days-chip days-red">MAÑANA</span>`;
+  if(days<=3) return `<span class="days-chip days-orange">${days}d</span>`;
+  if(days<=10) return `<span class="days-chip days-yellow">${days}d</span>`;
   return `<span class="days-chip days-green">${days}d</span>`;
 }
+
 function getStatusBadge(p) {
-  if (p.pagado === true) return `<span class="badge badge-paid">✓ Pagado</span>`;
-  if (p.pagado === false) {
-    if (!p.vencimiento && !p.monto) return `<span class="badge badge-nodata">? Sin datos</span>`;
-    const d = daysUntil(p.vencimiento);
-    if (d !== null && d < 0) return `<span class="badge badge-overdue">⚠ Vencido</span>`;
-    if (d !== null && d <= 1) return `<span class="badge badge-urgent">🔴 Urgente</span>`;
-    if (d !== null && d <= 5) return `<span class="badge badge-urgent">🟠 Próximo</span>`;
-    if (d !== null && d <= 10) return `<span class="badge badge-soon">🟡 Esta semana</span>`;
-    return `<span class="badge badge-pending">● Pendiente</span>`;
-  }
-  return `<span class="badge badge-pending">– Desconocido</span>`;
+  if(p.pagado===true) return `<span class="badge badge-paid">✓ Pagado</span>`;
+  if(!p.vencimiento&&!p.monto) return `<span class="badge badge-nodata">? Sin datos</span>`;
+  const d=daysUntil(p.vencimiento);
+  if(d!==null&&d<0) return `<span class="badge badge-overdue">⚠ Vencido</span>`;
+  if(d!==null&&d<=1) return `<span class="badge badge-urgent">🔴 Urgente</span>`;
+  if(d!==null&&d<=5) return `<span class="badge badge-urgent">🟠 Próximo</span>`;
+  if(d!==null&&d<=10) return `<span class="badge badge-soon">🟡 Esta semana</span>`;
+  return `<span class="badge badge-pending">● Pendiente</span>`;
 }
+
 function getCatTag(cat) {
-  const L = { tarjeta:'Tarjeta', impuesto:'Impuesto', servicio:'Servicio', honorarios:'Honorarios', expensas:'Expensas', salud:'Salud', suscripcion:'Suscripción', cooperativa:'Cooperativa' };
+  const L={tarjeta:'Tarjeta',impuesto:'Impuesto',servicio:'Servicio',honorarios:'Honorarios',expensas:'Expensas',salud:'Salud',suscripcion:'Suscripción',cooperativa:'Cooperativa'};
   return `<span class="cat-tag cat-${cat}">${L[cat]||cat}</span>`;
 }
-function getActionButton(mesKey, gastoId, p) {
-  if (p.pagado === true) {
-    return `<button class="btn-pagado-edit" onclick="openModal('${mesKey}','${gastoId}')">✓ Editar</button>`;
-  }
-  if (p.pagado === false || p.pagado === null) {
-    return `<button class="btn-pagar" onclick="openModal('${mesKey}','${gastoId}')">Marcar pagado</button>`;
-  }
-  return '';
-}
+
 function getGroup(p) {
-  if (p.pagado === true) return 'pagado';
-  if (!p.vencimiento && !p.monto) return 'sin_datos';
+  if(p.pagado===true) return 'pagado';
+  if(!p.vencimiento&&!p.monto) return 'sin_datos';
   return 'pendiente';
 }
 
-// ===== RENDER =====
-let currentFilter = 'all';
+// ── RENDER CARDS ──
+let currentFilter='all';
 
-function renderMes(mesKey, tbodyId) {
-  const tbody = document.getElementById(tbodyId);
-  if (!tbody) return;
-  let totalKnown = 0, totalPaid = 0, countPaid = 0, countPending = 0, countNoData = 0;
+function renderCards(mesKey, listId) {
+  const list = document.getElementById(listId);
+  if(!list) return;
+  let totalKnown=0, totalPaid=0, countPaid=0, countPending=0, countNoData=0;
 
-  const gastos = mesKey === '2026-06'
-    ? CONFIG.gastos.filter(g => PAGOS['2026-06'] && PAGOS['2026-06'][g.id])
+  const gastos = mesKey==='2026-06'
+    ? CONFIG.gastos.filter(g=>PAGOS['2026-06']&&PAGOS['2026-06'][g.id])
     : CONFIG.gastos;
 
-  const sorted = [...gastos].sort((a, b) => {
-    const pa = getMergedPago(mesKey, a.id), pb = getMergedPago(mesKey, b.id);
-    if (pa.pagado===true && pb.pagado!==true) return 1;
-    if (pa.pagado!==true && pb.pagado===true) return -1;
-    const da = daysUntil(pa.vencimiento), db = daysUntil(pb.vencimiento);
-    if (da===null && db===null) return 0;
-    if (da===null) return 1;
-    if (db===null) return -1;
-    return da - db;
+  const sorted = [...gastos].sort((a,b)=>{
+    const pa=getMergedPago(mesKey,a.id), pb=getMergedPago(mesKey,b.id);
+    if(pa.pagado===true&&pb.pagado!==true) return 1;
+    if(pa.pagado!==true&&pb.pagado===true) return -1;
+    const da=daysUntil(pa.vencimiento), db=daysUntil(pb.vencimiento);
+    if(da===null&&db===null) return 0;
+    if(da===null) return 1; if(db===null) return -1;
+    return da-db;
   });
 
-  tbody.innerHTML = sorted.map(g => {
+  list.innerHTML = sorted.map(g => {
     const p = getMergedPago(mesKey, g.id);
     const group = getGroup(p);
-
-    if (mesKey === '2026-05') {
-      if (currentFilter !== 'all' && group !== currentFilter) return '';
-      if (p.monto) totalKnown += p.monto;
-      if (p.pagado===true) { totalPaid += (p.pagado_monto||p.monto||0); countPaid++; }
-      else if (group==='sin_datos') countNoData++;
+    if(mesKey==='2026-05') {
+      if(currentFilter!=='all'&&group!==currentFilter) return '';
+      if(p.monto) totalKnown+=p.monto;
+      if(p.pagado===true){totalPaid+=(p.pagado_monto||p.monto||0);countPaid++;}
+      else if(group==='sin_datos') countNoData++;
       else countPending++;
     }
+    const days=daysUntil(p.vencimiento);
+    const isUrgent=days!==null&&days<=2&&p.pagado!==true;
+    const isPaid=p.pagado===true;
 
-    const days = daysUntil(p.vencimiento);
-    const isUrgent = days !== null && days <= 2 && p.pagado !== true;
-    const isPaid = p.pagado === true;
-
-    return `<tr class="expense-row${isUrgent?' highlight-row':''}${isPaid?' paid-row':''}">
-      <td><strong>${g.nombre}</strong></td>
-      <td>${getCatTag(g.cat)}</td>
-      <td style="font-size:0.79rem;color:#a0aec0;">${g.persona}</td>
-      <td style="font-size:0.82rem;font-weight:${isUrgent?'700':'400'};color:${isUrgent?'#fc8181':'inherit'}">${fmtDate(p.vencimiento)||'<span style="color:#4a5568;">—</span>'}</td>
-      <td>${getDaysBadge(days, isPaid)}</td>
-      <td class="amount">${p.monto ? fmt(p.monto) : '<span class="amount-unknown">—</span>'}</td>
-      <td>${getStatusBadge(p)}</td>
-      <td style="font-size:0.8rem;color:#68d391;">${isPaid && p.pagado_fecha ? fmtDate(p.pagado_fecha) : '<span style="color:#4a5568;">—</span>'}</td>
-      <td>${isPaid && p.pagado_monto ? `<span class="paid-amount">${fmt(p.pagado_monto)}</span>` : '<span style="color:#4a5568;">—</span>'}</td>
-      <td>${getActionButton(mesKey, g.id, p)}</td>
-    </tr>`;
+    return `<div class="expense-card${isUrgent?' urgent':''}${isPaid?' paid':''}" onclick="openModal('${mesKey}','${g.id}')">
+      <div class="expense-card-top">
+        <div>
+          <div class="expense-name">${g.nombre}</div>
+          <div class="expense-persona">${g.persona} · ${getCatTag(g.cat)}</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+          ${getStatusBadge(p)}
+          ${getDaysBadge(days,isPaid)}
+        </div>
+      </div>
+      <div class="expense-card-mid">
+        <div class="${p.monto?'expense-monto':'expense-monto unknown'}">${p.monto?fmt(p.monto):'Sin monto'}</div>
+        <div class="expense-vence${isUrgent?' urgent':''}">${p.vencimiento?'Vence '+fmtDate(p.vencimiento):isPaid&&p.pagado_fecha?'Pagado '+fmtDate(p.pagado_fecha):''}</div>
+      </div>
+      ${p.notas?`<div class="expense-notas">${p.notas}</div>`:''}
+    </div>`;
   }).join('');
 
-  if (mesKey === '2026-05') {
-    const pct = totalKnown > 0 ? Math.round((totalPaid/totalKnown)*100) : 0;
-    document.getElementById('mayo-cards').innerHTML = `
-      <div class="card"><div class="card-label">Total conocido</div><div class="card-value blue">${fmt(totalKnown)||'$0'}</div><div class="card-sub">${gastos.filter(g=>getMergedPago(mesKey,g.id).monto).length} ítems con monto</div></div>
-      <div class="card"><div class="card-label">Pagado</div><div class="card-value green">${fmt(totalPaid)||'$0'}</div><div class="card-sub">${countPaid} confirmados</div></div>
-      <div class="card"><div class="card-label">Pendiente conocido</div><div class="card-value red">${fmt(totalKnown-totalPaid)||'—'}</div><div class="card-sub">${countPending} pendientes</div></div>
-      <div class="card"><div class="card-label">Sin datos</div><div class="card-value yellow">${countNoData}</div><div class="card-sub">gastos sin información</div></div>
+  if(mesKey==='2026-05') {
+    const pct=totalKnown>0?Math.round((totalPaid/totalKnown)*100):0;
+    document.getElementById('mayo-cards').innerHTML=`
+      <div class="sum-card"><div class="sum-label">Total conocido</div><div class="sum-value blue">${fmt(totalKnown)||'—'}</div><div class="sum-sub">${gastos.filter(g=>getMergedPago(mesKey,g.id).monto).length} ítems</div></div>
+      <div class="sum-card"><div class="sum-label">Pagado</div><div class="sum-value green">${fmt(totalPaid)||'$0'}</div><div class="sum-sub">${countPaid} confirmados</div></div>
+      <div class="sum-card"><div class="sum-label">Pendiente</div><div class="sum-value red">${totalKnown>totalPaid?fmt(totalKnown-totalPaid):'—'}</div><div class="sum-sub">${countPending} pendientes</div></div>
+      <div class="sum-card"><div class="sum-label">Sin datos</div><div class="sum-value yellow">${countNoData}</div><div class="sum-sub">sin información</div></div>
     `;
-    document.getElementById('mayo-progress-bar').style.width = pct+'%';
-    document.getElementById('mayo-progress-label').textContent = `${countPaid}/${CONFIG.gastos.length} pagados · ${pct}% del monto conocido`;
+    document.getElementById('mayo-progress-bar').style.width=pct+'%';
+    document.getElementById('mayo-progress-label').textContent=`${countPaid}/${CONFIG.gastos.length} · ${pct}%`;
+
+    // Banner urgente dinámico
+    const urgentes=sorted.filter(g=>{const p=getMergedPago(mesKey,g.id);const d=daysUntil(p.vencimiento);return d!==null&&d<=3&&p.pagado!==true;});
+    const banner=document.getElementById('urgente-banner');
+    if(urgentes.length>0){
+      banner.innerHTML=`<div class="alert" style="margin-bottom:12px;">🚨 <div><strong>URGENTE:</strong> ${urgentes.map(g=>{const p=getMergedPago(mesKey,g.id);const d=daysUntil(p.vencimiento);return `${g.nombre}${p.monto?' '+fmt(p.monto):''}${d===0?' HOY':d===1?' MAÑANA':' en '+d+'d'}`;}).join(' · ')}</div></div>`;
+    } else { banner.innerHTML=''; }
   }
 }
 
+// ── HISTORIAL ──
 function renderHistorial() {
-  const container = document.getElementById('historial-container');
-  const meses = Object.keys(PAGOS).sort().reverse().filter(m => m!=='2026-05' && m!=='2026-06');
-  const labels = { '2026-04':'Abril 2026', '2026-03':'Marzo 2026' };
+  const container=document.getElementById('historial-container');
+  const labels={'2026-04':'Abril 2026','2026-03':'Marzo 2026'};
+  const meses=Object.keys(PAGOS).sort().reverse().filter(m=>m!=='2026-05'&&m!=='2026-06');
 
-  container.innerHTML = meses.map(mes => {
-    const data = PAGOS[mes];
-    const total = Object.values(data).reduce((s,p)=>s+(p.monto||0),0);
-    const rows = CONFIG.gastos.map(g => {
-      const p = data[g.id];
-      if (!p) return '';
-      return `<tr class="expense-row">
-        <td><strong>${g.nombre}</strong></td>
-        <td>${getCatTag(g.cat)}</td>
-        <td style="font-size:0.79rem;color:#a0aec0;">${g.persona}</td>
-        <td style="font-size:0.82rem;">${fmtDate(p.vencimiento)||'—'}</td>
-        <td class="amount">${p.monto?fmt(p.monto):'<span class="amount-unknown">—</span>'}</td>
-        <td>${p.pagado===true?'<span class="badge badge-paid">✓ Pagado</span>':p.pagado===false?'<span class="badge badge-pending">Pendiente</span>':'<span class="badge badge-nodata">Desconocido</span>'}</td>
-        <td><span class="notes-text" title="${p.notas||''}">${p.notas||''}</span></td>
-      </tr>`;
+  // Actualizar banner mes anterior
+  const abril=PAGOS['2026-04'];
+  if(abril){
+    const totalAbril=Object.values(abril).reduce((s,p)=>s+(p.monto||0),0);
+    document.getElementById('abril-total').textContent=fmt(totalAbril)||'Datos parciales';
+  }
+
+  container.innerHTML=meses.map(mes=>{
+    const data=PAGOS[mes];
+    const total=Object.values(data).reduce((s,p)=>s+(p.monto||0),0);
+    const items=CONFIG.gastos.map(g=>{
+      const p=data[g.id]; if(!p||(!p.monto&&!p.vencimiento)) return '';
+      return `<div class="hist-item">
+        <div><div class="hist-item-name">${g.nombre}</div><div style="font-size:0.68rem;color:var(--text3);margin-top:2px;">${getCatTag(g.cat)}</div></div>
+        <div style="text-align:right;">
+          <div class="hist-item-monto">${p.monto?fmt(p.monto):'—'}</div>
+          <div style="font-size:0.68rem;color:var(--text3);">${fmtDate(p.vencimiento)||''}</div>
+        </div>
+      </div>`;
     }).join('');
-    return `<div class="history-month">
-      <div class="history-month-header" onclick="toggleMonth(this)">
-        <span style="font-weight:600;">${labels[mes]||mes}</span>
-        <span class="history-total">${total>0?fmt(total):'Parcial'} <span style="color:#718096;font-size:0.74rem;font-weight:400;">conocido</span> ▾</span>
+    return `<div class="hist-mes">
+      <div class="hist-mes-header" onclick="this.nextElementSibling.classList.toggle('open')">
+        <span class="hist-mes-title">${labels[mes]||mes}</span>
+        <span class="hist-mes-total">${total>0?fmt(total):'Parcial'} ▾</span>
       </div>
-      <div class="history-month-body">
-        <table class="expense-table" style="margin-top:8px;">
-          <thead><tr><th>Concepto</th><th>Cat.</th><th>Titular</th><th>Vencimiento</th><th>Monto</th><th>Estado</th><th>Notas</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>
-      </div>
+      <div class="hist-mes-body">${items||'<div style="padding:16px;color:var(--text4);font-size:0.85rem;">Sin datos registrados</div>'}</div>
     </div>`;
-  }).join('') || '<div style="color:#4a5568;text-align:center;padding:40px;">No hay historial disponible aún.</div>';
+  }).join('')||'<div style="color:var(--text4);text-align:center;padding:40px;">No hay historial disponible.</div>';
 }
 
-function filterTable(f, ev) {
-  currentFilter = f;
+function filterCards(f,btn) {
+  currentFilter=f;
   document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  if (ev && ev.target) ev.target.classList.add('active');
-  renderMes('2026-05', 'mayo-tbody');
+  btn.classList.add('active');
+  renderCards('2026-05','mayo-list');
 }
 
-function toggleMonth(el) { el.nextElementSibling.classList.toggle('open'); }
-
-function showTab(name, el) {
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+function showTab(name,btn) {
   document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
+  btn.classList.add('active');
 }
 
-// ===== MODAL PAGO =====
-let modalMesKey = null, modalGastoId = null;
+// ── MODAL PAGO ──
+let modalMes=null, modalId=null;
 
-function openModal(mesKey, gastoId) {
-  modalMesKey = mesKey;
-  modalGastoId = gastoId;
-
-  const cfg = CONFIG.gastos.find(g=>g.id===gastoId);
-  const p = getMergedPago(mesKey, gastoId);
-
-  document.getElementById('modal-titulo').textContent = `💳 ${cfg.nombre}`;
-  document.getElementById('modal-subtitulo').textContent = `${cfg.persona} · ${mesKey === '2026-05' ? 'Mayo 2026' : mesKey === '2026-06' ? 'Junio 2026' : mesKey}`;
-
-  document.getElementById('modal-ref-monto').innerHTML = p.monto
-    ? `Monto facturado: <span>${fmt(p.monto)}</span>`
-    : `<span style="color:#718096;">Monto facturado no disponible</span>`;
-
-  document.getElementById('modal-fecha').value = p.pagado_fecha || todayStr();
-  document.getElementById('modal-monto-pagado').value = p.pagado_monto || (p.monto ? Math.round(p.monto) : '');
-  document.getElementById('modal-notas').value = p.notas_pago || '';
-
-  document.getElementById('btn-anular').style.display = p.pagado === true ? 'block' : 'none';
-
+function openModal(mes,id) {
+  modalMes=mes; modalId=id;
+  const cfg=CONFIG.gastos.find(g=>g.id===id);
+  const p=getMergedPago(mes,id);
+  const mesLabel={'2026-05':'Mayo 2026','2026-06':'Junio 2026'}[mes]||mes;
+  document.getElementById('modal-titulo').textContent=`💳 ${cfg.nombre}`;
+  document.getElementById('modal-subtitulo').textContent=`${cfg.persona} · ${mesLabel}`;
+  document.getElementById('modal-ref-monto').innerHTML=p.monto?`Monto facturado: <span>${fmt(p.monto)}</span>`:'<span style="color:var(--text4)">Monto no disponible</span>';
+  document.getElementById('modal-fecha').value=p.pagado_fecha||todayStr();
+  document.getElementById('modal-monto-pagado').value=p.pagado_monto||(p.monto?Math.round(p.monto):'');
+  document.getElementById('modal-notas').value=p.notas_pago||'';
+  document.getElementById('btn-anular').style.display=p.pagado===true?'block':'none';
   document.getElementById('modal-pago').classList.remove('hidden');
-  document.getElementById('modal-monto-pagado').focus();
 }
 
-function closeModal() {
-  document.getElementById('modal-pago').classList.add('hidden');
-  modalMesKey = null; modalGastoId = null;
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById('modal-pago')) closeModal();
-}
+function closeModal() { document.getElementById('modal-pago').classList.add('hidden'); modalMes=null; modalId=null; }
 
 function confirmPago() {
-  if (!modalMesKey || !modalGastoId) return;
-  const fecha = document.getElementById('modal-fecha').value;
-  const monto = parseFloat(document.getElementById('modal-monto-pagado').value) || null;
-  const notas = document.getElementById('modal-notas').value.trim();
-
-  saveOverride(modalMesKey, modalGastoId, {
-    pagado: true,
-    pagado_fecha: fecha,
-    pagado_monto: monto,
-    notas_pago: notas
+  if(!modalMes||!modalId) return;
+  saveOverride(modalMes,modalId,{
+    pagado:true,
+    pagado_fecha:document.getElementById('modal-fecha').value,
+    pagado_monto:parseFloat(document.getElementById('modal-monto-pagado').value)||null,
+    notas_pago:document.getElementById('modal-notas').value.trim()
   });
-
   closeModal();
-  renderMes('2026-05', 'mayo-tbody');
-  renderMes('2026-06', 'junio-tbody');
+  renderCards('2026-05','mayo-list');
+  renderCards('2026-06','junio-list');
 }
 
 function anularPago() {
-  if (!modalMesKey || !modalGastoId) return;
-  if (!confirm('¿Anular el registro de pago de este gasto?')) return;
-  removeOverride(modalMesKey, modalGastoId);
+  if(!confirm('¿Anular el pago registrado?')) return;
+  removeOverride(modalMes,modalId);
   closeModal();
-  renderMes('2026-05', 'mayo-tbody');
-  renderMes('2026-06', 'junio-tbody');
+  renderCards('2026-05','mayo-list');
+  renderCards('2026-06','junio-list');
 }
 
-// ===== MODAL EXPORT =====
-function openExportModal() {
-  const overrides = loadOverrides();
-  const meses = Object.keys(PAGOS).sort().reverse();
-  const lines = [`Pagos registrados en el dashboard (${new Date().toLocaleDateString('es-AR')}):\n`];
-  let hasChanges = false;
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
 
-  meses.forEach(mes => {
-    const mesLabel = mes === '2026-05' ? 'Mayo 2026' : mes === '2026-06' ? 'Junio 2026' : mes === '2026-04' ? 'Abril 2026' : mes;
-    const ovMes = overrides[mes] || {};
-    CONFIG.gastos.forEach(g => {
-      const ov = ovMes[g.id];
-      if (ov && ov.pagado) {
-        hasChanges = true;
-        const montoStr = ov.pagado_monto ? ` · Monto pagado: ${fmt(ov.pagado_monto)}` : '';
-        const notasStr = ov.notas_pago ? ` · Notas: ${ov.notas_pago}` : '';
-        lines.push(`- ${g.nombre} [${mesLabel}]: PAGADO el ${fmtDate(ov.pagado_fecha)||'—'}${montoStr}${notasStr}`);
-      }
-    });
-  });
-
-  if (!hasChanges) lines.push('No hay pagos registrados en el dashboard aún.');
-
-  document.getElementById('export-content').value = lines.join('\n');
-  document.getElementById('modal-export').classList.remove('hidden');
-}
-
-function closeExportModal() { document.getElementById('modal-export').classList.add('hidden'); }
-
-function copyExport() {
-  const ta = document.getElementById('export-content');
-  ta.select();
-  document.execCommand('copy');
-  const btn = document.querySelector('.btn-copy');
-  btn.textContent = '✓ Copiado!';
-  setTimeout(() => btn.textContent = '📋 Copiar', 2000);
-}
-
-// keyboard ESC para cerrar modales
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closeExportModal(); }
-});
-
-// ===== CARGA RÁPIDA — GITHUB API =====
-const GH_REPO  = '70miboy/gastos-mensuales';
-const GH_FILE  = 'gastos.json';
+// ── GITHUB API ──
+const GH_REPO='70miboy/gastos-mensuales';
+const GH_FILE='gastos.json';
 
 function getToken() {
-  let t = localStorage.getItem('gh_token');
-  if (!t) {
-    t = prompt('Primera vez: ingresá tu GitHub token (ghp_...)');
-    if (t) localStorage.setItem('gh_token', t.trim());
-  }
+  let t=localStorage.getItem('gh_token');
+  if(!t){t=prompt('Ingresá tu GitHub token (ghp_...)');if(t)localStorage.setItem('gh_token',t.trim());}
   return t;
 }
 
 function initCargaSelect() {
-  const sel = document.getElementById('carga-gasto');
-  CONFIG.gastos.forEach(g => {
-    const opt = document.createElement('option');
-    opt.value = g.id;
-    opt.textContent = g.nombre + ' (' + g.persona + ')';
-    sel.appendChild(opt);
-  });
+  const sel=document.getElementById('carga-gasto');
+  CONFIG.gastos.forEach(g=>{const o=document.createElement('option');o.value=g.id;o.textContent=g.nombre+' ('+g.persona+')';sel.appendChild(o);});
 }
 
-function mostrarEstado(msg, color) {
-  const el = document.getElementById('carga-resultado');
-  const msg_el = document.getElementById('carga-msg');
-  el.classList.remove('hidden');
-  msg_el.style.color = color || '#e2e8f0';
-  msg_el.textContent = msg;
-  el.scrollIntoView({ behavior: 'smooth' });
+function showStatus(msg,color) {
+  const el=document.getElementById('carga-status');
+  el.style.display='block'; el.style.color=color||'var(--text)'; el.textContent=msg;
+  el.scrollIntoView({behavior:'smooth'});
 }
 
 async function guardarEnGitHub() {
-  const gastoId  = document.getElementById('carga-gasto').value;
-  const mes      = document.getElementById('carga-mes').value;
-  const monto    = document.getElementById('carga-monto').value;
-  const venc     = document.getElementById('carga-vencimiento').value;
-  const minimo   = document.getElementById('carga-minimo').value;
-  const notas    = document.getElementById('carga-notas').value;
-
-  if (!gastoId) { alert('Elegí un gasto primero'); return; }
-  if (!monto && !venc) { alert('Ingresá al menos el monto o la fecha'); return; }
-
-  mostrarEstado('⏳ Guardando...', '#63b3ed');
-
-  const GH_TOKEN = getToken();
-  if (!GH_TOKEN) { mostrarEstado('❌ Token necesario para guardar', '#fc8181'); return; }
-
+  const gastoId=document.getElementById('carga-gasto').value;
+  const mes=document.getElementById('carga-mes').value;
+  const monto=document.getElementById('carga-monto').value;
+  const venc=document.getElementById('carga-vencimiento').value;
+  const minimo=document.getElementById('carga-minimo').value;
+  const notas=document.getElementById('carga-notas').value;
+  if(!gastoId){alert('Elegí un gasto primero');return;}
+  if(!monto&&!venc){alert('Ingresá al menos el monto o la fecha');return;}
+  showStatus('⏳ Guardando...','var(--blue)');
+  const GH_TOKEN=getToken();
+  if(!GH_TOKEN){showStatus('❌ Token necesario','var(--red)');return;}
   try {
-    // 1. Leer el archivo actual de GitHub
-    const getRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`, {
-      headers: { 'Authorization': `token ${GH_TOKEN}`, 'Accept': 'application/vnd.github.v3+json' }
+    const getRes=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`,{headers:{'Authorization':`token ${GH_TOKEN}`,'Accept':'application/vnd.github.v3+json'}});
+    if(!getRes.ok){localStorage.removeItem('gh_token');showStatus('❌ Token inválido. Recargá e ingresalo de nuevo.','var(--red)');return;}
+    const getJson=await getRes.json();
+    const sha=getJson.sha;
+    const contenido=JSON.parse(atob(getJson.content.replace(/\n/g,'')));
+    if(!contenido.pagos[mes])contenido.pagos[mes]={};
+    const entrada=contenido.pagos[mes][gastoId]||{};
+    if(monto)entrada.monto=parseFloat(monto);
+    if(venc)entrada.vencimiento=venc;
+    if(minimo)entrada.pago_minimo=parseFloat(minimo);
+    if(notas)entrada.notas=notas;
+    if(entrada.pagado===undefined)entrada.pagado=false;
+    entrada.fuente='carga_manual_iphone';
+    contenido.pagos[mes][gastoId]=entrada;
+    contenido.ultima_actualizacion=new Date().toISOString().split('T')[0];
+    const cfg=CONFIG.gastos.find(g=>g.id===gastoId);
+    const putRes=await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`,{
+      method:'PUT',
+      headers:{'Authorization':`token ${GH_TOKEN}`,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+      body:JSON.stringify({message:`Carga manual: ${cfg.nombre} ${mes}`,content:btoa(unescape(encodeURIComponent(JSON.stringify(contenido,null,2)))),sha})
     });
-    if (!getRes.ok) { localStorage.removeItem('gh_token'); mostrarEstado('❌ Token inválido. Recargá la página e ingresalo de nuevo.', '#fc8181'); return; }
-    const getJson = await getRes.json();
-    const sha = getJson.sha;
-    const contenido = JSON.parse(atob(getJson.content.replace(/\n/g,'')));
-
-    // 2. Modificar el dato
-    if (!contenido.pagos[mes]) contenido.pagos[mes] = {};
-    const entrada = contenido.pagos[mes][gastoId] || {};
-    if (monto)   entrada.monto       = parseFloat(monto);
-    if (venc)    entrada.vencimiento = venc;
-    if (minimo)  entrada.pago_minimo = parseFloat(minimo);
-    if (notas)   entrada.notas       = notas;
-    if (entrada.pagado === undefined) entrada.pagado = false;
-    entrada.fuente = 'carga_manual_iphone';
-    contenido.pagos[mes][gastoId] = entrada;
-    contenido.ultima_actualizacion = new Date().toISOString().split('T')[0];
-
-    // 3. Guardar de vuelta en GitHub
-    const cfg = CONFIG.gastos.find(g => g.id === gastoId);
-    const body = JSON.stringify({
-      message: `Carga manual: ${cfg.nombre} ${mes}`,
-      content: btoa(unescape(encodeURIComponent(JSON.stringify(contenido, null, 2)))),
-      sha: sha
-    });
-
-    const putRes = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}`, {
-      method: 'PUT',
-      headers: {
-        'Authorization': `token ${GH_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'Content-Type': 'application/json'
-      },
-      body: body
-    });
-
-    if (putRes.ok) {
-      mostrarEstado('✅ ¡Guardado! Los datos se actualizaron en GitHub.', '#68d391');
-      // Limpiar form
-      document.getElementById('carga-gasto').value = '';
-      document.getElementById('carga-monto').value = '';
-      document.getElementById('carga-vencimiento').value = '';
-      document.getElementById('carga-minimo').value = '';
-      document.getElementById('carga-notas').value = '';
+    if(putRes.ok){
+      showStatus('✅ ¡Guardado en GitHub!','var(--green)');
+      ['carga-gasto','carga-monto','carga-vencimiento','carga-minimo','carga-notas'].forEach(id=>document.getElementById(id).value='');
     } else {
-      const err = await putRes.json();
-      mostrarEstado('❌ Error: ' + (err.message || 'No se pudo guardar'), '#fc8181');
+      const err=await putRes.json();
+      showStatus('❌ Error: '+(err.message||'No se pudo guardar'),'var(--red)');
     }
-  } catch(e) {
-    mostrarEstado('❌ Error de conexión: ' + e.message, '#fc8181');
-  }
+  } catch(e){showStatus('❌ Error de conexión: '+e.message,'var(--red)');}
 }
 
-// ===== INIT — carga datos desde GitHub en tiempo real =====
+// ── INIT ──
 async function init() {
   initCargaSelect();
-
-  // Intentar cargar gastos.json desde GitHub (sin token, es público)
+  document.getElementById('header-sub').textContent='Cargando datos de GitHub...';
   try {
-    const res = await fetch(`https://raw.githubusercontent.com/${GH_REPO}/master/${GH_FILE}?t=${Date.now()}`);
-    if (res.ok) {
-      const data = await res.json();
-      // Mergear los datos de GitHub sobre los hardcodeados
-      Object.keys(data.pagos).forEach(mes => {
-        if (!PAGOS[mes]) PAGOS[mes] = {};
-        Object.keys(data.pagos[mes]).forEach(id => {
-          const remote = data.pagos[mes][id];
-          // Solo pisa si tiene datos reales
-          if (remote.monto || remote.vencimiento || remote.pagado === true) {
-            PAGOS[mes][id] = {
-              vencimiento: remote.vencimiento || (PAGOS[mes][id] && PAGOS[mes][id].vencimiento) || null,
-              monto:       remote.monto       || (PAGOS[mes][id] && PAGOS[mes][id].monto)       || null,
-              pagado:      remote.pagado !== undefined ? remote.pagado : (PAGOS[mes][id] && PAGOS[mes][id].pagado),
-              notas:       remote.notas       || (PAGOS[mes][id] && PAGOS[mes][id].notas)       || ''
+    const res=await fetch(`https://raw.githubusercontent.com/${GH_REPO}/master/${GH_FILE}?t=${Date.now()}`);
+    if(res.ok){
+      const data=await res.json();
+      Object.keys(data.pagos).forEach(mes=>{
+        if(!PAGOS[mes])PAGOS[mes]={};
+        Object.keys(data.pagos[mes]).forEach(id=>{
+          const r=data.pagos[mes][id];
+          if(r.monto||r.vencimiento||r.pagado===true){
+            PAGOS[mes][id]={
+              vencimiento:r.vencimiento||(PAGOS[mes][id]&&PAGOS[mes][id].vencimiento)||null,
+              monto:r.monto||(PAGOS[mes][id]&&PAGOS[mes][id].monto)||null,
+              pagado:r.pagado!==undefined?r.pagado:(PAGOS[mes][id]&&PAGOS[mes][id].pagado),
+              notas:r.notas||(PAGOS[mes][id]&&PAGOS[mes][id].notas)||''
             };
           }
         });
       });
-      console.log('✅ Datos actualizados desde GitHub');
+      const upd=data.ultima_actualizacion;
+      document.getElementById('header-sub').textContent=upd?'Actualizado: '+upd.split('-').reverse().join('/'):'Datos en vivo';
     }
-  } catch(e) {
-    console.log('⚠️ Usando datos locales:', e.message);
-  }
-
-  renderMes('2026-05', 'mayo-tbody');
-  renderMes('2026-06', 'junio-tbody');
+  } catch(e){ document.getElementById('header-sub').textContent='Datos locales (sin conexión)'; }
+  renderCards('2026-05','mayo-list');
+  renderCards('2026-06','junio-list');
   renderHistorial();
 }
 
