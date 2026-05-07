@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:/Users/Tomi/Documents/GASTOS MENSUALES\" /a:hsa)",
+      "PowerShell(@\\(Get-ChildItem -Path \"C:\\\\Users\\\\Tomi\\\\Documents\\\\GASTOS MENSUALES\" -Force\\) | ForEach-Object { $_.FullName; $_.Length; if \\($_.PSIsContainer\\) { \"DIRECTORY\" } else { \"FILE\" } })",
+      "PowerShell(Get-ChildItem -Path \"C:\\\\Users\\\\Tomi\\\\Documents\\\\GASTOS MENSUALES\\\\.claude\" -Force -Recurse | Select-Object Name, FullName, @{Label=\"Type\";Expression={if\\($_.PSIsContainer\\){\"DIRECTORY\"}else{\"FILE\"}}}, @{Label=\"Size\";Expression={$_.Length}} | Format-Table -AutoSize)",
+      "mcp__claude_ai_Gmail__search_threads",
+      "mcp__claude_ai_Gmail__get_thread",
+      "mcp__claude_ai_Google_Calendar__list_events",
+      "mcp__claude_ai_Google_Calendar__create_event"
+    ]
+  }
+}
