@@ -750,11 +750,20 @@ async function loadData() {
     const upd=gastos.ultima_actualizacion;
     document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-on"></span>${upd?'Actualizado: '+upd.split('-').reverse().join('/'):'Datos en vivo'}`;
   } catch(e) {
-    API_AVAILABLE=false;
-    document.getElementById('conn-dot').className='conn-dot conn-off';
-    document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-off"></span>Sin API — ejecutá python server.py`;
-    GASTOS_DATA={pagos:{},ultima_actualizacion:null};
-    CONFIG_DATA={gastos_recurrentes:[]};
+    // Fallback: static JSON files (GitHub Pages)
+    try {
+      const [gastos,config]=await Promise.all([fetch('gastos.json').then(r=>r.json()),fetch('config.json').then(r=>r.json())]);
+      GASTOS_DATA=gastos; CONFIG_DATA=config; API_AVAILABLE=false;
+      document.getElementById('conn-dot').className='conn-dot conn-on';
+      const upd=gastos.ultima_actualizacion;
+      document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-on"></span>Estático · ${upd?upd.split('-').reverse().join('/'):'Sin fecha'}`;
+    } catch(e2) {
+      API_AVAILABLE=false;
+      document.getElementById('conn-dot').className='conn-dot conn-off';
+      document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-off"></span>Sin API — ejecutá python server.py`;
+      GASTOS_DATA={pagos:{},ultima_actualizacion:null};
+      CONFIG_DATA={gastos_recurrentes:[]};
+    }
   }
   renderCards();
   renderHistorial();
