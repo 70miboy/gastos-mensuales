@@ -1,0 +1,33 @@
+# Datos sensibles
+telegram_bot_token.txt
+telegram_allowed_chats.txt
+
+# Logs y temporales
+*.log
+*.bak
+bot_debug.txt
+bot_err.txt
+bot_log.txt
+bot_out.txt
+bot_crash.log
+telegram_bot.lock
+_check_updates.py
+bot_test.bat
+mails_resultado.txt
+check_mails_log.json
+
+# Fly.io (no necesario para GitHub Pages)
+fly.toml
+Dockerfile
+start_fly.sh
+
+# Python
+__pycache__/
+*.pyc
+
+# Playwright
+.playwright-mcp/
+
+# Archivos de test / setup
+_get_chat_id.py
+setup_task.bat
