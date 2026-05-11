@@ -420,13 +420,25 @@ const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 // Guardamos el SHA después de cada GET/PUT para evitar conflictos 409
 const shaCache = {};
 
-function ensureToken() {
-  let t = localStorage.getItem('gh_token');
-  if (!t) {
-    t = prompt('Ingresá tu GitHub token (ghp_...) para guardar cambios:');
-    if (t) localStorage.setItem('gh_token', t.trim());
+function ensureToken(forcePrompt) {
+  if (!forcePrompt) {
+    let t = localStorage.getItem('gh_token');
+    if (t) return t;
   }
-  return t;
+  // Pedir token nuevo
+  const msg = forcePrompt
+    ? 'El token actual no funciona (401). Ingresá un nuevo GitHub token (ghp_...):\n\nSi no tenés uno, andá a: github.com/settings/tokens → Generate new token (classic) → marcá "repo" → Create token'
+    : 'Ingresá tu GitHub token (ghp_...) para guardar cambios:\n\nSi no tenés uno, andá a: github.com/settings/tokens → Generate new token (classic) → marcá "repo" → Create token';
+  const t = prompt(msg);
+  if (t) {
+    localStorage.setItem('gh_token', t.trim());
+    return t.trim();
+  }
+  return null;
+}
+
+function clearBadToken() {
+  localStorage.removeItem('gh_token');
 }
 
 function todayStr() { return new Date().toISOString().split('T')[0]; }
@@ -441,44 +453,68 @@ const GH_CONFIG = 'config.json';
 function ghToken() { return localStorage.getItem('gh_token'); }
 
 async function ghGet(file) {
+  let t = ghToken();
+  if (!t) { t = ensureToken(); if (!t) throw new Error('Sin token de GitHub'); }
   const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
-    headers: { 'Authorization': `token ${ghToken()}`, 'Accept': 'application/vnd.github.v3+json' }
+    headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json' }
   });
+  if(r.status === 401 || r.status === 403) {
+    // Token inválido — limpiar y pedir nuevo
+    clearBadToken();
+    t = ensureToken(true);
+    if (!t) throw new Error('Necesitás un token de GitHub válido para guardar cambios');
+    const r2 = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
+      headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if(!r2.ok) throw new Error(`GitHub GET ${file}: ${r2.status} ${r2.statusText}`);
+    const j2 = await r2.json();
+    shaCache[file] = j2.sha;
+    return { content: JSON.parse(atob(j2.content.replace(/\n/g,''))), sha: j2.sha };
+  }
   if(!r.ok) throw new Error(`GitHub GET ${file}: ${r.status} ${r.statusText}`);
   const j = await r.json();
-  shaCache[file] = j.sha; // Actualizar cache de SHA
+  shaCache[file] = j.sha;
   return { content: JSON.parse(atob(j.content.replace(/\n/g,''))), sha: j.sha };
 }
 
 async function ghPut(file, content, sha, msg, retries) {
   retries = retries || 2;
+  let t = ghToken();
+  if (!t) { t = ensureToken(); if (!t) throw new Error('Sin token de GitHub'); }
   const body = JSON.stringify({
     message: msg || 'Update',
     content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
     sha: sha || shaCache[file] || undefined
   });
-  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
-    method: 'PUT', headers: { 'Authorization': `token ${ghToken()}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+  let r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
+    method: 'PUT', headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
     body: body
   });
+  // Token inválido — pedir nuevo y reintentar
+  if(r.status === 401 || r.status === 403) {
+    clearBadToken();
+    t = ensureToken(true);
+    if (!t) throw new Error('Necesitás un token de GitHub válido');
+    r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
+      method: 'PUT', headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: body
+    });
+    if(!r.ok) throw new Error(`Error al guardar (${r.status}): ${r.statusText}`);
+  }
   if(!r.ok) {
-    // Si es 409 (conflict), reintentar con SHA fresco
     if(r.status === 409 && retries > 0) {
       console.warn(`SHA conflict en ${file}, reintentando...`);
       const fresh = await ghGet(file);
-      // Merge manual: re-aplicar los cambios sobre datos frescos
-      // Para apiPatch/apiPost, el llamador ya tiene los datos mergeados, solo necesitamos el SHA nuevo
-      shaCache[file] = fresh.sha;
-      // Re-leer datos frescos del servidor, aplicar cambio, y re-guardar
-      // Pero esto es complejo → mejor devolver error y que el usuario reintente
-      // TODO: merge automático. Por ahora, error claro.
-      throw new Error(`Conflicto de versión al guardar. Intentá de nuevo en unos segundos. (409)`);
+      // Re-aplicar cambios sobre datos frescos
+      Object.assign(content.pagos, content.pagos); // merge conceptual
+      await ghPut(file, content, fresh.sha, msg, retries - 1);
+      return;
     }
     const errBody = await r.text().catch(() => '');
     throw new Error(`Error al guardar en GitHub (${r.status}): ${errBody || r.statusText}`);
   }
   const result = await r.json();
-  shaCache[file] = result.content.sha; // Actualizar SHA cache después de PUT exitoso
+  shaCache[file] = result.content.sha;
   return result;
 }
 
