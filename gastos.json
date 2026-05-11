@@ -1,9 +1,9 @@
 {
-  "ultima_actualizacion": "2026-05-08",
+  "ultima_actualizacion": "2026-05-11",
   "version": "1.0",
   "pagos": {
     "2026-04": {
-      "_nota": "Datos históricos parciales extraídos de Gmail",
+      "_nota": "Datos histÃ³ricos parciales extraÃ­dos de Gmail",
       "ago_berli": {
         "vencimiento": null,
         "monto": null,
@@ -11,7 +11,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "Pago confirmado por Tomás. Sin email detectado."
+        "notas": "Pago confirmado por TomÃ¡s. Sin email detectado."
       },
       "ormachea": {
         "vencimiento": "2026-04-30",
@@ -20,7 +20,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Factura de honorarios Luciana Grenón (PDF adjunto)"
+        "notas": "Factura de honorarios Luciana GrenÃ³n (PDF adjunto)"
       },
       "cabal_credicoop": {
         "vencimiento": "2026-04-08",
@@ -29,7 +29,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Cabal XXXX-3923. Pago mínimo: $228.167"
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃ­nimo: $228.167"
       },
       "ubajay": {
         "vencimiento": null,
@@ -56,7 +56,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Visa XXXX-2384. Pago mínimo: $202.980. Saldo total no disponible en email."
+        "notas": "Tarjeta Visa XXXX-2384. Pago mÃ­nimo: $202.980. Saldo total no disponible en email."
       },
       "master_patagonia_joa": {
         "vencimiento": null,
@@ -110,7 +110,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "Período 02/2026 - verificar con contador"
+        "notas": "PerÃ­odo 02/2026 - verificar con contador"
       },
       "ecommapp": {
         "vencimiento": null,
@@ -175,7 +175,7 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 1320000,
         "fuente": null,
-        "notas": "Pago confirmado por Tomás. Sin email detectado."
+        "notas": "Pago confirmado por TomÃ¡s. Sin email detectado."
       },
       "ormachea": {
         "vencimiento": null,
@@ -193,16 +193,16 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 857115.77,
         "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
-        "notas": "Tarjeta Cabal XXXX-3923. Pago mínimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃ­nimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
       },
       "ubajay": {
         "vencimiento": "2026-05-09",
         "monto": 268623,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-05-11",
+        "pagado_monto": 268623,
         "fuente": "gmail:noreply@consorcioabierto.com",
-        "notas": "Náutico Ubajay CC. 1º venc 09/05: $268.623 | 2º venc 19/05: $280.281"
+        "notas": "NÃ¡utico Ubajay CC. 1Âº venc 09/05: $268.623 | 2Âº venc 19/05: $280.281"
       },
       "visa_nbsf": {
         "vencimiento": "2026-05-08",
@@ -211,7 +211,7 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 228037,
         "fuente": "gmail:info@eresumen.com",
-        "notas": "Resumen Visa NBSF - Norman Tomás Juan José"
+        "notas": "Resumen Visa NBSF - Norman TomÃ¡s Juan JosÃ©"
       },
       "visa_credicoop": {
         "vencimiento": "2026-05-13",
@@ -221,7 +221,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "pdf:asociados@bancocredicoop.coop",
-        "notas": "Tarjeta Visa XXXX-2384. Cierre 30/04. Vence 13/05. Saldo: $1.412.842,84. Pago mín: $293.377. Débito automático cuenta 29648/8."
+        "notas": "Tarjeta Visa XXXX-2384. Cierre 30/04. Vence 13/05. Saldo: $1.412.842,84. Pago mÃ­n: $293.377. DÃ©bito automÃ¡tico cuenta 29648/8."
       },
       "master_patagonia_joa": {
         "vencimiento": "2026-05-04",
@@ -230,7 +230,7 @@
         "pagado_fecha": "2026-05-04",
         "pagado_monto": 1,
         "fuente": "carga_manual_iphone",
-        "notas": "Saldo a favor. Pago automático."
+        "notas": "Saldo a favor. Pago automÃ¡tico."
       },
       "master_nbsf_joa": {
         "vencimiento": "2026-05-08",
@@ -239,7 +239,7 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 244709.63,
         "fuente": "imagen_resumen",
-        "notas": "Mastercard Black NBSF · Cta 56419274-2 · Pago mín: $77.454 · Cierre: 30/04/26"
+        "notas": "Mastercard Black NBSF Â· Cta 56419274-2 Â· Pago mÃ­n: $77.454 Â· Cierre: 30/04/26"
       },
       "master_mp": {
         "vencimiento": null,
@@ -320,7 +320,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
-        "notas": "EPE es BIMESTRAL: cada factura tiene 2 cuotas con vencimientos distintos. Última factura recibida (mar/2026): Cuota 1 vencía 10/03 $166.311 | Cuota 2 vencía 09/04 $166.311. Factura may/jun aún no llegó."
+        "notas": "EPE es BIMESTRAL: cada factura tiene 2 cuotas con vencimientos distintos. Ãltima factura recibida (mar/2026): Cuota 1 vencÃ­a 10/03 $166.311 | Cuota 2 vencÃ­a 09/04 $166.311. Factura may/jun aÃºn no llegÃ³."
       },
       "autonomos": {
         "vencimiento": null,
@@ -329,7 +329,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Nuevos importes desde abr-2026. Monto exacto según categoría ARCA. Vence en mayo."
+        "notas": "Nuevos importes desde abr-2026. Monto exacto segÃºn categorÃ­a ARCA. Vence en mayo."
       }
     },
     "2026-06": {
@@ -340,7 +340,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "DDJJ IVA período 03/2026. Confirmado por Danilo Ormachea."
+        "notas": "DDJJ IVA perÃ­odo 03/2026. Confirmado por Danilo Ormachea."
       }
     }
   }
