@@ -738,14 +738,15 @@ async function confirmEditar() {
   Object.keys(data).forEach(k=>{if(data[k]===null||data[k]===undefined||data[k]==='')delete data[k];});
 
   try {
-    if(API_AVAILABLE) await apiPatch(editMes,editId,data);
+    await apiPatch(editMes,editId,data);  // siempre guarda (GitHub o API local)
     if(!GASTOS_DATA.pagos[editMes])GASTOS_DATA.pagos[editMes]={};
     if(!GASTOS_DATA.pagos[editMes][editId])GASTOS_DATA.pagos[editMes][editId]={};
     Object.assign(GASTOS_DATA.pagos[editMes][editId],data);
     GASTOS_DATA.ultima_actualizacion=todayStr();
     closeModal();
     renderCards();
-  } catch(e) { alert('Error: '+e.message); }
+    alert('✅ Guardado en GitHub');
+  } catch(e) { alert('❌ Error al guardar: '+e.message); }
 }
 
 async function anularPago() {
@@ -753,10 +754,11 @@ async function anularPago() {
   if(!confirm('¿Anular el pago?')) return;
   const data={pagado:false,pagado_fecha:null,pagado_monto:null};
   try {
-    if(API_AVAILABLE) await apiPatch(editMes,editId,data);
+    await apiPatch(editMes,editId,data);
     if(GASTOS_DATA.pagos[editMes]&&GASTOS_DATA.pagos[editMes][editId]) Object.assign(GASTOS_DATA.pagos[editMes][editId],data);
     closeModal(); renderCards();
-  } catch(e) { alert('Error: '+e.message); }
+    alert('✅ Pago anulado en GitHub');
+  } catch(e) { alert('❌ Error: '+e.message); }
 }
 
 // ── CARGA TAB: editar existente ──
@@ -776,12 +778,12 @@ async function guardarEdicion() {
 
   showStatus('⏳ Guardando...','var(--blue)');
   try {
-    if(API_AVAILABLE) await apiPatch(mesKey,id,data);
+    await apiPatch(mesKey,id,data);
     if(!GASTOS_DATA.pagos[mesKey])GASTOS_DATA.pagos[mesKey]={};
     if(!GASTOS_DATA.pagos[mesKey][id])GASTOS_DATA.pagos[mesKey][id]={};
     Object.assign(GASTOS_DATA.pagos[mesKey][id],data);
     GASTOS_DATA.ultima_actualizacion=todayStr();
-    showStatus('✅ ¡Guardado!','var(--green)');
+    showStatus('✅ ¡Guardado en GitHub!','var(--green)');
     ['carga-gasto','carga-monto','carga-vencimiento','carga-notas'].forEach(x=>document.getElementById(x).value='');
     renderCards();
   } catch(e) { showStatus('❌ Error: '+e.message,'var(--red)'); }
@@ -804,7 +806,7 @@ async function crearNuevoGasto() {
 
   showStatus('⏳ Creando...','var(--blue)');
   try {
-    if(API_AVAILABLE) await apiPost('/api/gasto-nuevo',{id,nombre,categoria:cat,persona,monto,vencimiento:venc,notas});
+    await apiPost('/api/gasto-nuevo',{id,nombre,categoria:cat,persona,monto,vencimiento:venc,notas});
     CONFIG_DATA.gastos_recurrentes.push({id,nombre,categoria:cat==='tarjeta'?'tarjeta_credito':cat,persona,gmail_busqueda:[nombre],dia_vencimiento_aprox:null,activo:true});
     const cur=currentMonthKey();
     if(!GASTOS_DATA.pagos[cur])GASTOS_DATA.pagos[cur]={};
@@ -812,7 +814,7 @@ async function crearNuevoGasto() {
     const nxt=nextMonthKey();
     if(!GASTOS_DATA.pagos[nxt])GASTOS_DATA.pagos[nxt]={};
     if(!GASTOS_DATA.pagos[nxt][id])GASTOS_DATA.pagos[nxt][id]={...GASTOS_DATA.pagos[cur][id]};
-    showStatus('✅ ¡Creado!','var(--green)');
+    showStatus('✅ ¡Creado en GitHub!','var(--green)');
     ['nuevo-nombre','nuevo-monto','nuevo-vencimiento','nuevo-notas'].forEach(x=>document.getElementById(x).value='');
     initCargaSelect();
     renderCards();
