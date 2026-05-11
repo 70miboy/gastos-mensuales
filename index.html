@@ -97,6 +97,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .expense-card {
   background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
   padding: 13px 14px; cursor: pointer; transition: background 0.15s;
+  -webkit-user-select: text; user-select: text;
 }
 .expense-card:active { background: var(--bg3); }
 .expense-card.urgent { border-color: #742a2a; background: #1e1515; }
@@ -415,6 +416,10 @@ let editMes = null, editId = null;
 const API_BASE = '';
 const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 
+// ── SHA CACHE ──
+// Guardamos el SHA después de cada GET/PUT para evitar conflictos 409
+const shaCache = {};
+
 function ensureToken() {
   let t = localStorage.getItem('gh_token');
   if (!t) {
@@ -439,27 +444,45 @@ async function ghGet(file) {
   const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
     headers: { 'Authorization': `token ${ghToken()}`, 'Accept': 'application/vnd.github.v3+json' }
   });
-  if(!r.ok) throw new Error(r.status);
+  if(!r.ok) throw new Error(`GitHub GET ${file}: ${r.status} ${r.statusText}`);
   const j = await r.json();
+  shaCache[file] = j.sha; // Actualizar cache de SHA
   return { content: JSON.parse(atob(j.content.replace(/\n/g,''))), sha: j.sha };
 }
 
-async function ghPut(file, content, sha, msg) {
+async function ghPut(file, content, sha, msg, retries) {
+  retries = retries || 2;
   const body = JSON.stringify({
-    message: msg,
+    message: msg || 'Update',
     content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
-    sha: sha
+    sha: sha || shaCache[file] || undefined
   });
   const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
     method: 'PUT', headers: { 'Authorization': `token ${ghToken()}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
     body: body
   });
-  if(!r.ok) throw new Error(r.status);
-  return await r.json();
+  if(!r.ok) {
+    // Si es 409 (conflict), reintentar con SHA fresco
+    if(r.status === 409 && retries > 0) {
+      console.warn(`SHA conflict en ${file}, reintentando...`);
+      const fresh = await ghGet(file);
+      // Merge manual: re-aplicar los cambios sobre datos frescos
+      // Para apiPatch/apiPost, el llamador ya tiene los datos mergeados, solo necesitamos el SHA nuevo
+      shaCache[file] = fresh.sha;
+      // Re-leer datos frescos del servidor, aplicar cambio, y re-guardar
+      // Pero esto es complejo → mejor devolver error y que el usuario reintente
+      // TODO: merge automático. Por ahora, error claro.
+      throw new Error(`Conflicto de versión al guardar. Intentá de nuevo en unos segundos. (409)`);
+    }
+    const errBody = await r.text().catch(() => '');
+    throw new Error(`Error al guardar en GitHub (${r.status}): ${errBody || r.statusText}`);
+  }
+  const result = await r.json();
+  shaCache[file] = result.content.sha; // Actualizar SHA cache después de PUT exitoso
+  return result;
 }
 
 async function apiGet(p) {
-  // Try local API first
   try { const r=await fetch(API_BASE+p); if(r.ok) { API_AVAILABLE=true; return r.json(); } } catch(e){}
   // Fallback: GitHub API
   if(p==='/api/gastos') return (await ghGet(GH_FILE)).content;
@@ -468,31 +491,23 @@ async function apiGet(p) {
 }
 
 async function apiPatch(mes,id,d) {
-  if(API_AVAILABLE) {
-    const r=await fetch(`${API_BASE}/api/gasto/${mes}/${id}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
-    if(!r.ok) throw new Error(r.status);
-    return r.json();
-  }
-  // GitHub direct
-  const {content,sha} = await ghGet(GH_FILE);
+  // Siempre usar GitHub API (no hay API local)
+  const {content, sha} = await ghGet(GH_FILE);
   if(!content.pagos[mes]) content.pagos[mes] = {};
   if(!content.pagos[mes][id]) content.pagos[mes][id] = {};
   Object.assign(content.pagos[mes][id], d);
   content.ultima_actualizacion = todayStr();
   await ghPut(GH_FILE, content, sha, `Editar ${id} ${mes}`);
+  // Actualizar datos locales con lo que acabamos de guardar
+  GASTOS_DATA = content;
   return content;
 }
 
 async function apiPost(p,d) {
-  if(API_AVAILABLE) {
-    const r=await fetch(API_BASE+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
-    if(!r.ok) throw new Error(r.status);
-    return r.json();
-  }
-  // GitHub direct: create new gasto
+  // Crear nuevo gasto via GitHub
   if(p==='/api/gasto-nuevo') {
-    const {content:gastos,sha:gsha} = await ghGet(GH_FILE);
-    const {content:config,csha} = await ghGet(GH_CONFIG);
+    const {content: gastos, sha: gsha} = await ghGet(GH_FILE);
+    const {content: config, sha: csha} = await ghGet(GH_CONFIG);
     const id = d.id;
     // Add to config
     config.gastos_recurrentes.push({id,nombre:d.nombre,categoria:d.categoria==='tarjeta'?'tarjeta_credito':d.categoria,persona:d.persona,gmail_busqueda:[d.nombre],dia_vencimiento_aprox:null,activo:true});
@@ -503,9 +518,12 @@ async function apiPost(p,d) {
     gastos.pagos[cur][id] = {vencimiento:d.vencimiento||null,monto:d.monto||null,pagado:false,pagado_fecha:null,pagado_monto:null,fuente:'carga_manual',notas:d.notas||''};
     gastos.ultima_actualizacion = todayStr();
     await ghPut(GH_FILE, gastos, gsha, `Crear gasto: ${d.nombre}`);
+    // Actualizar datos locales
+    GASTOS_DATA = gastos;
+    CONFIG_DATA = config;
     return gastos;
   }
-  throw new Error('No API');
+  throw new Error('Operación no soportada');
 }
 
 // ── FORMAT ──
@@ -514,6 +532,14 @@ function fmtDate(s) { if(!s)return null; const[y,m,d]=s.split('-'); return `${d}
 function fmtMonth(k) { const[y,m]=k.split('-'); const n=['','Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']; return `${n[parseInt(m)]} ${y}`; }
 function fmtMonthFull(k) { const[y,m]=k.split('-'); const n=['','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']; return `${n[parseInt(m)]} ${y}`; }
 function daysUntil(s) { if(!s)return null; return Math.round((new Date(s+'T00:00:00')-TODAY)/86400000); }
+
+// ── CLICK vs SELECCIÓN ──
+// Evitar que seleccionar texto abra el modal
+function cardClick(mes, id) {
+  const sel = window.getSelection();
+  if (sel && sel.toString().trim().length > 0) return; // Está seleccionando texto
+  openModal(mes, id);
+}
 
 function getDaysBadge(days,paid) {
   if(paid)return `<span class="days-chip days-green">✓</span>`;
@@ -608,7 +634,7 @@ function renderCards() {
     const isUrgent=days!==null&&days<=2&&p.pagado!==true;
     const isPaid=p.pagado===true;
 
-    return `<div class="expense-card${isUrgent?' urgent':''}${isPaid?' paid':''}" onclick="openModal('${mesKey}','${g.id}')">
+    return `<div class="expense-card${isUrgent?' urgent':''}${isPaid?' paid':''}" onclick="cardClick('${mesKey}','${g.id}')">
       <div class="expense-card-top">
         <div>
           <div class="expense-name">${g.nombre}</div>
@@ -738,13 +764,12 @@ async function confirmEditar() {
   Object.keys(data).forEach(k=>{if(data[k]===null||data[k]===undefined||data[k]==='')delete data[k];});
 
   try {
-    await apiPatch(editMes,editId,data);  // siempre guarda (GitHub o API local)
-    if(!GASTOS_DATA.pagos[editMes])GASTOS_DATA.pagos[editMes]={};
-    if(!GASTOS_DATA.pagos[editMes][editId])GASTOS_DATA.pagos[editMes][editId]={};
-    Object.assign(GASTOS_DATA.pagos[editMes][editId],data);
-    GASTOS_DATA.ultima_actualizacion=todayStr();
+    await apiPatch(editMes,editId,data);
+    // No hace falta Object.assign local — apiPatch ya actualiza GASTOS_DATA
     closeModal();
     renderCards();
+    renderHistorial();
+    initCargaSelect();
     alert('✅ Guardado en GitHub');
   } catch(e) { alert('❌ Error al guardar: '+e.message); }
 }
@@ -755,8 +780,8 @@ async function anularPago() {
   const data={pagado:false,pagado_fecha:null,pagado_monto:null};
   try {
     await apiPatch(editMes,editId,data);
-    if(GASTOS_DATA.pagos[editMes]&&GASTOS_DATA.pagos[editMes][editId]) Object.assign(GASTOS_DATA.pagos[editMes][editId],data);
-    closeModal(); renderCards();
+    // GASTOS_DATA ya actualizado por apiPatch
+    closeModal(); renderCards(); renderHistorial();
     alert('✅ Pago anulado en GitHub');
   } catch(e) { alert('❌ Error: '+e.message); }
 }
@@ -779,13 +804,10 @@ async function guardarEdicion() {
   showStatus('⏳ Guardando...','var(--blue)');
   try {
     await apiPatch(mesKey,id,data);
-    if(!GASTOS_DATA.pagos[mesKey])GASTOS_DATA.pagos[mesKey]={};
-    if(!GASTOS_DATA.pagos[mesKey][id])GASTOS_DATA.pagos[mesKey][id]={};
-    Object.assign(GASTOS_DATA.pagos[mesKey][id],data);
-    GASTOS_DATA.ultima_actualizacion=todayStr();
+    // GASTOS_DATA ya actualizado por apiPatch
     showStatus('✅ ¡Guardado en GitHub!','var(--green)');
     ['carga-gasto','carga-monto','carga-vencimiento','carga-notas'].forEach(x=>document.getElementById(x).value='');
-    renderCards();
+    renderCards(); renderHistorial();
   } catch(e) { showStatus('❌ Error: '+e.message,'var(--red)'); }
 }
 
@@ -807,17 +829,13 @@ async function crearNuevoGasto() {
   showStatus('⏳ Creando...','var(--blue)');
   try {
     await apiPost('/api/gasto-nuevo',{id,nombre,categoria:cat,persona,monto,vencimiento:venc,notas});
-    CONFIG_DATA.gastos_recurrentes.push({id,nombre,categoria:cat==='tarjeta'?'tarjeta_credito':cat,persona,gmail_busqueda:[nombre],dia_vencimiento_aprox:null,activo:true});
-    const cur=currentMonthKey();
-    if(!GASTOS_DATA.pagos[cur])GASTOS_DATA.pagos[cur]={};
-    GASTOS_DATA.pagos[cur][id]={vencimiento:venc,monto,pagado:false,pagado_fecha:null,pagado_monto:null,fuente:'carga_manual',notas:notas||''};
+    // GASTOS_DATA y CONFIG_DATA ya actualizados por apiPost
     const nxt=nextMonthKey();
     if(!GASTOS_DATA.pagos[nxt])GASTOS_DATA.pagos[nxt]={};
-    if(!GASTOS_DATA.pagos[nxt][id])GASTOS_DATA.pagos[nxt][id]={...GASTOS_DATA.pagos[cur][id]};
     showStatus('✅ ¡Creado en GitHub!','var(--green)');
     ['nuevo-nombre','nuevo-monto','nuevo-vencimiento','nuevo-notas'].forEach(x=>document.getElementById(x).value='');
     initCargaSelect();
-    renderCards();
+    renderCards(); renderHistorial();
   } catch(e) { showStatus('❌ Error: '+e.message,'var(--red)'); }
 }
 
