@@ -415,14 +415,98 @@ let editMes = null, editId = null;
 const API_BASE = '';
 const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 
+function ensureToken() {
+  let t = localStorage.getItem('gh_token');
+  if (!t) {
+    t = prompt('Ingresá tu GitHub token (ghp_...) para guardar cambios:');
+    if (t) localStorage.setItem('gh_token', t.trim());
+  }
+  return t;
+}
+
 function todayStr() { return new Date().toISOString().split('T')[0]; }
 function currentMonthKey() { const d=new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
 function nextMonthKey() { const d=new Date(); d.setMonth(d.getMonth()+1); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; }
 
-// ── API ──
-async function apiGet(p) { const r=await fetch(API_BASE+p); if(!r.ok) throw new Error(r.status); return r.json(); }
-async function apiPatch(mes,id,d) { const r=await fetch(`${API_BASE}/api/gasto/${mes}/${id}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); if(!r.ok) throw new Error(r.status); return r.json(); }
-async function apiPost(p,d) { const r=await fetch(API_BASE+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)}); if(!r.ok) throw new Error(r.status); return r.json(); }
+// ── GITHUB API ──
+const GH_REPO = '70miboy/gastos-mensuales';
+const GH_FILE = 'gastos.json';
+const GH_CONFIG = 'config.json';
+
+function ghToken() { return localStorage.getItem('gh_token'); }
+
+async function ghGet(file) {
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
+    headers: { 'Authorization': `token ${ghToken()}`, 'Accept': 'application/vnd.github.v3+json' }
+  });
+  if(!r.ok) throw new Error(r.status);
+  const j = await r.json();
+  return { content: JSON.parse(atob(j.content.replace(/\n/g,''))), sha: j.sha };
+}
+
+async function ghPut(file, content, sha, msg) {
+  const body = JSON.stringify({
+    message: msg,
+    content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
+    sha: sha
+  });
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
+    method: 'PUT', headers: { 'Authorization': `token ${ghToken()}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+    body: body
+  });
+  if(!r.ok) throw new Error(r.status);
+  return await r.json();
+}
+
+async function apiGet(p) {
+  // Try local API first
+  try { const r=await fetch(API_BASE+p); if(r.ok) { API_AVAILABLE=true; return r.json(); } } catch(e){}
+  // Fallback: GitHub API
+  if(p==='/api/gastos') return (await ghGet(GH_FILE)).content;
+  if(p==='/api/config') return (await ghGet(GH_CONFIG)).content;
+  throw new Error('No API');
+}
+
+async function apiPatch(mes,id,d) {
+  if(API_AVAILABLE) {
+    const r=await fetch(`${API_BASE}/api/gasto/${mes}/${id}`,{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    if(!r.ok) throw new Error(r.status);
+    return r.json();
+  }
+  // GitHub direct
+  const {content,sha} = await ghGet(GH_FILE);
+  if(!content.pagos[mes]) content.pagos[mes] = {};
+  if(!content.pagos[mes][id]) content.pagos[mes][id] = {};
+  Object.assign(content.pagos[mes][id], d);
+  content.ultima_actualizacion = todayStr();
+  await ghPut(GH_FILE, content, sha, `Editar ${id} ${mes}`);
+  return content;
+}
+
+async function apiPost(p,d) {
+  if(API_AVAILABLE) {
+    const r=await fetch(API_BASE+p,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    if(!r.ok) throw new Error(r.status);
+    return r.json();
+  }
+  // GitHub direct: create new gasto
+  if(p==='/api/gasto-nuevo') {
+    const {content:gastos,sha:gsha} = await ghGet(GH_FILE);
+    const {content:config,csha} = await ghGet(GH_CONFIG);
+    const id = d.id;
+    // Add to config
+    config.gastos_recurrentes.push({id,nombre:d.nombre,categoria:d.categoria==='tarjeta'?'tarjeta_credito':d.categoria,persona:d.persona,gmail_busqueda:[d.nombre],dia_vencimiento_aprox:null,activo:true});
+    await ghPut(GH_CONFIG, config, csha, `Agregar gasto: ${d.nombre}`);
+    // Add to gastos.json current month
+    const cur = currentMonthKey();
+    if(!gastos.pagos[cur]) gastos.pagos[cur] = {};
+    gastos.pagos[cur][id] = {vencimiento:d.vencimiento||null,monto:d.monto||null,pagado:false,pagado_fecha:null,pagado_monto:null,fuente:'carga_manual',notas:d.notas||''};
+    gastos.ultima_actualizacion = todayStr();
+    await ghPut(GH_FILE, gastos, gsha, `Crear gasto: ${d.nombre}`);
+    return gastos;
+  }
+  throw new Error('No API');
+}
 
 // ── FORMAT ──
 function fmt(n) { if(!n)return null; return '$\u00a0'+Math.round(n).toLocaleString('es-AR'); }
@@ -744,25 +828,36 @@ function showStatus(msg,color) {
 // ── DATA LOAD ──
 async function loadData() {
   try {
+    // Intentar con API local
     const [gastos,config]=await Promise.all([apiGet('/api/gastos'),apiGet('/api/config')]);
     GASTOS_DATA=gastos; CONFIG_DATA=config; API_AVAILABLE=true;
     document.getElementById('conn-dot').className='conn-dot conn-on';
     const upd=gastos.ultima_actualizacion;
     document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-on"></span>${upd?'Actualizado: '+upd.split('-').reverse().join('/'):'Datos en vivo'}`;
   } catch(e) {
-    // Fallback: static JSON files (GitHub Pages)
+    // Fallback: GitHub API direct
     try {
-      const [gastos,config]=await Promise.all([fetch('gastos.json').then(r=>r.json()),fetch('config.json').then(r=>r.json())]);
+      ensureToken();
+      const gastos = (await ghGet(GH_FILE)).content;
+      const config = (await ghGet(GH_CONFIG)).content;
       GASTOS_DATA=gastos; CONFIG_DATA=config; API_AVAILABLE=false;
       document.getElementById('conn-dot').className='conn-dot conn-on';
       const upd=gastos.ultima_actualizacion;
-      document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-on"></span>Estático · ${upd?upd.split('-').reverse().join('/'):'Sin fecha'}`;
+      document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-on"></span>GitHub · ${upd?upd.split('-').reverse().join('/'):'Sin fecha'}`;
     } catch(e2) {
-      API_AVAILABLE=false;
-      document.getElementById('conn-dot').className='conn-dot conn-off';
-      document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-off"></span>Sin API — ejecutá python server.py`;
-      GASTOS_DATA={pagos:{},ultima_actualizacion:null};
-      CONFIG_DATA={gastos_recurrentes:[]};
+      // Último fallback: archivos estáticos
+      try {
+        const [gastos,config]=await Promise.all([fetch('gastos.json').then(r=>r.json()),fetch('config.json').then(r=>r.json())]);
+        GASTOS_DATA=gastos; CONFIG_DATA=config; API_AVAILABLE=false;
+        document.getElementById('conn-dot').className='conn-dot conn-on';
+        const upd=gastos.ultima_actualizacion;
+        document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-on"></span>Estático · ${upd?upd.split('-').reverse().join('/'):'Sin fecha'}`;
+      } catch(e3) {
+        document.getElementById('conn-dot').className='conn-dot conn-off';
+        document.getElementById('header-sub').innerHTML=`<span class="conn-dot conn-off"></span>Sin conexión`;
+        GASTOS_DATA={pagos:{},ultima_actualizacion:null};
+        CONFIG_DATA={gastos_recurrentes:[]};
+      }
     }
   }
   renderCards();

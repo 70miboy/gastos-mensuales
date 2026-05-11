@@ -123,6 +123,28 @@ def write_gastos(data):
         shutil.copy2(GASTOS_FILE, bak)
     with open(GASTOS_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
+    git_sync()
+
+def git_sync():
+    """Auto-push gastos.json a GitHub para actualizar el dashboard."""
+    import subprocess
+    try:
+        subprocess.run(
+            ["git", "add", "gastos.json", "config.json"],
+            cwd=DATA_DIR, capture_output=True, timeout=10
+        )
+        r = subprocess.run(
+            ["git", "commit", "-m", "auto: datos actualizados via Telegram bot"],
+            cwd=DATA_DIR, capture_output=True, timeout=10
+        )
+        if r.returncode != 0 and b"nothing to commit" not in r.stderr:
+            logger.info(f"git sync: commit skipped ({r.stderr.decode().strip()})")
+        subprocess.Popen(
+            ["git", "push", "origin", "master"],
+            cwd=DATA_DIR, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL
+        )
+    except Exception as e:
+        logger.warning(f"git sync error: {e}")
 
 def read_config():
     with open(CONFIG_FILE, "r", encoding="utf-8") as f:
