@@ -210,6 +210,16 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .conn-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
 .conn-on { background: var(--green); }
 .conn-off { background: var(--red); }
+
+/* ── CALENDAR BUTTON ── */
+.cal-btn {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border2);
+  background: var(--bg); color: var(--text2); font-size: 0.75rem;
+  cursor: pointer; font-family: inherit; transition: all 0.15s;
+  -webkit-user-select: none; user-select: none;
+}
+.cal-btn:active { background: var(--bg3); color: var(--text); transform: scale(0.97); }
 </style>
 </head>
 <body>
@@ -396,6 +406,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
         <label>Monto pagado ($)</label>
         <input type="number" id="modal-pagado-monto" placeholder="0" inputmode="numeric" />
       </div>
+      <button class="cal-btn" id="btn-calendar" style="width:100%;justify-content:center;margin-top:4px;" onclick="calendarFromModal()">📅 Agregar al calendario</button>
     </div>
     <div class="modal-footer">
       <button class="btn-anular" id="btn-anular" onclick="anularPago()" style="display:none;">✕ Anular</button>
@@ -577,6 +588,28 @@ function cardClick(mes, id) {
   openModal(mes, id);
 }
 
+// ── CALENDARIO ──
+function addToCalendar(nombre, persona, vencimiento, monto, notas) {
+  if(!vencimiento) { alert('Este gasto no tiene fecha de vencimiento'); return; }
+  // Fecha a las 8:00 AM (no 00:00 para no molestar)
+  const d = new Date(vencimiento + 'T08:00:00');
+  const end = new Date(d.getTime() + 30*60000); // 30 min
+  const fmtGCal = (dt) => dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+  const text = encodeURIComponent(`💰 ${nombre}`);
+  const details = encodeURIComponent(`Persona: ${persona}${monto ? '\nMonto: $' + Math.round(monto).toLocaleString('es-AR') : ''}${notas ? '\n' + notas : ''}`);
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${fmtGCal(d)}/${fmtGCal(end)}&details=${details}&location=&sf=true&output=xml`;
+  window.open(url, '_blank');
+}
+
+function calendarFromModal() {
+  if(!editId) return;
+  const cfg = getConfigGastos().find(g=>g.id===editId)||{nombre:editId,persona:'?'};
+  const venc = document.getElementById('modal-vencimiento').value || null;
+  const monto = document.getElementById('modal-monto').value ? parseFloat(document.getElementById('modal-monto').value) : null;
+  const notas = document.getElementById('modal-notas').value || null;
+  addToCalendar(cfg.nombre, cfg.persona, venc, monto, notas);
+}
+
 function getDaysBadge(days,paid) {
   if(paid)return `<span class="days-chip days-green">✓</span>`;
   if(days===null)return '';
@@ -686,6 +719,9 @@ function renderCards() {
         <div class="expense-vence${isUrgent?' urgent':''}">${p.vencimiento?'Vence '+fmtDate(p.vencimiento):isPaid&&p.pagado_fecha?'Pagado '+fmtDate(p.pagado_fecha):''}</div>
       </div>
       ${p.notas?`<div class="expense-notas">${p.notas}</div>`:''}
+      ${p.vencimiento&&p.pagado!==true?`<div style="margin-top:8px;display:flex;gap:8px;">
+        <button class="cal-btn" onclick="event.stopPropagation();addToCalendar('${g.nombre.replace(/'/g,"\\'")}','${g.persona}','${p.vencimiento}',${p.monto||'null'},${p.notas?`'${p.notas.replace(/'/g,"\\'").replace(/\n/g,' ')}'`:'null'})">📅 Agregar al calendario</button>
+      </div>`:''}
     </div>`;
   }).join('');
 
@@ -781,6 +817,7 @@ function openModal(mes,id) {
   document.getElementById('modal-pagado-fecha').value=p.pagado_fecha||todayStr();
   document.getElementById('modal-pagado-monto').value=p.pagado_monto||(p.monto?Math.round(p.monto):'');
   document.getElementById('btn-anular').style.display=p.pagado===true?'block':'none';
+  document.getElementById('btn-calendar').style.display=p.pagado===true?'none':'flex';
   document.getElementById('modal-editar').classList.remove('hidden');
 }
 
