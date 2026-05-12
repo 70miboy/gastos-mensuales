@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-05-11",
+  "ultima_actualizacion": "2026-05-12",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -202,7 +202,7 @@
         "pagado_fecha": "2026-05-11",
         "pagado_monto": 268623,
         "fuente": "gmail:noreply@consorcioabierto.com",
-        "notas": "NÃÂÃÂÃÂÃÂ¡utico Ubajay CC. 1ÃÂÃÂÃÂÃÂº venc 09/05: $268.623 | 2ÃÂÃÂÃÂÃÂº venc 19/05: $280.281"
+        "notas": "Nautico Ubajay CC. 1er venc 09/05: .623 | 2do venc 19/05: .281. Pago aprobado por administracion 12/05 (transferencia Banco Santa Fe)."
       },
       "visa_nbsf": {
         "vencimiento": "2026-05-08",
@@ -221,7 +221,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "pdf:asociados@bancocredicoop.coop",
-        "notas": "Tarjeta Visa XXXX-2384. Cierre 30/04. Vence 13/05. Saldo: $1.412.842,84. Pago mÃÂÃÂÃÂÃÂ­n: $293.377. DÃÂÃÂÃÂÃÂ©bito automÃÂÃÂÃÂÃÂ¡tico cuenta 29648/8."
+        "notas": "Tarjeta Visa XXXX-2384. Cierre 30/04. Vence 13/05. Saldo: .412.842,84. Pago minimo: .377. Debito automatico cuenta 29648/8. Confirmado por 3 mails de alerta Credicoop (09-11/05)."
       },
       "master_patagonia_joa": {
         "vencimiento": "2026-05-04",
@@ -261,12 +261,12 @@
       },
       "iibb_tomas": {
         "vencimiento": "2026-05-15",
-        "monto": 263571,
+        "monto": 263571.63,
         "pagado": false,
-        "pagado_fecha": "2026-05-11",
+        "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": null,
-        "notas": "Sin email detectado. Verificar en sistema ARCA."
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "DDJJ IIBB/VEP 04-2026. Saldo a pagar .571,63 vence 15/05/2026. Mail de Lorena (estudio.ormachea@gmail.com) 11/05."
       },
       "iva_tomas": {
         "vencimiento": null,
@@ -314,13 +314,13 @@
         "notas": "Sin email detectado. Ingresar manualmente."
       },
       "epe": {
-        "vencimiento": null,
-        "monto": null,
+        "vencimiento": "2026-05-12",
+        "monto": 154680,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
-        "notas": "EPE es BIMESTRAL: cada factura tiene 2 cuotas con vencimientos distintos. ÃÂÃÂÃÂÃÂltima factura recibida (mar/2026): Cuota 1 vencÃÂÃÂÃÂÃÂ­a 10/03 $166.311 | Cuota 2 vencÃÂÃÂÃÂÃÂ­a 09/04 $166.311. Factura may/jun aÃÂÃÂÃÂÃÂºn no llegÃÂÃÂÃÂÃÂ³."
+        "notas": "EPE factura bimestral 2026-2 (may/jun). Cuota 1: vence 12/05 .680 | Cuota 2: vence 11/06 .680. Cliente 6335062, Ayacucho 231."
       },
       "autonomos": {
         "vencimiento": null,
@@ -329,7 +329,7 @@
         "pagado_fecha": "2026-05-11",
         "pagado_monto": 68428,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Nuevos importes desde abr-2026. Monto exacto segÃÂÃÂºn categorÃÂÃÂ­a ARCA. Vence en mayo."
+        "notas": "Monotributo autonomos categoria ARCA. .428/mes desde abr/2026. Pagado 11/05."
       }
     },
     "2026-06": {
@@ -341,6 +341,15 @@
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "DDJJ IVA perÃÂÃÂÃÂÃÂ­odo 03/2026. Confirmado por Danilo Ormachea."
+      },
+      "epe": {
+        "vencimiento": "2026-06-11",
+        "monto": 154680,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
+        "notas": "EPE factura bimestral 2026-2. Cuota 2 de 2: vence 11/06 .680."
       }
     }
   }
