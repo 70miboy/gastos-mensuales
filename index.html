@@ -597,7 +597,9 @@ function addToCalendar(nombre, persona, vencimiento, monto, notas) {
   const fmtGCal = (dt) => dt.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
   const text = encodeURIComponent(`💰 ${nombre}`);
   const details = encodeURIComponent(`Persona: ${persona}${monto ? '\nMonto: $' + Math.round(monto).toLocaleString('es-AR') : ''}${notas ? '\n' + notas : ''}`);
-  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${text}&dates=${fmtGCal(d)}/${fmtGCal(end)}&details=${details}&location=&sf=true&output=xml`;
+  const email = 'tominorman@gmail.com';
+  // src=EMAIL fuerza que el evento se cree en ese calendario especifico
+  const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&src=${encodeURIComponent(email)}&text=${text}&dates=${fmtGCal(d)}/${fmtGCal(end)}&details=${details}&location=&sf=true&output=xml`;
   window.open(url, '_blank');
 }
 
