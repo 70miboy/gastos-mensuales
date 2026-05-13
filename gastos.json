@@ -1,9 +1,9 @@
 {
-  "ultima_actualizacion": "2026-05-12",
+  "ultima_actualizacion": "2026-05-13",
   "version": "1.0",
   "pagos": {
     "2026-04": {
-      "_nota": "Datos histÃÂÃÂÃÂÃÂ³ricos parciales extraÃÂÃÂÃÂÃÂ­dos de Gmail",
+      "_nota": "Datos histÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³ricos parciales extraÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­dos de Gmail",
       "ago_berli": {
         "vencimiento": null,
         "monto": null,
@@ -11,7 +11,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "Pago confirmado por TomÃÂÃÂÃÂÃÂ¡s. Sin email detectado."
+        "notas": "Pago confirmado por TomÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡s. Sin email detectado."
       },
       "ormachea": {
         "vencimiento": "2026-04-30",
@@ -20,7 +20,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Factura de honorarios Luciana GrenÃÂÃÂÃÂÃÂ³n (PDF adjunto)"
+        "notas": "Factura de honorarios Luciana GrenÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ³n (PDF adjunto)"
       },
       "cabal_credicoop": {
         "vencimiento": "2026-04-08",
@@ -29,7 +29,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃÂÃÂÃÂÃÂ­nimo: $228.167"
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­nimo: $228.167"
       },
       "ubajay": {
         "vencimiento": null,
@@ -56,7 +56,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:MensajesyAlertas@bancocredicoop.coop",
-        "notas": "Tarjeta Visa XXXX-2384. Pago mÃÂÃÂÃÂÃÂ­nimo: $202.980. Saldo total no disponible en email."
+        "notas": "Tarjeta Visa XXXX-2384. Pago mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­nimo: $202.980. Saldo total no disponible en email."
       },
       "master_patagonia_joa": {
         "vencimiento": null,
@@ -110,7 +110,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "PerÃÂÃÂÃÂÃÂ­odo 02/2026 - verificar con contador"
+        "notas": "PerÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­odo 02/2026 - verificar con contador"
       },
       "ecommapp": {
         "vencimiento": null,
@@ -175,7 +175,7 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 1320000,
         "fuente": null,
-        "notas": "Pago confirmado por TomÃÂÃÂÃÂÃÂ¡s. Sin email detectado."
+        "notas": "Pago confirmado por TomÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡s. Sin email detectado."
       },
       "ormachea": {
         "vencimiento": null,
@@ -193,7 +193,7 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 857115.77,
         "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
-        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃÂÃÂÃÂÃÂ­nimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
+        "notas": "Tarjeta Cabal XXXX-3923. Pago mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­nimo: $268.237 | Saldo total: $857.115,77 (email 05/05)"
       },
       "ubajay": {
         "vencimiento": "2026-05-09",
@@ -211,7 +211,7 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 228037,
         "fuente": "gmail:info@eresumen.com",
-        "notas": "Resumen Visa NBSF - Norman TomÃÂÃÂÃÂÃÂ¡s Juan JosÃÂÃÂÃÂÃÂ©"
+        "notas": "Resumen Visa NBSF - Norman TomÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡s Juan JosÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ©"
       },
       "visa_credicoop": {
         "vencimiento": "2026-05-13",
@@ -230,7 +230,7 @@
         "pagado_fecha": "2026-05-04",
         "pagado_monto": 1,
         "fuente": "carga_manual_iphone",
-        "notas": "Saldo a favor. Pago automÃÂÃÂÃÂÃÂ¡tico."
+        "notas": "Saldo a favor. Pago automÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ¡tico."
       },
       "master_nbsf_joa": {
         "vencimiento": "2026-05-08",
@@ -239,13 +239,13 @@
         "pagado_fecha": "2026-05-08",
         "pagado_monto": 244709.63,
         "fuente": "imagen_resumen",
-        "notas": "Mastercard Black NBSF ÃÂÃÂÃÂÃÂ· Cta 56419274-2 ÃÂÃÂÃÂÃÂ· Pago mÃÂÃÂÃÂÃÂ­n: $77.454 ÃÂÃÂÃÂÃÂ· Cierre: 30/04/26"
+        "notas": "Mastercard Black NBSF ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Cta 56419274-2 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Pago mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­n: $77.454 ÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ· Cierre: 30/04/26"
       },
       "master_mp": {
-        "vencimiento": null,
-        "monto": null,
+        "vencimiento": "2026-05-18",
+        "monto": 486002.97,
         "pagado": false,
-        "pagado_fecha": null,
+        "pagado_fecha": "2026-05-13",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Sin email detectado. Verificar en app Mercado Pago."
@@ -340,7 +340,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "DDJJ IVA perÃÂÃÂÃÂÃÂ­odo 03/2026. Confirmado por Danilo Ormachea."
+        "notas": "DDJJ IVA perÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­odo 03/2026. Confirmado por Danilo Ormachea."
       },
       "epe": {
         "vencimiento": "2026-06-11",
