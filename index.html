@@ -206,6 +206,7 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
 .btn-cancel { flex: 1; background: var(--bg); border: 1px solid var(--border); color: var(--text3); padding: 13px; border-radius: 10px; font-size: 0.9rem; cursor: pointer; font-family: inherit; }
 .btn-confirm { flex: 2; background: #276749; border: 1px solid #38a169; color: #f0fff4; padding: 13px; border-radius: 10px; font-size: 0.9rem; font-weight: 700; cursor: pointer; font-family: inherit; }
 .btn-anular { background: transparent; border: 1px solid #742a2a; color: var(--red); padding: 13px 14px; border-radius: 10px; font-size: 0.85rem; cursor: pointer; font-family: inherit; }
+.btn-confirm:disabled, .carga-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 .section-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); font-weight: 600; margin-bottom: 8px; padding: 0 2px; }
 .conn-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 4px; }
 .conn-on { background: var(--green); }
@@ -230,7 +231,35 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
     <div class="header-title">Gastos <span>· Tomás Norman</span></div>
     <div class="header-sub" id="header-sub"><span class="conn-dot conn-off" id="conn-dot"></span>Cargando...</div>
   </div>
-  <div class="header-emoji">💰</div>
+  <div style="display:flex;gap:10px;align-items:center;">
+    <button onclick="showSettings()" style="background:none;border:1px solid var(--border);color:var(--text3);padding:6px 12px;border-radius:8px;font-size:0.75rem;cursor:pointer;">⚙️</button>
+    <div class="header-emoji">💰</div>
+  </div>
+</div>
+
+<!-- SETTINGS MODAL -->
+<div class="modal-overlay hidden" id="modal-settings" onclick="if(event.target===this)closeSettings()">
+  <div class="modal-box">
+    <div class="modal-handle"></div>
+    <div class="modal-header">
+      <h3>Configuración</h3>
+      <p>Gestión de token y diagnóstico</p>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label>Estado del token</label>
+        <div id="settings-token-status" style="font-size:0.85rem;color:var(--text2);padding:8px;background:var(--bg);border-radius:6px;"></div>
+      </div>
+      <div class="form-group">
+        <label>Diagnóstico</label>
+        <div id="settings-diag" style="font-size:0.8rem;color:var(--text3);padding:8px;background:var(--bg);border-radius:6px;white-space:pre-wrap;"></div>
+      </div>
+      <button class="btn-anular" onclick="clearToken()" style="width:100%;">🗑️ Borrar token actual</button>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" onclick="closeSettings()">Cerrar</button>
+    </div>
+  </div>
 </div>
 
 <!-- MAIN -->
@@ -470,7 +499,10 @@ async function ghGet(file) {
     headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json' }
   });
   if(r.status === 401 || r.status === 403) {
-    throw new Error(`Token inválido o sin permisos (${r.status}). Si el token expiró, borralo manualmente y volvé a ingresarlo.`);
+    throw new Error(`Token inválido o sin permisos (${r.status}). Revisá que el token tenga el scope "repo" marcado. Si usaste otra cuenta de GitHub, borrá el token (⚙️ Config) y creá uno nuevo con la cuenta 70miboy.`);
+  }
+  if(r.status === 404) {
+    throw new Error(`Repo no encontrado (404). Probablemente el token pertenece a otra cuenta de GitHub. Borrá el token (⚙️ Config) y usá uno de la cuenta 70miboy.`);
   }
   if(!r.ok) throw new Error(`GitHub GET ${file}: ${r.status} ${r.statusText}`);
   const j = await r.json();
@@ -481,7 +513,7 @@ async function ghGet(file) {
 async function ghPut(file, content, sha, msg, retries) {
   retries = retries || 2;
   let t = ghToken();
-  if (!t) { t = ensureToken(); if (!t) throw new Error('Sin token de GitHub'); }
+  if (!t) { t = ensureToken(); if (!t) throw new Error('Sin token de GitHub. Ingresá un token válido para guardar cambios.'); }
   const body = JSON.stringify({
     message: msg || 'Update',
     content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
@@ -492,7 +524,10 @@ async function ghPut(file, content, sha, msg, retries) {
     body: body
   });
   if(r.status === 401 || r.status === 403) {
-    throw new Error(`Token inválido o sin permisos (${r.status}). Si el token expiró, borralo manualmente y volvé a ingresarlo.`);
+    throw new Error(`Token inválido o sin permisos (${r.status}). Revisá que el token tenga el scope "repo" marcado. Si usaste otra cuenta de GitHub, borrá el token (⚙️ Config) y creá uno nuevo con la cuenta 70miboy.`);
+  }
+  if(r.status === 404) {
+    throw new Error(`Repo no encontrado (404). Probablemente el token pertenece a otra cuenta de GitHub. Borrá el token (⚙️ Config) y usá uno de la cuenta 70miboy.`);
   }
   if(!r.ok) {
     if(r.status === 409 && retries > 0) {
@@ -592,6 +627,34 @@ function calendarFromModal() {
   const monto = document.getElementById('modal-monto').value ? parseFloat(document.getElementById('modal-monto').value) : null;
   const notas = document.getElementById('modal-notas').value || null;
   addToCalendar(cfg.nombre, cfg.persona, venc, monto, notas);
+}
+
+// ── SETTINGS ──
+function showSettings() {
+  const hasToken = !!ghToken();
+  const tokenPreview = hasToken ? ghToken().substring(0, 8) + '...' : 'No hay token guardado';
+  document.getElementById('settings-token-status').innerHTML = hasToken
+    ? `<span style="color:var(--green)">✓ Token guardado:</span> ${tokenPreview}`
+    : `<span style="color:var(--red)">✗ No hay token</span>. Guardá un token para poder editar gastos.`;
+  
+  let diag = [];
+  diag.push(`Conexión: ${GASTOS_DATA ? 'Datos cargados' : 'Sin datos'}`);
+  diag.push(`API local: ${API_AVAILABLE ? 'Disponible' : 'No disponible (usando GitHub API)'}`);
+  diag.push(`Última actualización: ${GASTOS_DATA ? GASTOS_DATA.ultima_actualizacion || 'Desconocida' : 'N/A'}`);
+  diag.push(`SHA cache: ${Object.keys(shaCache).length} archivo(s)`);
+  document.getElementById('settings-diag').textContent = diag.join('\n');
+  
+  document.getElementById('modal-settings').classList.remove('hidden');
+}
+
+function closeSettings() { document.getElementById('modal-settings').classList.add('hidden'); }
+
+function clearToken() {
+  if(confirm('¿Borrar el token actual? Vas a tener que ingresar uno nuevo la próxima vez que guardes.')) {
+    localStorage.removeItem('gh_token');
+    alert('Token borrado. Refrescá la página.');
+    closeSettings();
+  }
 }
 
 function getDaysBadge(days,paid) {
@@ -807,8 +870,20 @@ function openModal(mes,id) {
 
 function closeModal() { document.getElementById('modal-editar').classList.add('hidden'); editMes=null; editId=null; }
 
+let saving = false;
+
+function setSaving(isSaving) {
+  saving = isSaving;
+  const btn = document.querySelector('.btn-confirm');
+  if(btn) btn.disabled = isSaving;
+  const btn2 = document.querySelector('.carga-btn');
+  if(btn2) btn2.disabled = isSaving;
+}
+
 async function confirmEditar() {
+  if(saving) return;
   if(!editMes||!editId) return;
+  setSaving(true);
   const data = {
     monto: document.getElementById('modal-monto').value ? parseFloat(document.getElementById('modal-monto').value) : null,
     pago_minimo: document.getElementById('modal-minimo').value ? parseFloat(document.getElementById('modal-minimo').value) : null,
@@ -829,11 +904,14 @@ async function confirmEditar() {
     initCargaSelect();
     alert('✅ Guardado en GitHub');
   } catch(e) { alert('❌ Error al guardar: '+e.message); }
+  finally { setSaving(false); }
 }
 
 async function anularPago() {
+  if(saving) return;
   if(!editMes||!editId) return;
   if(!confirm('¿Anular el pago?')) return;
+  setSaving(true);
   const data={pagado:false,pagado_fecha:null,pagado_monto:null};
   try {
     await apiPatch(editMes,editId,data);
@@ -841,10 +919,12 @@ async function anularPago() {
     closeModal(); renderCards(); renderHistorial();
     alert('✅ Pago anulado en GitHub');
   } catch(e) { alert('❌ Error: '+e.message); }
+  finally { setSaving(false); }
 }
 
 // ── CARGA TAB: editar existente ──
 async function guardarEdicion() {
+  if(saving) return;
   const id=document.getElementById('carga-gasto').value;
   const monto=document.getElementById('carga-monto').value;
   const venc=document.getElementById('carga-vencimiento').value;
@@ -852,6 +932,7 @@ async function guardarEdicion() {
   if(!id){alert('Elegí un gasto');return;}
   if(!monto&&!venc&&!notas){alert('Ingresá al menos un dato');return;}
 
+  setSaving(true);
   const mesKey=currentMonthKey();
   const data={};
   if(monto) data.monto=parseFloat(monto);
@@ -866,10 +947,12 @@ async function guardarEdicion() {
     ['carga-gasto','carga-monto','carga-vencimiento','carga-notas'].forEach(x=>document.getElementById(x).value='');
     renderCards(); renderHistorial();
   } catch(e) { showStatus('❌ Error: '+e.message,'var(--red)'); }
+  finally { setSaving(false); }
 }
 
 // ── CARGA TAB: nuevo gasto ──
 async function crearNuevoGasto() {
+  if(saving) return;
   const nombre=document.getElementById('nuevo-nombre').value.trim();
   const cat=document.getElementById('nuevo-categoria').value;
   const persona=document.getElementById('nuevo-persona').value;
@@ -883,6 +966,7 @@ async function crearNuevoGasto() {
   const existing=getConfigGastos().find(g=>g.id===id);
   if(existing){alert(`Ya existe "${existing.nombre}"`);return;}
 
+  setSaving(true);
   showStatus('⏳ Creando...','var(--blue)');
   try {
     await apiPost('/api/gasto-nuevo',{id,nombre,categoria:cat,persona,monto,vencimiento:venc,notas});
@@ -894,6 +978,7 @@ async function crearNuevoGasto() {
     initCargaSelect();
     renderCards(); renderHistorial();
   } catch(e) { showStatus('❌ Error: '+e.message,'var(--red)'); }
+  finally { setSaving(false); }
 }
 
 function showStatus(msg,color) {
@@ -942,7 +1027,12 @@ async function loadData() {
   initCargaSelect();
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){
+    closeModal();
+    closeSettings();
+  }
+});
 
 loadData();
 </script>
