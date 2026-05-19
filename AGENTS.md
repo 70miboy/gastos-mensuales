@@ -73,6 +73,16 @@ All save operations use `ghGet()` + `ghPut()` with SHA tracking. The `shaCache` 
 - `noreply@consorcioabierto.com` — Ubajay expensas
 - `oficinavirtual@epe.santafe.gov.ar` — EPE electricity
 
+## Dashboard Improvements (May 2026)
+
+- **Settings button (⚙️)** in header: shows token status, diagnostics, and allows manual token deletion
+- **Anti-double-click**: buttons are disabled while saving to prevent duplicate requests
+- **Better error messages**: 
+  - 401/403: "Check that token has 'repo' scope. If you used another GitHub account, delete the token and create a new one with 70miboy account."
+  - 404: "Repo not found. Token likely belongs to another GitHub account. Delete token (⚙️ Config) and use one from 70miboy account."
+- **SHA cache**: persists latest SHA after GET/PUT to prevent 409 conflicts
+- **Token persistence**: token is NOT auto-deleted on errors — must be manually cleared via settings
+
 ## Known Limitations
 
 - **PDF attachments** from bank emails can't be parsed by IMAP text extraction. Only plain text/HTML content is processed.
