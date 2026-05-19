@@ -470,17 +470,7 @@ async function ghGet(file) {
     headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json' }
   });
   if(r.status === 401 || r.status === 403) {
-    // Token inválido — limpiar y pedir nuevo
-    clearBadToken();
-    t = ensureToken(true);
-    if (!t) throw new Error('Necesitás un token de GitHub válido para guardar cambios');
-    const r2 = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
-      headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json' }
-    });
-    if(!r2.ok) throw new Error(`GitHub GET ${file}: ${r2.status} ${r2.statusText}`);
-    const j2 = await r2.json();
-    shaCache[file] = j2.sha;
-    return { content: JSON.parse(atob(j2.content.replace(/\n/g,''))), sha: j2.sha };
+    throw new Error(`Token inválido o sin permisos (${r.status}). Si el token expiró, borralo manualmente y volvé a ingresarlo.`);
   }
   if(!r.ok) throw new Error(`GitHub GET ${file}: ${r.status} ${r.statusText}`);
   const j = await r.json();
@@ -497,20 +487,12 @@ async function ghPut(file, content, sha, msg, retries) {
     content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
     sha: sha || shaCache[file] || undefined
   });
-  let r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
     method: 'PUT', headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
     body: body
   });
-  // Token inválido — pedir nuevo y reintentar
   if(r.status === 401 || r.status === 403) {
-    clearBadToken();
-    t = ensureToken(true);
-    if (!t) throw new Error('Necesitás un token de GitHub válido');
-    r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
-      method: 'PUT', headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
-      body: body
-    });
-    if(!r.ok) throw new Error(`Error al guardar (${r.status}): ${r.statusText}`);
+    throw new Error(`Token inválido o sin permisos (${r.status}). Si el token expiró, borralo manualmente y volvé a ingresarlo.`);
   }
   if(!r.ok) {
     if(r.status === 409 && retries > 0) {
