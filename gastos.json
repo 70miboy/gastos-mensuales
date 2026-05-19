@@ -269,13 +269,13 @@
         "notas": "DDJJ IIBB/VEP 04-2026. Saldo a pagar .571,63 vence 15/05/2026. Mail de Lorena (estudio.ormachea@gmail.com) 11/05."
       },
       "iva_tomas": {
-        "vencimiento": null,
-        "monto": null,
+        "vencimiento": "2026-05-18",
+        "monto": 145541.55,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": null,
-        "notas": "IVA 03/2026 vence 18/06/2026 (registrado en jun-2026). IVA 04/2026 pendiente de contador."
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "DDJJ IVA 04/2026. Saldo original .074,52. Se compensaron saldos a favor de Ganancias y Bienes Personales 2024. Saldo final a pagar: .541,55 vence 18/05/2026. Mail estudio.ormachea@gmail.com 15/05."
       },
       "ecommapp": {
         "vencimiento": null,
@@ -329,7 +329,7 @@
         "pagado_fecha": "2026-05-11",
         "pagado_monto": 68428,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Monotributo autonomos categoria ARCA. .428/mes desde abr/2026. Pagado 11/05."
+        "notas": "Monotributo autonomos categoria ARCA. .428/mes pagado 11/05. Mail 18/05: nuevos importes desde Mayo 2026 (vencimiento desde Junio 2026)."
       }
     },
     "2026-06": {
@@ -350,6 +350,15 @@
         "pagado_monto": null,
         "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
         "notas": "EPE factura bimestral 2026-2. Cuota 2 de 2: vence 11/06 .680."
+      },
+      "autonomos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "Nuevos importes autonomos Mayo 2026 (vencimiento desde Junio). Mail 18/05 indica valores modificados. Revisar en AFIP con CUIT y Clave Fiscal para monto exacto."
       }
     }
   }
