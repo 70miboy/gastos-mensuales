@@ -271,9 +271,9 @@
       "iva_tomas": {
         "vencimiento": "2026-05-18",
         "monto": 145541.55,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-05-18",
+        "pagado_monto": 145541.55,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "DDJJ IVA 04/2026. Saldo original .074,52. Se compensaron saldos a favor de Ganancias y Bienes Personales 2024. Saldo final a pagar: .541,55 vence 18/05/2026. Mail estudio.ormachea@gmail.com 15/05."
       },
