@@ -392,9 +392,9 @@
       "visa_nbsf": {
         "vencimiento": "2026-06-05",
         "monto": 166050.91,
-        "pagado": true,
-        "pagado_fecha": "2026-06-05",
-        "pagado_monto": 166051,
+        "pagado": false,
+        "pagado_fecha": "2026-06-03",
+        "pagado_monto": null,
         "fuente": "gmail:info@eresumen.com",
         "notas": "Resumen Visa NBSF. Vence 05/06/2026. Monto no disponible en email - verificar en eresumen.com o app."
       },
@@ -422,6 +422,12 @@
         "pagado": true,
         "pagado_fecha": "2026-06-03",
         "pagado_monto": 3000
+      },
+      "master_mp": {
+        "monto": 1061394,
+        "vencimiento": "2026-06-12",
+        "pagado": false,
+        "pagado_fecha": "2026-06-05"
       }
     }
   }
