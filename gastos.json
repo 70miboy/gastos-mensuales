@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-06-03",
+  "ultima_actualizacion": "2026-06-05",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -364,9 +364,9 @@
         "vencimiento": "2026-06-04",
         "monto": 417430.85,
         "pago_minimo": 179712,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-06-05",
+        "pagado_monto": 417431,
         "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
         "notas": "Tarjeta Cabal XXXX-3923. Cierre 28/05. Vence 04/06. Saldo facturado: $417.430,85. Pago mÃÂÃÂÃÂÃÂÃÂÃÂÃÂÃÂ­nimo: $179.712."
       },
