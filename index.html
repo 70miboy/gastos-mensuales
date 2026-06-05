@@ -494,7 +494,16 @@ async function ghGet(file) {
   if(!r.ok) throw new Error(`GitHub GET ${file}: ${r.status} ${r.statusText}`);
   const j = await r.json();
   shaCache[file] = j.sha;
-  return { content: JSON.parse(atob(j.content.replace(/\n/g,''))), sha: j.sha };
+  let content;
+  if (j.content) {
+    content = JSON.parse(atob(j.content.replace(/\n/g,'')));
+  } else if (j.download_url) {
+    const dr = await fetch(j.download_url);
+    content = await dr.json();
+  } else {
+    throw new Error(`GitHub no devolvió contenido para ${file}`);
+  }
+  return { content, sha: j.sha };
 }
 
 async function ghPut(file, content, sha, msg, retries) {
