@@ -250,6 +250,11 @@ html, body { height: 100%; background: var(--bg); color: var(--text); font-famil
         <label>Estado del token</label>
         <div id="settings-token-status" style="font-size:0.85rem;color:var(--text2);padding:8px;background:var(--bg);border-radius:6px;"></div>
       </div>
+      <div class="form-group" id="settings-token-input-group">
+        <label>Ingresar / actualizar token</label>
+        <input id="settings-token-input" type="password" placeholder="ghp_..." style="width:100%;padding:8px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg);color:var(--text1);font-size:0.9rem;box-sizing:border-box;" />
+        <button class="btn-guardar" onclick="saveTokenFromSettings()" style="width:100%;margin-top:8px;">Guardar token</button>
+      </div>
       <div class="form-group">
         <label>Diagnóstico</label>
         <div id="settings-diag" style="font-size:0.8rem;color:var(--text3);padding:8px;background:var(--bg);border-radius:6px;white-space:pre-wrap;"></div>
@@ -460,25 +465,14 @@ const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 // Guardamos el SHA después de cada GET/PUT para evitar conflictos 409
 const shaCache = {};
 
-function ensureToken(forcePrompt) {
-  if (!forcePrompt) {
-    let t = localStorage.getItem('gh_token');
-    if (t) return t;
-  }
-  // Pedir token nuevo
-  const msg = forcePrompt
-    ? 'El token actual no funciona (401). Ingresá un nuevo GitHub token (ghp_...):\n\nSi no tenés uno, andá a: github.com/settings/tokens → Generate new token (classic) → marcá "repo" → Create token'
-    : 'Ingresá tu GitHub token (ghp_...) para guardar cambios:\n\nSi no tenés uno, andá a: github.com/settings/tokens → Generate new token (classic) → marcá "repo" → Create token';
-  const t = prompt(msg);
-  if (t) {
-    localStorage.setItem('gh_token', t.trim());
-    return t.trim();
-  }
-  return null;
-}
-
-function clearBadToken() {
-  localStorage.removeItem('gh_token');
+function saveTokenFromSettings() {
+  const input = document.getElementById('settings-token-input');
+  const val = input.value.trim();
+  if (!val) { alert('Ingresá un token válido.'); return; }
+  localStorage.setItem('gh_token', val);
+  input.value = '';
+  showSettings();
+  alert('Token guardado. Ya podés guardar cambios.');
 }
 
 function todayStr() { return new Date().toISOString().split('T')[0]; }
@@ -493,17 +487,10 @@ const GH_CONFIG = 'config.json';
 function ghToken() { return localStorage.getItem('gh_token'); }
 
 async function ghGet(file) {
-  let t = ghToken();
-  if (!t) { t = ensureToken(); if (!t) throw new Error('Sin token de GitHub'); }
-  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, {
-    headers: { 'Authorization': `token ${t}`, 'Accept': 'application/vnd.github.v3+json' }
-  });
-  if(r.status === 401 || r.status === 403) {
-    throw new Error(`Token inválido o sin permisos (${r.status}). Revisá que el token tenga el scope "repo" marcado. Si usaste otra cuenta de GitHub, borrá el token (⚙️ Config) y creá uno nuevo con la cuenta 70miboy.`);
-  }
-  if(r.status === 404) {
-    throw new Error(`Repo no encontrado (404). Probablemente el token pertenece a otra cuenta de GitHub. Borrá el token (⚙️ Config) y usá uno de la cuenta 70miboy.`);
-  }
+  const headers = { 'Accept': 'application/vnd.github.v3+json' };
+  const t = ghToken();
+  if (t) headers['Authorization'] = `token ${t}`;
+  const r = await fetch(`https://api.github.com/repos/${GH_REPO}/contents/${file}`, { headers });
   if(!r.ok) throw new Error(`GitHub GET ${file}: ${r.status} ${r.statusText}`);
   const j = await r.json();
   shaCache[file] = j.sha;
@@ -513,7 +500,10 @@ async function ghGet(file) {
 async function ghPut(file, content, sha, msg, retries) {
   retries = retries || 2;
   let t = ghToken();
-  if (!t) { t = ensureToken(); if (!t) throw new Error('Sin token de GitHub. Ingresá un token válido para guardar cambios.'); }
+  if (!t) {
+    showSettings();
+    throw new Error('Necesitás ingresar tu token de GitHub para guardar cambios. Ingresalo en el panel de Configuración.');
+  }
   const body = JSON.stringify({
     message: msg || 'Update',
     content: btoa(unescape(encodeURIComponent(JSON.stringify(content, null, 2)))),
@@ -999,7 +989,6 @@ async function loadData() {
   } catch(e) {
     // Fallback: GitHub API direct
     try {
-      ensureToken();
       const gastos = (await ghGet(GH_FILE)).content;
       const config = (await ghGet(GH_CONFIG)).content;
       GASTOS_DATA=gastos; CONFIG_DATA=config; API_AVAILABLE=false;
