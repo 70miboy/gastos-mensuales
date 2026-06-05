@@ -354,9 +354,9 @@
       "autonomos": {
         "vencimiento": "2026-06-05",
         "monto": 70624.12,
-        "pagado": false,
-        "pagado_fecha": "2026-06-03",
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-06-05",
+        "pagado_monto": 70624,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "Nuevos importes autonomos Mayo 2026 (vencimiento desde Junio). Mail 18/05 indica valores modificados. Revisar en AFIP con CUIT y Clave Fiscal para monto exacto."
       },
