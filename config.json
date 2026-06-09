@@ -4,16 +4,27 @@
   "calendar_id": "primary",
   "recordatorio_dias_antes": 3,
   "keywords_resumen_tarjeta": [
-    "resumen", "estado de cuenta", "tarjeta de crédito", "tarjeta de credito",
-    "visa", "mastercard", "master", "cabal", "resumen mensual"
+    "resumen",
+    "estado de cuenta",
+    "tarjeta de crÃ©dito",
+    "tarjeta de credito",
+    "visa",
+    "mastercard",
+    "master",
+    "cabal",
+    "resumen mensual"
   ],
   "gastos_recurrentes": [
     {
       "id": "ago_berli",
       "nombre": "AGO Berli",
       "categoria": "honorarios",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Berli honorarios", "AGO Berli", "Berli"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Berli honorarios",
+        "AGO Berli",
+        "Berli"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -21,8 +32,12 @@
       "id": "ormachea",
       "nombre": "Diego Ormachea (Contador)",
       "categoria": "honorarios",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Ormachea", "estudio contable", "Diego Ormachea"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Ormachea",
+        "estudio contable",
+        "Diego Ormachea"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -30,8 +45,13 @@
       "id": "cabal_credicoop",
       "nombre": "Cabal Credicoop",
       "categoria": "tarjeta_credito",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Cabal", "resumen Cabal", "Credicoop Cabal", "tarjeta Cabal"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Cabal",
+        "resumen Cabal",
+        "Credicoop Cabal",
+        "tarjeta Cabal"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -39,8 +59,11 @@
       "id": "ubajay",
       "nombre": "Ubajay Expensas",
       "categoria": "expensas",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Ubajay", "expensas Ubajay"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Ubajay",
+        "expensas Ubajay"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -48,8 +71,13 @@
       "id": "visa_nbsf",
       "nombre": "Visa NBSF",
       "categoria": "tarjeta_credito",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Visa NBSF", "resumen NBSF", "Nuevo Banco Santa Fe Visa", "NBSF Visa"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Visa NBSF",
+        "resumen NBSF",
+        "Nuevo Banco Santa Fe Visa",
+        "NBSF Visa"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -57,8 +85,12 @@
       "id": "visa_credicoop",
       "nombre": "Visa Credicoop",
       "categoria": "tarjeta_credito",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Visa Credicoop", "resumen Credicoop Visa", "Credicoop Visa"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Visa Credicoop",
+        "resumen Credicoop Visa",
+        "Credicoop Visa"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -67,7 +99,12 @@
       "nombre": "Master Patagonia (Joana)",
       "categoria": "tarjeta_credito",
       "persona": "Joana",
-      "gmail_busqueda": ["Patagonia Mastercard", "Master Patagonia", "resumen Patagonia", "Banco Patagonia"],
+      "gmail_busqueda": [
+        "Patagonia Mastercard",
+        "Master Patagonia",
+        "resumen Patagonia",
+        "Banco Patagonia"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -76,7 +113,12 @@
       "nombre": "Master NBSF (Joana)",
       "categoria": "tarjeta_credito",
       "persona": "Joana",
-      "gmail_busqueda": ["NBSF Master", "Mastercard NBSF", "Nuevo Banco Santa Fe Master", "NBSF Mastercard"],
+      "gmail_busqueda": [
+        "NBSF Master",
+        "Mastercard NBSF",
+        "Nuevo Banco Santa Fe Master",
+        "NBSF Mastercard"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -84,8 +126,13 @@
       "id": "master_mp",
       "nombre": "Master Mercado Pago",
       "categoria": "tarjeta_credito",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Mercado Pago resumen", "tarjeta Mercado Pago", "MercadoPago resumen", "Mercado Pago tarjeta"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Mercado Pago resumen",
+        "tarjeta Mercado Pago",
+        "MercadoPago resumen",
+        "Mercado Pago tarjeta"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -94,25 +141,40 @@
       "nombre": "IIBB Joana Minetti",
       "categoria": "impuesto",
       "persona": "Joana",
-      "gmail_busqueda": ["IIBB Joana", "Ingresos Brutos Minetti", "ARCA IIBB Minetti", "ingresos brutos Joana"],
+      "gmail_busqueda": [
+        "IIBB Joana",
+        "Ingresos Brutos Minetti",
+        "ARCA IIBB Minetti",
+        "ingresos brutos Joana"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
     {
       "id": "iibb_tomas",
-      "nombre": "IIBB Tomás Norman",
+      "nombre": "IIBB TomÃ¡s Norman",
       "categoria": "impuesto",
-      "persona": "Tomás",
-      "gmail_busqueda": ["IIBB Norman", "Ingresos Brutos Norman", "ARCA IIBB Norman", "ingresos brutos Tomas"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "IIBB Norman",
+        "Ingresos Brutos Norman",
+        "ARCA IIBB Norman",
+        "ingresos brutos Tomas"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
     {
       "id": "iva_tomas",
-      "nombre": "IVA Tomás Norman",
+      "nombre": "IVA TomÃ¡s Norman",
       "categoria": "impuesto",
-      "persona": "Tomás",
-      "gmail_busqueda": ["IVA Norman", "ARCA IVA", "impuesto IVA Norman", "IVA Tomas"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "IVA Norman",
+        "ARCA IVA",
+        "impuesto IVA Norman",
+        "IVA Tomas"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -120,8 +182,12 @@
       "id": "ecommapp",
       "nombre": "EcommApp",
       "categoria": "suscripcion",
-      "persona": "Tomás",
-      "gmail_busqueda": ["EcommApp", "ecommapp.com", "ecomm app"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "EcommApp",
+        "ecommapp.com",
+        "ecomm app"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -129,8 +195,12 @@
       "id": "coop_setubal",
       "nombre": "Coop Setubal",
       "categoria": "cooperativa",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Setubal", "Cooperativa Setubal", "Coop Setubal"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Setubal",
+        "Cooperativa Setubal",
+        "Coop Setubal"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -138,17 +208,26 @@
       "id": "aguas_sf",
       "nombre": "Aguas Santafesinas",
       "categoria": "servicio",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Aguas Santafesinas", "ASSA", "factura agua santafesina"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "Aguas Santafesinas",
+        "ASSA",
+        "factura agua santafesina"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
     {
       "id": "jerarquicos",
-      "nombre": "Jerárquicos Salud",
+      "nombre": "JerÃ¡rquicos Salud",
       "categoria": "salud",
-      "persona": "Tomás",
-      "gmail_busqueda": ["Jerárquicos", "Jerarquicos Salud", "obra social jerarquicos", "Jerarquicos"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "JerÃ¡rquicos",
+        "Jerarquicos Salud",
+        "obra social jerarquicos",
+        "Jerarquicos"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
@@ -156,17 +235,39 @@
       "id": "epe",
       "nombre": "EPE Ayacucho",
       "categoria": "servicio",
-      "persona": "Tomás",
-      "gmail_busqueda": ["EPE", "Empresa Provincial Energía", "factura EPE", "EPE Ayacucho", "energia electrica"],
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "EPE",
+        "Empresa Provincial EnergÃ­a",
+        "factura EPE",
+        "EPE Ayacucho",
+        "energia electrica"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     },
     {
       "id": "autonomos",
-      "nombre": "Autónomos",
+      "nombre": "AutÃ³nomos",
       "categoria": "impuesto",
+      "persona": "TomÃ¡s",
+      "gmail_busqueda": [
+        "autÃ³nomos ARCA",
+        "AFIP autÃ³nomos",
+        "ARCA autÃ³nomos",
+        "autonomos"
+      ],
+      "dia_vencimiento_aprox": null,
+      "activo": true
+    },
+    {
+      "id": "mercadopacks",
+      "nombre": "MercadoPacks",
+      "categoria": "servicio",
       "persona": "Tomás",
-      "gmail_busqueda": ["autónomos ARCA", "AFIP autónomos", "ARCA autónomos", "autonomos"],
+      "gmail_busqueda": [
+        "MercadoPacks"
+      ],
       "dia_vencimiento_aprox": null,
       "activo": true
     }
