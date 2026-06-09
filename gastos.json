@@ -432,9 +432,9 @@
       "mercadopacks": {
         "vencimiento": "2026-06-09",
         "monto": 1143764.6,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-06-09",
+        "pagado_monto": 1143765,
         "fuente": "carga_manual",
         "notas": "almacenmiento y envios flex"
       }
