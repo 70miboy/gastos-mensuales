@@ -383,9 +383,9 @@
       "ubajay": {
         "vencimiento": "2026-06-09",
         "monto": 331596,
-        "pagado": true,
-        "pagado_fecha": "2026-06-09",
-        "pagado_monto": 331596,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
         "fuente": "gmail:noreply@consorcioabierto.com",
         "notas": "Nautico Ubajay CC. 1er venc 09/06: $331.596 | 2do venc 19/06: $345.448."
       },
@@ -432,9 +432,9 @@
       "mercadopacks": {
         "vencimiento": "2026-06-09",
         "monto": 1143764.6,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-06-09",
+        "pagado_monto": 1143765,
         "fuente": "carga_manual",
         "notas": "almacenmiento y envios flex"
       }
