@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-06-09",
+  "ultima_actualizacion": "2026-06-11",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -345,9 +345,9 @@
       "epe": {
         "vencimiento": "2026-06-11",
         "monto": 154680,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-06-03",
+        "pagado_monto": 154680,
         "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
         "notas": "EPE factura bimestral 2026-2. Cuota 2 de 2: vence 11/06 .680."
       },
