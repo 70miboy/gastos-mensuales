@@ -374,9 +374,9 @@
         "vencimiento": "2026-06-10",
         "monto": 940774.17,
         "pago_minimo": 940774.17,
-        "pagado": true,
-        "pagado_fecha": "2026-06-11",
-        "pagado_monto": 940774,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
         "fuente": "pdf:asociados@bancocredicoop.coop",
         "notas": "Tarjeta Visa XXXX-2384. Cierre 28/05. Vence 10/06. Saldo facturado: $940.774,17."
       },
@@ -437,6 +437,15 @@
         "pagado_monto": 1143765,
         "fuente": "carga_manual",
         "notas": "almacenmiento y envios flex"
+      },
+      "botellas_sol_bebe_sa_julio": {
+        "vencimiento": "2026-06-26",
+        "monto": 1782511.5,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "carga_manual",
+        "notas": ""
       }
     }
   }
