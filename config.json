@@ -6,7 +6,7 @@
   "keywords_resumen_tarjeta": [
     "resumen",
     "estado de cuenta",
-    "tarjeta de crÃ©dito",
+    "tarjeta de crÃÂ©dito",
     "tarjeta de credito",
     "visa",
     "mastercard",
@@ -19,7 +19,7 @@
       "id": "ago_berli",
       "nombre": "AGO Berli",
       "categoria": "honorarios",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Berli honorarios",
         "AGO Berli",
@@ -32,7 +32,7 @@
       "id": "ormachea",
       "nombre": "Diego Ormachea (Contador)",
       "categoria": "honorarios",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Ormachea",
         "estudio contable",
@@ -45,7 +45,7 @@
       "id": "cabal_credicoop",
       "nombre": "Cabal Credicoop",
       "categoria": "tarjeta_credito",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Cabal",
         "resumen Cabal",
@@ -59,7 +59,7 @@
       "id": "ubajay",
       "nombre": "Ubajay Expensas",
       "categoria": "expensas",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Ubajay",
         "expensas Ubajay"
@@ -71,7 +71,7 @@
       "id": "visa_nbsf",
       "nombre": "Visa NBSF",
       "categoria": "tarjeta_credito",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Visa NBSF",
         "resumen NBSF",
@@ -85,7 +85,7 @@
       "id": "visa_credicoop",
       "nombre": "Visa Credicoop",
       "categoria": "tarjeta_credito",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Visa Credicoop",
         "resumen Credicoop Visa",
@@ -126,7 +126,7 @@
       "id": "master_mp",
       "nombre": "Master Mercado Pago",
       "categoria": "tarjeta_credito",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Mercado Pago resumen",
         "tarjeta Mercado Pago",
@@ -152,9 +152,9 @@
     },
     {
       "id": "iibb_tomas",
-      "nombre": "IIBB TomÃ¡s Norman",
+      "nombre": "IIBB TomÃÂ¡s Norman",
       "categoria": "impuesto",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "IIBB Norman",
         "Ingresos Brutos Norman",
@@ -166,9 +166,9 @@
     },
     {
       "id": "iva_tomas",
-      "nombre": "IVA TomÃ¡s Norman",
+      "nombre": "IVA TomÃÂ¡s Norman",
       "categoria": "impuesto",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "IVA Norman",
         "ARCA IVA",
@@ -182,7 +182,7 @@
       "id": "ecommapp",
       "nombre": "EcommApp",
       "categoria": "suscripcion",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "EcommApp",
         "ecommapp.com",
@@ -195,7 +195,7 @@
       "id": "coop_setubal",
       "nombre": "Coop Setubal",
       "categoria": "cooperativa",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Setubal",
         "Cooperativa Setubal",
@@ -208,7 +208,7 @@
       "id": "aguas_sf",
       "nombre": "Aguas Santafesinas",
       "categoria": "servicio",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "Aguas Santafesinas",
         "ASSA",
@@ -219,11 +219,11 @@
     },
     {
       "id": "jerarquicos",
-      "nombre": "JerÃ¡rquicos Salud",
+      "nombre": "JerÃÂ¡rquicos Salud",
       "categoria": "salud",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
-        "JerÃ¡rquicos",
+        "JerÃÂ¡rquicos",
         "Jerarquicos Salud",
         "obra social jerarquicos",
         "Jerarquicos"
@@ -235,10 +235,10 @@
       "id": "epe",
       "nombre": "EPE Ayacucho",
       "categoria": "servicio",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
         "EPE",
-        "Empresa Provincial EnergÃ­a",
+        "Empresa Provincial EnergÃÂ­a",
         "factura EPE",
         "EPE Ayacucho",
         "energia electrica"
@@ -248,13 +248,13 @@
     },
     {
       "id": "autonomos",
-      "nombre": "AutÃ³nomos",
+      "nombre": "AutÃÂ³nomos",
       "categoria": "impuesto",
-      "persona": "TomÃ¡s",
+      "persona": "TomÃÂ¡s",
       "gmail_busqueda": [
-        "autÃ³nomos ARCA",
-        "AFIP autÃ³nomos",
-        "ARCA autÃ³nomos",
+        "autÃÂ³nomos ARCA",
+        "AFIP autÃÂ³nomos",
+        "ARCA autÃÂ³nomos",
         "autonomos"
       ],
       "dia_vencimiento_aprox": null,
@@ -264,9 +264,20 @@
       "id": "mercadopacks",
       "nombre": "MercadoPacks",
       "categoria": "servicio",
-      "persona": "Tomás",
+      "persona": "TomÃ¡s",
       "gmail_busqueda": [
         "MercadoPacks"
+      ],
+      "dia_vencimiento_aprox": null,
+      "activo": true
+    },
+    {
+      "id": "botellas_sol_bebe_sa_julio",
+      "nombre": "botellas sol bebe sa Julio",
+      "categoria": "servicio",
+      "persona": "Tomás",
+      "gmail_busqueda": [
+        "botellas sol bebe sa Julio"
       ],
       "dia_vencimiento_aprox": null,
       "activo": true
