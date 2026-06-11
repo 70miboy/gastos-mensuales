@@ -374,9 +374,9 @@
         "vencimiento": "2026-06-10",
         "monto": 940774.17,
         "pago_minimo": 940774.17,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-06-11",
+        "pagado_monto": 940774,
         "fuente": "pdf:asociados@bancocredicoop.coop",
         "notas": "Tarjeta Visa XXXX-2384. Cierre 28/05. Vence 10/06. Saldo facturado: $940.774,17."
       },
