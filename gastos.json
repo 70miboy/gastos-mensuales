@@ -453,6 +453,15 @@
         "pagado": true,
         "pagado_fecha": "2026-06-16",
         "pagado_monto": 364899
+      },
+      "ago_aguinaldo": {
+        "vencimiento": "2026-06-16",
+        "monto": 670000,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "carga_manual",
+        "notas": ""
       }
     }
   }
