@@ -450,8 +450,9 @@
       "iibb_tomas": {
         "monto": 364899,
         "vencimiento": "2026-06-16",
-        "pagado": false,
-        "pagado_fecha": "2026-06-16"
+        "pagado": true,
+        "pagado_fecha": "2026-06-16",
+        "pagado_monto": 364899
       }
     }
   }
