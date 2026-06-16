@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-06-11",
+  "ultima_actualizacion": "2026-06-16",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -446,6 +446,12 @@
         "pagado_monto": null,
         "fuente": "carga_manual",
         "notas": ""
+      },
+      "iibb_tomas": {
+        "monto": 364899,
+        "vencimiento": "2026-06-16",
+        "pagado": false,
+        "pagado_fecha": "2026-06-16"
       }
     }
   }
