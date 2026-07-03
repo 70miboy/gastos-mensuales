@@ -470,6 +470,12 @@ function saveTokenFromSettings() {
   const val = input.value.trim();
   if (!val) { alert('Ingresá un token válido.'); return; }
   localStorage.setItem('gh_token', val);
+  // Pedir storage persistente para que Brave no lo limpie entre sesiones
+  if (navigator.storage && navigator.storage.persist) {
+    navigator.storage.persist().then(persistent => {
+      console.log('Storage persistente:', persistent);
+    });
+  }
   input.value = '';
   showSettings();
   alert('Token guardado. Ya podés guardar cambios.');
@@ -641,7 +647,17 @@ function showSettings() {
   diag.push(`API local: ${API_AVAILABLE ? 'Disponible' : 'No disponible (usando GitHub API)'}`);
   diag.push(`Última actualización: ${GASTOS_DATA ? GASTOS_DATA.ultima_actualizacion || 'Desconocida' : 'N/A'}`);
   diag.push(`SHA cache: ${Object.keys(shaCache).length} archivo(s)`);
-  document.getElementById('settings-diag').textContent = diag.join('\n');
+  
+  // Verificar si storage es persistente
+  if (navigator.storage && navigator.storage.persisted) {
+    navigator.storage.persisted().then(persisted => {
+      diag.push(`Storage persistente: ${persisted ? '✓ Sí' : '✗ No (puede limpiarse)'}`);
+      document.getElementById('settings-diag').textContent = diag.join('\n');
+    });
+  } else {
+    diag.push(`Storage persistente: No soportado`);
+    document.getElementById('settings-diag').textContent = diag.join('\n');
+  }
   
   document.getElementById('modal-settings').classList.remove('hidden');
 }
