@@ -502,7 +502,11 @@ async function ghGet(file) {
   shaCache[file] = j.sha;
   let content;
   if (j.content) {
-    content = JSON.parse(atob(j.content.replace(/\n/g,'')));
+    const b64 = j.content.replace(/\n/g,'');
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    content = JSON.parse(new TextDecoder('utf-8').decode(bytes));
   } else if (j.download_url) {
     const dr = await fetch(j.download_url);
     content = await dr.json();
