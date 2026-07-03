@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-06-16",
+  "ultima_actualizacion": "2026-07-03",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -454,6 +454,197 @@
         "pagado": true,
         "pagado_fecha": "2026-06-16",
         "pagado_monto": 364899
+      }
+    },
+    "2026-07": {
+      "ago_berli": {
+        "vencimiento": "2026-07-04",
+        "monto": 1340000,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Estimado segun patron. Verificar vencimiento exacto."
+      },
+      "ormachea": {
+        "vencimiento": null,
+        "monto": 220000,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Honorarios fijos .000/mes. Factura fin de mes."
+      },
+      "cabal_credicoop": {
+        "vencimiento": "2026-07-08",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Cabal XXXX-3923. Vencimiento estimado. Monto por email."
+      },
+      "ubajay": {
+        "vencimiento": "2026-07-09",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Expensas Ubajay. Vencimiento estimado. Monto por ConsorcioAbierto."
+      },
+      "visa_nbsf": {
+        "vencimiento": "2026-07-09",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Visa NBSF. Vencimiento estimado. Monto por eresumen.com."
+      },
+      "visa_credicoop": {
+        "vencimiento": "2026-07-10",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Visa XXXX-2384 Credicoop. Vencimiento estimado. Monto por email/PDF."
+      },
+      "master_patagonia_joa": {
+        "vencimiento": "2026-07-04",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Master Patagonia Joana. Vencimiento estimado. Sin email en esta cuenta."
+      },
+      "master_nbsf_joa": {
+        "vencimiento": "2026-07-08",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Master NBSF Joana. Vencimiento estimado. Sin email en esta cuenta."
+      },
+      "master_mp": {
+        "vencimiento": "2026-07-12",
+        "monto": 1061394,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Master Mercado Pago. Vencimiento estimado. Verificar en app."
+      },
+      "iibb_joana": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "IIBB Joana Minetti. Sin email detectado."
+      },
+      "iibb_tomas": {
+        "vencimiento": "2026-07-16",
+        "monto": 364899,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "IIBB Tomas. Vencimiento estimado ~16. Verificar en ARCA."
+      },
+      "iva_tomas": {
+        "vencimiento": "2026-07-18",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "IVA Tomas. Vencimiento estimado ~18. Mail de Ormachea."
+      },
+      "ecommapp": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado."
+      },
+      "coop_setubal": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado."
+      },
+      "aguas_sf": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar con ASSA."
+      },
+      "jerarquicos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado."
+      },
+      "epe": {
+        "vencimiento": "2026-07-12",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "EPE bimestral. Proximo ciclo jul/ago 2026. Verificar factura."
+      },
+      "autonomos": {
+        "vencimiento": "2026-07-05",
+        "monto": 70624.12,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Autonomos ARCA. Vencimiento estimado ~5."
+      },
+      "mercadopacks": {
+        "vencimiento": "2026-07-09",
+        "monto": 1143764.6,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "MercadoPacks. Vencimiento estimado."
+      },
+      "botellas_sol_bebe_sa_julio": {
+        "vencimiento": "2026-07-26",
+        "monto": 1782511.5,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Botellas Sol Bebe SA Julio. Vencimiento estimado."
+      },
+      "ago_aguinaldo": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "AGO aguinaldo. Verificar si aplica en julio (SAC)."
       }
     }
   }
