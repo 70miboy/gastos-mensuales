@@ -632,7 +632,7 @@
       "botellas_sol_bebe_sa_julio": {
         "vencimiento": "2026-07-26",
         "monto": 1782511.5,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": "2026-06-30",
         "pagado_monto": 1782512,
         "fuente": null,
