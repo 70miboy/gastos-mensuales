@@ -505,12 +505,12 @@
       },
       "visa_credicoop": {
         "vencimiento": "2026-07-15",
-        "monto": null,
+        "monto": 1239398.17,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
-        "notas": "Visa XXXX-2384 Credicoop. Cierre 02/07. Vencimiento estimado ~15/07. Monto pendiente de resumen PDF."
+        "fuente": "pdf:asociados@bancocredicoop.coop",
+        "notas": "Visa XXXX-2384 Credicoop. Cierre 02/07. Vence 15/07. Pago mínimo: $1.239.398,17."
       },
       "master_patagonia_joa": {
         "vencimiento": "2026-07-04",
