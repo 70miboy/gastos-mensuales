@@ -612,13 +612,13 @@
         "notas": "EPE bimestral 2026-3 (jul/ago). Cuota 1: vence 08/07 .139 | Cuota 2: vence 07/08 .139. Cliente 5167685, J Del Campillo 1325."
       },
       "autonomos": {
-        "vencimiento": "2026-07-05",
-        "monto": null,
+        "vencimiento": "2026-07-06",
+        "monto": 702446.22,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Nuevos importes desde julio 2026 (período devengado junio). Verificar monto exacto en AFIP con Clave Fiscal."
+        "fuente": "carga_manual",
+        "notas": "Nuevos importes desde julio 2026 (período devengado junio). Monto confirmado por usuario."
       },
       "mercadopacks": {
         "vencimiento": "2026-07-09",
