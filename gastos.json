@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-03",
+  "ultima_actualizacion": "2026-07-06",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -459,10 +459,10 @@
     "2026-07": {
       "ago_berli": {
         "vencimiento": "2026-07-04",
-        "monto": 1340000,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "monto": 1355000,
+        "pagado": true,
+        "pagado_fecha": "2026-07-04",
+        "pagado_monto": 1355000,
         "fuente": null,
         "notas": "Estimado segun patron. Verificar vencimiento exacto."
       },
