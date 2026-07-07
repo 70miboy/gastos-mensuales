@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-06",
+  "ultima_actualizacion": "2026-07-07",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -613,10 +613,10 @@
       },
       "autonomos": {
         "vencimiento": "2026-07-06",
-        "monto": 702446.22,
+        "monto": 70244.622,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-07-07",
+        "pagado_monto": 702446,
         "fuente": "carga_manual",
         "notas": "Nuevos importes desde julio 2026 (período devengado junio). Monto confirmado por usuario."
       },
