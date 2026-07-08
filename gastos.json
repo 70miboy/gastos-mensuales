@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-07",
+  "ultima_actualizacion": "2026-07-08",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -515,8 +515,8 @@
       "master_patagonia_joa": {
         "vencimiento": "2026-07-04",
         "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
+        "pagado": true,
+        "pagado_fecha": "2026-07-08",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Master Patagonia Joana. Vencimiento estimado. Sin email en esta cuenta."
