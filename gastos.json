@@ -613,10 +613,10 @@
       },
       "autonomos": {
         "vencimiento": "2026-07-06",
-        "monto": 70244.622,
-        "pagado": false,
-        "pagado_fecha": "2026-07-07",
-        "pagado_monto": 702446,
+        "monto": 72446.22,
+        "pagado": true,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 72446.22,
         "fuente": "carga_manual",
         "notas": "Nuevos importes desde julio 2026 (período devengado junio). Monto confirmado por usuario."
       },
