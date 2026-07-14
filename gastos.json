@@ -621,7 +621,7 @@
         "notas": "Nuevos importes desde julio 2026 (período devengado junio). Monto confirmado por usuario."
       },
       "mercadopacks": {
-        "vencimiento": "2026-07-14",
+        "vencimiento": "2026-07-15",
         "monto": 904087.8,
         "pagado": false,
         "pagado_fecha": "2026-07-14",
