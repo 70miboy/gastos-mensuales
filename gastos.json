@@ -469,9 +469,9 @@
       "ormachea": {
         "vencimiento": null,
         "monto": 220000,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 220000,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "Honorarios .000/mes (Abr-Jul 2026). Factura de Luciana Grenón enviada 30/06. En julio se revisa el monto."
       },
