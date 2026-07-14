@@ -605,9 +605,9 @@
       "epe": {
         "vencimiento": "2026-07-08",
         "monto": 117139,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 117139,
         "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
         "notas": "EPE bimestral 2026-3 (jul/ago). Cuota 1: vence 08/07 .139 | Cuota 2: vence 07/08 .139. Cliente 5167685, J Del Campillo 1325."
       },
