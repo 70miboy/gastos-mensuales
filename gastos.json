@@ -497,9 +497,9 @@
       "visa_nbsf": {
         "vencimiento": "2026-07-07",
         "monto": 300025.43,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": "2026-07-14",
-        "pagado_monto": null,
+        "pagado_monto": 300025,
         "fuente": null,
         "notas": "Visa NBSF. Vencimiento estimado. Monto por eresumen.com."
       },
