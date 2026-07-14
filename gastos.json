@@ -623,7 +623,7 @@
       "mercadopacks": {
         "vencimiento": "2026-07-15",
         "monto": 904087.8,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": "2026-07-14",
         "pagado_monto": 1143765,
         "fuente": null,
