@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-08",
+  "ultima_actualizacion": "2026-07-14",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -621,11 +621,11 @@
         "notas": "Nuevos importes desde julio 2026 (período devengado junio). Monto confirmado por usuario."
       },
       "mercadopacks": {
-        "vencimiento": "2026-07-09",
-        "monto": 1143764.6,
+        "vencimiento": "2026-07-14",
+        "monto": 904087.8,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 1143765,
         "fuente": null,
         "notas": "MercadoPacks. Vencimiento estimado."
       },
