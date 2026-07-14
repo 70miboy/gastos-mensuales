@@ -549,11 +549,11 @@
         "notas": "IIBB Joana Minetti. Sin email detectado."
       },
       "iibb_tomas": {
-        "vencimiento": "2026-07-16",
-        "monto": 364899,
+        "vencimiento": "2026-07-17",
+        "monto": 355955.03,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 364899,
         "fuente": null,
         "notas": "IIBB Tomas. Vencimiento estimado ~16. Verificar en ARCA."
       },
