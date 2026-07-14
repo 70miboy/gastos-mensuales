@@ -522,10 +522,10 @@
         "notas": "Master Patagonia Joana. Vencimiento estimado. Sin email en esta cuenta."
       },
       "master_nbsf_joa": {
-        "vencimiento": "2026-07-08",
-        "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
+        "vencimiento": "2026-07-07",
+        "monto": 205355.99,
+        "pagado": true,
+        "pagado_fecha": "2026-07-14",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Master NBSF Joana. Vencimiento estimado. Sin email en esta cuenta."
