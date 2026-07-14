@@ -531,11 +531,11 @@
         "notas": "Master NBSF Joana. Vencimiento estimado. Sin email en esta cuenta."
       },
       "master_mp": {
-        "vencimiento": "2026-07-12",
-        "monto": 1061394,
+        "vencimiento": "2026-07-17",
+        "monto": 1409606,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 1061394,
         "fuente": null,
         "notas": "Master Mercado Pago. Vencimiento estimado. Verificar en app."
       },
