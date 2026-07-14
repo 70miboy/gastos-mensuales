@@ -479,9 +479,9 @@
         "vencimiento": "2026-07-06",
         "monto": 366293.58,
         "pago_minimo": 169556,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 366294,
         "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
         "notas": "Cabal XXXX-3923. Cierre 26/06. Vence 06/07. Saldo: .293,58. Pago mínimo: .556."
       },
