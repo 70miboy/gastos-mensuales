@@ -486,11 +486,11 @@
         "notas": "Cabal XXXX-3923. Cierre 26/06. Vence 06/07. Saldo: .293,58. Pago mínimo: .556."
       },
       "ubajay": {
-        "vencimiento": "2026-07-09",
-        "monto": 316061,
+        "vencimiento": "2026-07-19",
+        "monto": 329778,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-07-14",
+        "pagado_monto": 316061,
         "fuente": "gmail:noreply@consorcioabierto.com",
         "notas": "Nautico Ubajay CC. 1er venc 09/07: .061 | 2do venc 19/07: .778."
       },
