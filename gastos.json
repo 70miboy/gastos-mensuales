@@ -495,10 +495,10 @@
         "notas": "Nautico Ubajay CC. 1er venc 09/07: .061 | 2do venc 19/07: .778."
       },
       "visa_nbsf": {
-        "vencimiento": "2026-07-09",
-        "monto": null,
+        "vencimiento": "2026-07-07",
+        "monto": 300025.43,
         "pagado": false,
-        "pagado_fecha": null,
+        "pagado_fecha": "2026-07-14",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Visa NBSF. Vencimiento estimado. Monto por eresumen.com."
