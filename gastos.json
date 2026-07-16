@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-14",
+  "ultima_actualizacion": "2026-07-16",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -506,9 +506,9 @@
       "visa_credicoop": {
         "vencimiento": "2026-07-15",
         "monto": 1239398.17,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-07-16",
+        "pagado_monto": 1240398,
         "fuente": "pdf:asociados@bancocredicoop.coop",
         "notas": "Visa XXXX-2384 Credicoop. Cierre 02/07. Vence 15/07. Pago mínimo: $1.239.398,17."
       },
