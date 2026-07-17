@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-16",
+  "ultima_actualizacion": "2026-07-17",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -533,7 +533,7 @@
       "master_mp": {
         "vencimiento": "2026-07-17",
         "monto": 1409606,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": "2026-07-14",
         "pagado_monto": 1061394,
         "fuente": null,
