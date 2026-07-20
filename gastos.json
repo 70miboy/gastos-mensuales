@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-17",
+  "ultima_actualizacion": "2026-07-20",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -551,9 +551,9 @@
       "iibb_tomas": {
         "vencimiento": "2026-07-17",
         "monto": 355955.03,
-        "pagado": false,
-        "pagado_fecha": "2026-07-14",
-        "pagado_monto": 364899,
+        "pagado": true,
+        "pagado_fecha": "2026-07-20",
+        "pagado_monto": 357022,
         "fuente": null,
         "notas": "IIBB Tomas. Vencimiento estimado ~16. Verificar en ARCA."
       },
