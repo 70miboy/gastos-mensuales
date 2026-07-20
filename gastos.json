@@ -558,11 +558,11 @@
         "notas": "IIBB Tomas. Vencimiento estimado ~16. Verificar en ARCA."
       },
       "iva_tomas": {
-        "vencimiento": "2026-07-18",
-        "monto": 954233.99,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "vencimiento": "2026-07-20",
+        "monto": 235074,
+        "pagado": true,
+        "pagado_fecha": "2026-07-20",
+        "pagado_monto": 235074,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "DDJJ IVA 05/2026. Saldo a pagar .233,99 vence aprox 18/07. Mail estudio.ormachea 16/06."
       },
