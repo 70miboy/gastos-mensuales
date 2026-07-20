@@ -488,9 +488,9 @@
       "ubajay": {
         "vencimiento": "2026-07-19",
         "monto": 329778,
-        "pagado": false,
-        "pagado_fecha": "2026-07-14",
-        "pagado_monto": 316061,
+        "pagado": true,
+        "pagado_fecha": "2026-07-20",
+        "pagado_monto": 329778,
         "fuente": "gmail:noreply@consorcioabierto.com",
         "notas": "Nautico Ubajay CC. 1er venc 09/07: .061 | 2do venc 19/07: .778."
       },
