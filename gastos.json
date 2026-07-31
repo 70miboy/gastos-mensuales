@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-20",
+  "ultima_actualizacion": "2026-07-31",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -646,6 +646,188 @@
         "pagado_monto": null,
         "fuente": null,
         "notas": "AGO aguinaldo. Verificar si aplica en julio (SAC)."
+      }
+    },
+    "2026-08": {
+      "epe": {
+        "vencimiento": "2026-08-07",
+        "monto": 117139,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
+        "notas": "EPE bimestral 2026-3 (jul/ago). Cuota 2 de 2: vence 07/08 $117.139. Cliente 5167685, J Del Campillo 1325."
+      },
+      "epe_ayacucho": {
+        "vencimiento": "2026-08-13",
+        "monto": 113669,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:oficinavirtual@epe.santafe.gov.ar",
+        "notas": "EPE bimestral 2026-3 (jul/ago). Cuota 2 de 2: vence 13/08 $113.669. Cliente 6335062, Ayacucho 231."
+      },
+      "ubajay": {
+        "vencimiento": "2026-08-09",
+        "monto": 305346,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:noreply@consorcioabierto.com",
+        "notas": "Nautico Ubajay CC. 1er venc 09/08: $305.346 | 2do venc 19/08: $318.079. Cupon N° 005480."
+      },
+      "iva_tomas": {
+        "vencimiento": "2026-08-18",
+        "monto": 1032389.36,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "DDJJ IVA 06/2026 (Junio). Saldo a pagar $1.032.389,36. Vencimiento estimado 18/08 segun patron (mes anterior vencio 18/07). Mail estudio.ormachea 17/07."
+      },
+      "autonomos": {
+        "vencimiento": "2026-08-07",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "Nuevos importes Autonomos desde periodo devengado Julio 2026 (vence desde Agosto 2026). Mail 15/07: valores en AFIP (Sistema Registral). Verificar monto exacto con CUIT y Clave Fiscal."
+      },
+      "ormachea": {
+        "vencimiento": null,
+        "monto": 220000,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:estudio.ormachea@gmail.com",
+        "notas": "Honorarios Luciana Grenon $220.000/mes (Abr-Jul 2026). Factura enviada 31/07 (PDF adjunto, monto no legible en texto). En julio se revisa el monto - verificar."
+      },
+      "cabal_credicoop": {
+        "vencimiento": "2026-08-06",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
+        "notas": "Cabal XXXX-3923. Cierre 29/07. Vence est 06/08. Mail HTML puro - saldo no extraible. Verificar en Banca Credicoop."
+      },
+      "visa_credicoop": {
+        "vencimiento": "2026-08-14",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
+        "notas": "Visa XXXX-2384. Cierre 30/07. Vence est 14/08. Mail HTML puro - saldo no extraible. Verificar en Banca Credicoop."
+      },
+      "visa_nbsf": {
+        "vencimiento": "2026-08-07",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "gmail:info@eresumen.com",
+        "notas": "Visa NBSF (eresumen.com). Mail 04/07 sin contenido. Vence est 07/08. Verificar en app eresumen."
+      },
+      "master_nbsf_joa": {
+        "vencimiento": "2026-08-08",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Master NBSF Joana. Vencimiento estimado. Sin email en esta cuenta."
+      },
+      "master_mp": {
+        "vencimiento": "2026-08-12",
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Master Mercado Pago. Vencimiento estimado. Verificar en app."
+      },
+      "master_patagonia_joa": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Master Patagonia Joana. Sin email aun en esta cuenta."
+      },
+      "ago_berli": {
+        "vencimiento": "2026-08-04",
+        "monto": 1370000,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "AGO Berli. Estimado segun patron ascendente (may .320.000 - jun .340.000 - jul .355.000). Verificar monto y vencimiento exactos."
+      },
+      "mercadopacks": {
+        "vencimiento": "2026-08-09",
+        "monto": 1143764.6,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "MercadoPacks. Monto recurrente (jun/jul iguales). Verificar en app."
+      },
+      "iibb_tomas": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "IIBB Tomas. Suele llegar mail de estudio.ormachea a mediados de mes. Verificar en ARCA."
+      },
+      "iibb_joana": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "IIBB Joana Minetti. Sin email detectado."
+      },
+      "ecommapp": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado."
+      },
+      "coop_setubal": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado."
+      },
+      "aguas_sf": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado. Verificar con ASSA."
+      },
+      "jerarquicos": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": null,
+        "notas": "Sin email detectado."
       }
     }
   }
