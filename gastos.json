@@ -694,7 +694,7 @@
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "Nuevos importes Autonomos desde periodo devengado Julio 2026 (vence desde Agosto 2026). Mail 15/07: valores en AFIP (Sistema Registral). Verificar monto exacto con CUIT y Clave Fiscal."
       },
-"ormachea": {
+      "ormachea": {
         "vencimiento": null,
         "monto": 240000,
         "pagado": false,
@@ -703,7 +703,7 @@
         "fuente": "gmail:diegoormachea@hotmail.com",
         "notas": "Honorarios $240.000/mes desde Jul/2026 (pagadero Ago/2026). Mail Diego Ormachea 31/07: nuevo monto por inflacion, se mantiene 3 meses, revision Octubre 2026. Factura Luciana Grenon enviada 31/07 (estudio.ormachea@gmail.com, PDF adjunto)."
       },
-"cabal_credicoop": {
+      "cabal_credicoop": {
         "vencimiento": "2026-08-06",
         "monto": 956572.23,
         "pago_minimo": 169556,
@@ -713,9 +713,9 @@
         "fuente": "pdf:asociados@bancocredicoop.coop",
         "notas": "Cabal XXXX-3923. Cierre 29/07. Vence 06/08. Saldo total: $956.572,23. Pago mínimo: $169.556. Proximo vto 04/09. Pagos julio: $197.463 (14/07), $169.536+$20 (08/07). Consumos Tomas $956.051 + Joana $9.990 (Merpago)."
       },
-"visa_credicoop": {
+      "visa_credicoop": {
         "vencimiento": "2026-08-12",
-        "monto": 731961.20,
+        "monto": 731961.2,
         "pago_minimo": 729396,
         "pagado": false,
         "pagado_fecha": null,
@@ -725,9 +725,9 @@
       },
       "visa_nbsf": {
         "vencimiento": "2026-08-07",
-        "monto": null,
+        "monto": 157768.99,
         "pagado": false,
-        "pagado_fecha": null,
+        "pagado_fecha": "2026-08-03",
         "pagado_monto": null,
         "fuente": "gmail:info@eresumen.com",
         "notas": "Visa NBSF (eresumen.com). Mail 04/07 sin contenido. Vence est 07/08. Verificar en app eresumen."
@@ -822,7 +822,7 @@
         "fuente": null,
         "notas": "Sin email detectado. Verificar con ASSA."
       },
-"jerarquicos": {
+      "jerarquicos": {
         "vencimiento": null,
         "monto": null,
         "pagado": false,
