@@ -751,10 +751,10 @@
         "notas": "Master Mercado Pago. Vencimiento y valor estimado. Verificar en app."
       },
       "master_patagonia_joa": {
-        "vencimiento": null,
-        "monto": null,
+        "vencimiento": "2026-08-03",
+        "monto": 54209.32,
         "pagado": false,
-        "pagado_fecha": null,
+        "pagado_fecha": "2026-08-03",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Master Patagonia Joana. Sin email aun en esta cuenta."
