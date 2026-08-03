@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-07-31",
+  "ultima_actualizacion": "2026-08-03",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -694,32 +694,34 @@
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "Nuevos importes Autonomos desde periodo devengado Julio 2026 (vence desde Agosto 2026). Mail 15/07: valores en AFIP (Sistema Registral). Verificar monto exacto con CUIT y Clave Fiscal."
       },
-      "ormachea": {
+"ormachea": {
         "vencimiento": null,
-        "monto": 220000,
+        "monto": 240000,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "Honorarios Luciana Grenon $220.000/mes (Abr-Jul 2026). Factura enviada 31/07 (PDF adjunto, monto no legible en texto). En julio se revisa el monto - verificar."
+        "fuente": "gmail:diegoormachea@hotmail.com",
+        "notas": "Honorarios $240.000/mes desde Jul/2026 (pagadero Ago/2026). Mail Diego Ormachea 31/07: nuevo monto por inflacion, se mantiene 3 meses, revision Octubre 2026. Factura Luciana Grenon enviada 31/07 (estudio.ormachea@gmail.com, PDF adjunto)."
       },
-      "cabal_credicoop": {
+"cabal_credicoop": {
         "vencimiento": "2026-08-06",
-        "monto": null,
+        "monto": 956572.23,
+        "pago_minimo": 169556,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
-        "notas": "Cabal XXXX-3923. Cierre 29/07. Vence est 06/08. Mail HTML puro - saldo no extraible. Verificar en Banca Credicoop."
+        "fuente": "pdf:asociados@bancocredicoop.coop",
+        "notas": "Cabal XXXX-3923. Cierre 29/07. Vence 06/08. Saldo total: $956.572,23. Pago mínimo: $169.556. Proximo vto 04/09. Pagos julio: $197.463 (14/07), $169.536+$20 (08/07). Consumos Tomas $956.051 + Joana $9.990 (Merpago)."
       },
-      "visa_credicoop": {
-        "vencimiento": "2026-08-14",
-        "monto": null,
+"visa_credicoop": {
+        "vencimiento": "2026-08-12",
+        "monto": 731961.20,
+        "pago_minimo": 729396,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:mensajesyalertas@bancocredicoop.coop",
-        "notas": "Visa XXXX-2384. Cierre 30/07. Vence est 14/08. Mail HTML puro - saldo no extraible. Verificar en Banca Credicoop."
+        "fuente": "pdf:asociados@bancocredicoop.coop",
+        "notas": "Visa XXXX-2384. Cierre 30/07. Vence 12/08. Saldo total: $731.961,20. Pago financiado: $729.396. Proximo cierre 27/08, prox vto 09/09. Consumos Tomas $608.494 (Facebook $220.488, Merpago $123.900, YPF $50.000, etc). Saldo anterior $1.239.398 pagado 16/07."
       },
       "visa_nbsf": {
         "vencimiento": "2026-08-07",
