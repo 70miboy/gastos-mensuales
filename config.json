@@ -292,6 +292,20 @@
       ],
       "dia_vencimiento_aprox": null,
       "activo": true
+    },
+    {
+      "id": "factura_mercadolibre",
+      "nombre": "Factura Mercado Libre",
+      "categoria": "servicio",
+      "persona": "Tomás",
+      "gmail_busqueda": [
+        "Mercado Libre factura",
+        "MercadoLibre cargos",
+        "factura MercadoLibre",
+        "resumen Mercado Libre"
+      ],
+      "dia_vencimiento_aprox": null,
+      "activo": true
     }
   ]
 }
