@@ -743,12 +743,12 @@
       },
       "master_mp": {
         "vencimiento": "2026-08-12",
-        "monto": null,
+        "monto": 926602,
         "pagado": false,
-        "pagado_fecha": null,
+        "pagado_fecha": "2026-08-03",
         "pagado_monto": null,
         "fuente": null,
-        "notas": "Master Mercado Pago. Vencimiento estimado. Verificar en app."
+        "notas": "Master Mercado Pago. Vencimiento y valor estimado. Verificar en app."
       },
       "master_patagonia_joa": {
         "vencimiento": null,
