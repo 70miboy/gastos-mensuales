@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-03",
+  "ultima_actualizacion": "2026-08-04",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -761,10 +761,10 @@
       },
       "ago_berli": {
         "vencimiento": "2026-08-04",
-        "monto": 1370000,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "monto": 1380000,
+        "pagado": true,
+        "pagado_fecha": "2026-08-04",
+        "pagado_monto": 1380000,
         "fuente": null,
         "notas": "AGO Berli. Estimado segun patron ascendente (may .320.000 - jun .340.000 - jul .355.000). Verificar monto y vencimiento exactos."
       },
