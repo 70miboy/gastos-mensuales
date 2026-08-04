@@ -753,9 +753,9 @@
       "master_patagonia_joa": {
         "vencimiento": "2026-08-03",
         "monto": 54209.32,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": "2026-08-03",
-        "pagado_monto": null,
+        "pagado_monto": 54209,
         "fuente": null,
         "notas": "Master Patagonia Joana. Sin email aun en esta cuenta."
       },
