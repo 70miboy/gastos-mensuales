@@ -834,9 +834,9 @@
       "factura_mercadolibre": {
         "vencimiento": "2026-08-04",
         "monto": 2060955.86,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-04",
+        "pagado_monto": 2060956,
         "fuente": "carga_manual",
         "notas": "Factura consolidada Mercado Libre / Mercado Pago. Incluye: cargos por venta, cargos por publicidad, cargo por envíos ML, cargo por servicio MP, cargo de envíos Full, cargo por ofrecer cuotas en MP, cargos por suscripciones y contenido digital, percepciones ML y MP. Pago único mensual."
       },
