@@ -687,10 +687,10 @@
       },
       "autonomos": {
         "vencimiento": "2026-08-07",
-        "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "monto": 74003,
+        "pagado": true,
+        "pagado_fecha": "2026-08-04",
+        "pagado_monto": 74003,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "Nuevos importes Autonomos desde periodo devengado Julio 2026 (vence desde Agosto 2026). Mail 15/07: valores en AFIP (Sistema Registral). Verificar monto exacto con CUIT y Clave Fiscal."
       },
