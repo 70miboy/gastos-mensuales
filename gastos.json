@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-06",
+  "ultima_actualizacion": "2026-08-07",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -726,9 +726,9 @@
       "visa_nbsf": {
         "vencimiento": "2026-08-07",
         "monto": 157768.99,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": "2026-08-03",
-        "pagado_monto": null,
+        "pagado_monto": 157769,
         "fuente": "gmail:info@eresumen.com",
         "notas": "Visa NBSF (eresumen.com). Mail 04/07 sin contenido. Vence est 07/08. Verificar en app eresumen."
       },
