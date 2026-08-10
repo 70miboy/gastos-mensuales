@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-07",
+  "ultima_actualizacion": "2026-08-10",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -769,11 +769,11 @@
         "notas": "AGO Berli. Estimado segun patron ascendente (may .320.000 - jun .340.000 - jul .355.000). Verificar monto y vencimiento exactos."
       },
       "mercadopacks": {
-        "vencimiento": "2026-08-09",
-        "monto": 1143764.6,
+        "vencimiento": "2026-10-10",
+        "monto": 1249809,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-08-10",
+        "pagado_monto": 1143765,
         "fuente": null,
         "notas": "MercadoPacks. Monto recurrente (jun/jul iguales). Verificar en app."
       },
