@@ -735,8 +735,8 @@
       "master_nbsf_joa": {
         "vencimiento": "2026-08-08",
         "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-10",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Master NBSF Joana. Vencimiento estimado. Sin email en esta cuenta."
