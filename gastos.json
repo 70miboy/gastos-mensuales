@@ -670,9 +670,9 @@
       "ubajay": {
         "vencimiento": "2026-08-09",
         "monto": 305346,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-10",
+        "pagado_monto": 305346,
         "fuente": "gmail:noreply@consorcioabierto.com",
         "notas": "Nautico Ubajay CC. 1er venc 09/08: $305.346 | 2do venc 19/08: $318.079. Cupon N° 005480."
       },
