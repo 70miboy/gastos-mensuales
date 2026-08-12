@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-10",
+  "ultima_actualizacion": "2026-08-12",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -697,9 +697,9 @@
       "ormachea": {
         "vencimiento": null,
         "monto": 240000,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-12",
+        "pagado_monto": 240000,
         "fuente": "gmail:diegoormachea@hotmail.com",
         "notas": "Honorarios $240.000/mes desde Jul/2026 (pagadero Ago/2026). Mail Diego Ormachea 31/07: nuevo monto por inflacion, se mantiene 3 meses, revision Octubre 2026. Factura Luciana Grenon enviada 31/07 (estudio.ormachea@gmail.com, PDF adjunto)."
       },
