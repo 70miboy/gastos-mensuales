@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-12",
+  "ultima_actualizacion": "2026-08-13",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -717,9 +717,9 @@
         "vencimiento": "2026-08-12",
         "monto": 731961.2,
         "pago_minimo": 729396,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-12",
+        "pagado_monto": 731961,
         "fuente": "pdf:asociados@bancocredicoop.coop",
         "notas": "Visa XXXX-2384. Cierre 30/07. Vence 12/08. Saldo total: $731.961,20. Pago financiado: $729.396. Proximo cierre 27/08, prox vto 09/09. Consumos Tomas $608.494 (Facebook $220.488, Merpago $123.900, YPF $50.000, etc). Saldo anterior $1.239.398 pagado 16/07."
       },
