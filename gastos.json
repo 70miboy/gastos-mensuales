@@ -1,5 +1,5 @@
 {
-  "ultima_actualizacion": "2026-08-13",
+  "ultima_actualizacion": "2026-08-18",
   "version": "1.0",
   "pagos": {
     "2026-04": {
@@ -679,9 +679,9 @@
       "iva_tomas": {
         "vencimiento": "2026-08-18",
         "monto": 1032389.36,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-18",
+        "pagado_monto": 1032389,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "DDJJ IVA 06/2026 (Junio). Saldo a pagar $1.032.389,36. Vencimiento estimado 18/08 segun patron (mes anterior vencio 18/07). Mail estudio.ormachea 17/07."
       },
