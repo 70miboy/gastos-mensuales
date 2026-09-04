@@ -945,12 +945,12 @@
       },
       "autonomos": {
         "vencimiento": "2026-09-07",
-        "monto": null,
+        "monto": 75402.48,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
-        "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "VERIFICAR MONTO EN AFIP. Mail 18/08: nuevos importes desde el periodo devengado Agosto 2026 (vencimiento desde Septiembre 2026), vigentes desde el 15/08. Historico: may $68.428, jun $70.624, jul $72.446, ago $74.003. Con la tabla nueva la categoria B paga $72.196,60 y la B prima $78.965,04. Consultar AFIP > Sistema Registral > Constancias > ultimo Reempadronamiento de autonomos."
+        "fuente": "carga_manual",
+        "notas": "Autonomos Tomas Norman - CATEGORIA I. Vence 07/09/2026: $75.402,48. Monto confirmado por el usuario y coincide exacto con la tabla vigente desde el 15/08/2026 que envio estudio.ormachea el 18/08 (categoria I = $75.402,48), correspondiente al periodo devengado Agosto 2026. Historico categoria I: may $68.428 - jun $70.624 - jul $72.446 - ago $74.003 - sep $75.402,48."
       },
       "ago_berli": {
         "vencimiento": "2026-09-04",
