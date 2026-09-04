@@ -852,7 +852,7 @@
       "visa_nbsf": {
         "vencimiento": "2026-09-04",
         "monto": 77629.36,
-        "pago_minimo": 16866.0,
+        "pago_minimo": 16866,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
@@ -882,7 +882,7 @@
       "master_patagonia_joa": {
         "vencimiento": "2026-09-01",
         "monto": 162250.29,
-        "pago_minimo": 8186.0,
+        "pago_minimo": 8186,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
@@ -891,7 +891,7 @@
       },
       "ubajay": {
         "vencimiento": "2026-09-09",
-        "monto": 328884.0,
+        "monto": 328884,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
@@ -900,7 +900,7 @@
       },
       "epe_ayacucho": {
         "vencimiento": "2026-09-14",
-        "monto": 157732.0,
+        "monto": 157732,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
@@ -918,7 +918,7 @@
       },
       "ormachea": {
         "vencimiento": null,
-        "monto": 240000.0,
+        "monto": 240000,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
@@ -955,9 +955,9 @@
       "ago_berli": {
         "vencimiento": "2026-09-04",
         "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-09-04",
+        "pagado_monto": 1410000,
         "fuente": null,
         "notas": "VERIFICAR MONTO. Sin mail. Historico: may $1.320.000 - jun $1.340.000 - jul $1.355.000 - ago $1.380.000. Proyeccion septiembre ~$1,40M."
       },
