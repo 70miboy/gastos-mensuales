@@ -672,34 +672,34 @@
         "monto": 305346,
         "pagado": true,
         "pagado_fecha": "2026-08-10",
-        "pagado_monto": 305346.0,
+        "pagado_monto": 305346,
         "fuente": "gmail:noreply@consorcioabierto.com",
-        "notas": "Nautico Ubajay CC. 1er venc 09/08: $305.346 | 2do venc 19/08: $318.079. Cupon N° 005480. | CONFIRMADO: aviso de pago aprobado 11/08 por transferencia Banco Santa Fe CC 2069/02. Se pago el 10/08, un dia despues del 1er vencimiento, por lo que quedo el recargo de $12.733 del 2do vencimiento."
+        "notas": "Nautico Ubajay CC. 1er venc 09/08: $305.346 | 2do venc 19/08: $318.079. Cupon N° 005480. | Confirmado: aviso de pago aprobado 11/08. Se pago el 10/08, un dia despues del 1er vencimiento, por lo que quedo el recargo de $12.733 del 2do vencimiento."
       },
       "iva_tomas": {
         "vencimiento": "2026-08-18",
         "monto": 1032389.36,
         "pagado": true,
-        "pagado_fecha": "2026-08-13",
-        "pagado_monto": 0,
+        "pagado_fecha": "2026-08-18",
+        "pagado_monto": 1032389,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "COMPENSADO - nada a pagar. Mail estudio.ormachea 13/08: DDJJ IVA 07/2026 arrojo saldo A FAVOR de $12.299.569,38 (despacho de importacion del 13/07). El saldo que vencia el 18/08/2026 por $954.233,99 fue compensado completamente."
+        "notas": "DDJJ IVA 06/2026 (Junio). Saldo a pagar $1.032.389,36. Vencimiento estimado 18/08 segun patron (mes anterior vencio 18/07). Mail estudio.ormachea 17/07. | REVISAR: el mail de estudio.ormachea del 13/08 dice que la DDJJ IVA 07/2026 arrojo saldo A FAVOR de $12.299.569,38 y que el saldo que vencia el 18/08 por $954.233,99 fue compensado completamente. Aca figura pagado $1.032.389. Confirmar con el estudio."
       },
       "autonomos": {
         "vencimiento": "2026-08-07",
-        "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "monto": 74003,
+        "pagado": true,
+        "pagado_fecha": "2026-08-04",
+        "pagado_monto": 74003,
         "fuente": "gmail:estudio.ormachea@gmail.com",
         "notas": "Nuevos importes Autonomos desde periodo devengado Julio 2026 (vence desde Agosto 2026). Mail 15/07: valores en AFIP (Sistema Registral). Verificar monto exacto con CUIT y Clave Fiscal."
       },
       "ormachea": {
         "vencimiento": null,
         "monto": 240000,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-12",
+        "pagado_monto": 240000,
         "fuente": "gmail:diegoormachea@hotmail.com",
         "notas": "Honorarios $240.000/mes desde Jul/2026 (pagadero Ago/2026). Mail Diego Ormachea 31/07: nuevo monto por inflacion, se mantiene 3 meses, revision Octubre 2026. Factura Luciana Grenon enviada 31/07 (estudio.ormachea@gmail.com, PDF adjunto)."
       },
@@ -709,9 +709,9 @@
         "pago_minimo": 169556,
         "pagado": true,
         "pagado_fecha": "2026-08-06",
-        "pagado_monto": 956572.23,
+        "pagado_monto": 956572,
         "fuente": "pdf:asociados@bancocredicoop.coop",
-        "notas": "Cabal XXXX-3923. Cierre 29/07. Vence 06/08. Saldo total: $956.572,23. Pago mínimo: $169.556. Proximo vto 04/09. Pagos julio: $197.463 (14/07), $169.536+$20 (08/07). Consumos Tomas $956.051 + Joana $9.990 (Merpago). | CONFIRMADO en resumen 08/26: 06/08/26 SU PAGO 956.572,23-. Saldo actual $0."
+        "notas": "Cabal XXXX-3923. Cierre 29/07. Vence 06/08. Saldo total: $956.572,23. Pago mínimo: $169.556. Proximo vto 04/09. Pagos julio: $197.463 (14/07), $169.536+$20 (08/07). Consumos Tomas $956.051 + Joana $9.990 (Merpago). | Confirmado en el resumen 08/26: 06/08/26 SU PAGO 956.572,23-."
       },
       "visa_credicoop": {
         "vencimiento": "2026-08-12",
@@ -719,61 +719,61 @@
         "pago_minimo": 729396,
         "pagado": true,
         "pagado_fecha": "2026-08-12",
-        "pagado_monto": 731961.2,
+        "pagado_monto": 731961,
         "fuente": "pdf:asociados@bancocredicoop.coop",
-        "notas": "Visa XXXX-2384. Cierre 30/07. Vence 12/08. Saldo total: $731.961,20. Pago financiado: $729.396. Proximo cierre 27/08, prox vto 09/09. Consumos Tomas $608.494 (Facebook $220.488, Merpago $123.900, YPF $50.000, etc). Saldo anterior $1.239.398 pagado 16/07. | CONFIRMADO en resumen 08/26: 12-08-26 SU PAGO EN PESOS 731.961,20-. Saldo actual $0."
+        "notas": "Visa XXXX-2384. Cierre 30/07. Vence 12/08. Saldo total: $731.961,20. Pago financiado: $729.396. Proximo cierre 27/08, prox vto 09/09. Consumos Tomas $608.494 (Facebook $220.488, Merpago $123.900, YPF $50.000, etc). Saldo anterior $1.239.398 pagado 16/07. | Confirmado en el resumen 08/26: 12-08-26 SU PAGO EN PESOS 731.961,20-."
       },
       "visa_nbsf": {
         "vencimiento": "2026-08-07",
-        "monto": null,
+        "monto": 157768.99,
         "pagado": true,
-        "pagado_fecha": "2026-08-07",
-        "pagado_monto": 157768.99,
+        "pagado_fecha": "2026-08-03",
+        "pagado_monto": 157769,
         "fuente": "gmail:info@eresumen.com",
-        "notas": "Visa NBSF (eresumen.com). Mail 04/07 sin contenido. Vence est 07/08. Verificar en app eresumen. | CONFIRMADO en resumen NBSF 27/08: 07.08.26 SU PAGO EN PESOS 157.768,99-."
+        "notas": "Visa NBSF (eresumen.com). Mail 04/07 sin contenido. Vence est 07/08. Verificar en app eresumen. | Confirmado en el resumen NBSF 27/08: 07.08.26 SU PAGO EN PESOS 157.768,99-."
       },
       "master_nbsf_joa": {
         "vencimiento": "2026-08-08",
         "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-10",
         "pagado_monto": null,
         "fuente": null,
         "notas": "Master NBSF Joana. Vencimiento estimado. Sin email en esta cuenta."
       },
       "master_mp": {
-        "vencimiento": "2026-08-12",
-        "monto": null,
+        "vencimiento": "2026-08-18",
+        "monto": 926602,
         "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado_fecha": "2026-08-03",
+        "pagado_monto": 926602,
         "fuente": null,
-        "notas": "Master Mercado Pago. Vencimiento estimado. Verificar en app."
+        "notas": "Master Mercado Pago. Vencimiento y valor estimado. Verificar en app."
       },
       "master_patagonia_joa": {
-        "vencimiento": null,
-        "monto": null,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "vencimiento": "2026-08-03",
+        "monto": 54209.32,
+        "pagado": true,
+        "pagado_fecha": "2026-08-03",
+        "pagado_monto": 54209,
         "fuente": null,
         "notas": "Master Patagonia Joana. Sin email aun en esta cuenta."
       },
       "ago_berli": {
         "vencimiento": "2026-08-04",
-        "monto": 1370000,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "monto": 1380000,
+        "pagado": true,
+        "pagado_fecha": "2026-08-04",
+        "pagado_monto": 1380000,
         "fuente": null,
         "notas": "AGO Berli. Estimado segun patron ascendente (may .320.000 - jun .340.000 - jul .355.000). Verificar monto y vencimiento exactos."
       },
       "mercadopacks": {
-        "vencimiento": "2026-08-09",
-        "monto": 1143764.6,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "vencimiento": "2026-10-10",
+        "monto": 1249809,
+        "pagado": true,
+        "pagado_fecha": "2026-08-12",
+        "pagado_monto": 1249809,
         "fuente": null,
         "notas": "MercadoPacks. Monto recurrente (jun/jul iguales). Verificar en app."
       },
@@ -834,11 +834,18 @@
       "factura_mercadolibre": {
         "vencimiento": "2026-08-04",
         "monto": 2060955.86,
-        "pagado": false,
-        "pagado_fecha": null,
-        "pagado_monto": null,
+        "pagado": true,
+        "pagado_fecha": "2026-08-04",
+        "pagado_monto": 2060956,
         "fuente": "carga_manual",
         "notas": "Factura consolidada Mercado Libre / Mercado Pago. Incluye: cargos por venta, cargos por publicidad, cargo por envíos ML, cargo por servicio MP, cargo de envíos Full, cargo por ofrecer cuotas en MP, cargos por suscripciones y contenido digital, percepciones ML y MP. Pago único mensual."
+      },
+      "botellas_sol_bebe_sa_julio": {
+        "monto": 3265210.41,
+        "vencimiento": "2026-08-04",
+        "pagado": true,
+        "pagado_fecha": "2026-08-03",
+        "pagado_monto": 3265210
       }
     },
     "2026-09": {
@@ -850,7 +857,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "pdf:info@eresumen.com",
-        "notas": "Visa Classic NBSF. Cierre 27/08, vence 04/09. Saldo $77.629,36 - pago minimo $16.866. Consumos: Joana $27.500,01 (ARIAM cuota 2/3, MERPAGO cuota 1/3, Corredores Viales) + Tomas $36.066,14 (Mapfre Seguros). Cuota a vencer setiembre/26: $17.033,33. Proximo cierre 01/10, prox vto 09/10."
+        "notas": "Visa Classic NBSF. Cierre 27/08, vence 04/09. Saldo $77.629,36 - pago minimo $16.866. Consumos: Joana $27.500,01 (ARIAM cuota 2/3, MERPAGO cuota 1/3, Corredores Viales) + Tomas $36.066,14 (Mapfre Seguros). Cuota a vencer setiembre/26: $17.033,33. Proximo cierre 01/10, prox vto 09/10. Agosto fue $157.768,99."
       },
       "cabal_credicoop": {
         "vencimiento": "2026-09-04",
@@ -880,7 +887,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:newsletter@info.bancopatagonia.com",
-        "notas": "VENCIDA. Mastercard XXXX-7694 de Joana Minetti. Vencio 01/09/2026. Saldo total $162.250,29 - pago minimo $8.186. Datos al 20/08/2026. Aviso recibido 28/08."
+        "notas": "VENCIDA. Mastercard XXXX-7694 de Joana Minetti. Vencio 01/09/2026. Saldo total $162.250,29 - pago minimo $8.186. Datos al 20/08/2026. Aviso recibido 28/08. Agosto fue $54.209,32: subio fuerte, revisar consumos."
       },
       "ubajay": {
         "vencimiento": "2026-09-09",
@@ -889,7 +896,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:noreply@consorcioabierto.com",
-        "notas": "Nautico Ubajay CC, UF 240. Cupon N 005638. 1er vto 09/09: $328.884 | 2do vto 19/09: $342.728. OJO: quedo pendiente el recargo de $12.733 del 2do vencimiento de agosto (se pago el 10/08, un dia tarde). Verificar si esta incluido en el cupon."
+        "notas": "Nautico Ubajay CC, UF 240. Cupon N 005638. 1er vto 09/09: $328.884 | 2do vto 19/09: $342.728. OJO: quedo pendiente el recargo de $12.733 del 2do vencimiento de agosto. Verificar si esta incluido en el cupon."
       },
       "epe_ayacucho": {
         "vencimiento": "2026-09-14",
@@ -907,7 +914,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "PENDIENTE DE RECIBIR. EPE cliente 5167685 (J Del Campillo 1325). La factura bimestral 2026-4 todavia no llego por mail (la de Ayacucho llego el 29/08). El bimestre anterior vencia 07/08 por $117.139. Revisar la oficina virtual de EPE."
+        "notas": "PENDIENTE DE RECIBIR. EPE cliente 5167685 (J Del Campillo 1325). La factura bimestral 2026-4 todavia no llego por mail (la de Ayacucho llego el 29/08). El bimestre anterior vencia 07/08 por $117.139 y figura impago. Revisar la oficina virtual de EPE."
       },
       "ormachea": {
         "vencimiento": null,
@@ -925,7 +932,7 @@
         "pagado_fecha": null,
         "pagado_monto": 0,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "NADA A PAGAR. DDJJ IVA 07/2026 con saldo A FAVOR de $12.299.569,38 (despacho de importacion del 13/07/2026). Ese credito absorbe las obligaciones siguientes. Confirmar con el estudio antes de dar el mes por cerrado."
+        "notas": "NADA A PAGAR segun el estudio. DDJJ IVA 07/2026 con saldo A FAVOR de $12.299.569,38 (despacho de importacion del 13/07/2026). Ese credito absorbe las obligaciones siguientes. En agosto figura un pago de $1.032.389 que segun el mail del 13/08 estaba compensado: confirmar con el estudio si correspondia."
       },
       "iibb_tomas": {
         "vencimiento": null,
@@ -943,7 +950,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "gmail:estudio.ormachea@gmail.com",
-        "notas": "VERIFICAR MONTO EN AFIP. Mail 18/08: nuevos importes desde el periodo devengado Agosto 2026 (vencimiento desde Septiembre 2026), vigentes desde el 15/08. Historico: may $68.428, jun $70.624, jul $72.446 (suba ~3%/mes). Consultar AFIP > Sistema Registral > Constancias > ultimo Reempadronamiento de autonomos."
+        "notas": "VERIFICAR MONTO EN AFIP. Mail 18/08: nuevos importes desde el periodo devengado Agosto 2026 (vencimiento desde Septiembre 2026), vigentes desde el 15/08. Historico: may $68.428, jun $70.624, jul $72.446, ago $74.003. Con la tabla nueva la categoria B paga $72.196,60 y la B prima $78.965,04. Consultar AFIP > Sistema Registral > Constancias > ultimo Reempadronamiento de autonomos."
       },
       "ago_berli": {
         "vencimiento": "2026-09-04",
@@ -952,7 +959,7 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "VERIFICAR MONTO. Sin mail. Patron ascendente: may $1.320.000 - jun $1.340.000 - jul $1.355.000. Agosto quedo sin confirmar. Proyeccion septiembre ~$1,38M."
+        "notas": "VERIFICAR MONTO. Sin mail. Historico: may $1.320.000 - jun $1.340.000 - jul $1.355.000 - ago $1.380.000. Proyeccion septiembre ~$1,40M."
       },
       "factura_mercadolibre": {
         "vencimiento": "2026-09-04",
@@ -961,34 +968,43 @@
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": "carga_manual",
-        "notas": "VERIFICAR MONTO EN MERCADO LIBRE. Factura consolidada ML/MP (cargos por venta, publicidad, envios, servicio MP, Full, cuotas, suscripciones y percepciones). Agosto fue $2.060.955,86. Aviso de ML del 20/08: cambios en los costos desde el 1 de septiembre."
+        "notas": "VERIFICAR MONTO EN MERCADO LIBRE. Factura consolidada ML/MP (cargos por venta, publicidad, envios, servicio MP, Full, cuotas, suscripciones y percepciones). Agosto fue $2.060.955,86. Aviso de ML del 20/08: cambian los costos desde el 1 de septiembre."
       },
       "mercadopacks": {
-        "vencimiento": "2026-09-09",
+        "vencimiento": "2026-10-10",
         "monto": null,
-        "pagado": false,
+        "pagado": true,
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "VERIFICAR EN APP. Sin mail. Historico: jun $1.143.764,60 - jul $904.087,80 (pagado $1.143.765)."
+        "notas": "SIN VENCIMIENTO EN SEPTIEMBRE. En agosto quedo pagado $1.249.809 con proximo vencimiento el 10/10. Confirmar en la app que no haya nada intermedio."
       },
       "master_mp": {
-        "vencimiento": "2026-09-12",
+        "vencimiento": "2026-09-18",
         "monto": null,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "VERIFICAR EN APP MERCADO PAGO. Sin mail. Historico: may $486.003 - jun $1.061.394 - jul $1.409.606."
+        "notas": "VERIFICAR EN APP MERCADO PAGO. Sin mail. Historico: may $486.003 - jun $1.061.394 - jul $1.409.606 - ago $926.602. En agosto quedo con pagado=false pero con pagado_monto cargado: revisar si ese pago se hizo."
       },
       "master_nbsf_joa": {
-        "vencimiento": "2026-09-04",
+        "vencimiento": "2026-09-08",
         "monto": null,
         "pagado": false,
         "pagado_fecha": null,
         "pagado_monto": null,
         "fuente": null,
-        "notas": "VERIFICAR. Master NBSF de Joana. Sin mail en esta cuenta (revisar joanaminetti@gmail.com). Historico: may $244.709,63 - jul $205.355,99. Vencimiento estimado junto al de Visa NBSF."
+        "notas": "VERIFICAR. Master NBSF de Joana. Sin mail en esta cuenta (revisar joanaminetti@gmail.com). Historico: may $244.709,63 - jul $205.355,99. Agosto quedo marcado pagado sin monto."
+      },
+      "botellas_sol_bebe_sa_julio": {
+        "vencimiento": null,
+        "monto": null,
+        "pagado": false,
+        "pagado_fecha": null,
+        "pagado_monto": null,
+        "fuente": "carga_manual",
+        "notas": "DEFINIR SI CORRESPONDE EN SEPTIEMBRE. La factura de julio se pago en agosto por $3.265.210,41 (vto 04/08). Si es mensual, falta cargar la de agosto con su monto y vencimiento. Es el gasto mas grande del mes: no dejarlo sin revisar."
       },
       "iibb_joana": {
         "vencimiento": null,
