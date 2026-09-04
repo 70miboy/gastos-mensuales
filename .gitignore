@@ -31,3 +31,12 @@ __pycache__/
 # Archivos de test / setup
 _get_chat_id.py
 setup_task.bat
+
+# Secretos (NUNCA commitear)
+gmail_app_password.txt
+credicoop_pdf_password.txt
+gh_token.txt
+gastos_remote*.txt
+gastos_remote.json
+_pdf_dump.py
+_resumen.py
