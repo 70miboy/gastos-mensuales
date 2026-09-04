@@ -34,9 +34,12 @@ CONFIG_FILE = os.path.join(BASE_DIR, "config.json")
 LOG_FILE = os.path.join(BASE_DIR, "check_mails_log.json")
 
 # ── CONFIG ──
-GMAIL_USER = "tominorman@gmail.com"
-GMAIL_PASS = "wjpj bolj qbvl wykd"
-PDF_PASSWORD = "29834279"
+# Las credenciales se resuelven en gmail_auth (variable de entorno o archivo
+# local ignorado por git). Nunca escribirlas en este archivo.
+from gmail_auth import GMAIL_USER, get_gmail_pass, get_pdf_password
+
+GMAIL_PASS = get_gmail_pass()
+PDF_PASSWORD = get_pdf_password()
 DIAS_ATRAS = 7  # Cuántos días hacia atrás buscar
 
 # Mapeo de remitente a gasto_id

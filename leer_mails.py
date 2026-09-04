@@ -14,8 +14,11 @@ import re
 from datetime import datetime, timedelta
 
 # ── CONFIG ──
-GMAIL_USER = "tominorman@gmail.com"
-GMAIL_PASS = "wjpj bolj qbvl wykd"
+# Las credenciales se resuelven en gmail_auth (variable de entorno o archivo
+# local ignorado por git). Nunca escribirlas en este archivo.
+from gmail_auth import GMAIL_USER, get_gmail_pass
+
+GMAIL_PASS = get_gmail_pass()
 
 REMITENTES_CLAVE = [
     "estudio.ormachea@gmail.com",

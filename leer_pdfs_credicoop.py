@@ -14,9 +14,12 @@ import os
 import tempfile
 from pypdf import PdfReader
 
-GMAIL_USER = "tominorman@gmail.com"
-GMAIL_PASS = "wjpj bolj qbvl wykd"
-PDF_PASSWORD = "29834279"
+# Las credenciales se resuelven en gmail_auth (variable de entorno o archivo
+# local ignorado por git). Nunca escribirlas en este archivo.
+from gmail_auth import GMAIL_USER, get_gmail_pass, get_pdf_password
+
+GMAIL_PASS = get_gmail_pass()
+PDF_PASSWORD = get_pdf_password()
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 def decodificar_header(h):

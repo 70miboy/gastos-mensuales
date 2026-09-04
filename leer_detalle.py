@@ -1,9 +1,10 @@
 import sys, io, imaplib, email
 from email.header import decode_header
+from gmail_auth import GMAIL_USER, get_gmail_pass
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 mail = imaplib.IMAP4_SSL('imap.gmail.com')
-mail.login('tominorman@gmail.com', 'wjpj bolj qbvl wykd')
+mail.login(GMAIL_USER, get_gmail_pass())
 mail.select('inbox')
 
 remitentes = [
